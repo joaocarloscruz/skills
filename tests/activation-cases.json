@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "plan-change-in-existing-codebase",
+      "title": "Plan a change from existing behavior",
+      "prompt": "Before writing code, trace the existing checkout and give me an implementation plan for adding account-level usage limits.",
+      "expected_skills": [
+        "analyze-codebase",
+        "plan-implementation"
+      ],
+      "unexpected_skills": [
+        "break-down-work",
+        "write-technical-spec"
+      ],
+      "rationale": "The request needs repository evidence and a plan, not a new requirements document or ticket breakdown."
+    },
+    {
+      "id": "break-approved-feature-into-tickets",
+      "title": "Break an approved feature into work items",
+      "prompt": "The feature requirements are approved. Split the work into small ordered tickets with dependencies, acceptance criteria, and verification.",
+      "expected_skills": [
+        "break-down-work"
+      ],
+      "unexpected_skills": [
+        "plan-implementation",
+        "write-technical-spec"
+      ],
+      "rationale": "The user already has requirements and wants execution units rather than a design investigation."
+    },
+    {
+      "id": "write-technical-specification",
+      "title": "Turn product intent into an engineering specification",
+      "prompt": "Turn this product brief into a technical specification with behavior, interfaces, failure cases, rollout, and acceptance criteria. Do not implement it.",
+      "expected_skills": [
+        "write-technical-spec"
+      ],
+      "unexpected_skills": [
+        "break-down-work",
+        "implement-feature"
+      ],
+      "rationale": "The requested artifact is a specification, not code or a project plan."
+    },
+    {
+      "id": "review-pull-request-without-edits",
+      "title": "Review a pull request",
+      "prompt": "Review this pull request for correctness, regressions, missing tests, and scope. Report findings only; do not modify code.",
+      "expected_skills": [
+        "review-changes"
+      ],
+      "unexpected_skills": [
+        "implement-feature",
+        "refactor-safely"
+      ],
+      "rationale": "This is a bounded diff review, and the user explicitly excludes implementation."
+    },
+    {
+      "id": "review-authentication-design-for-vulnerabilities",
+      "title": "Review an authentication design for security flaws",
+      "prompt": "Assess this authentication and authorization design for exploitable vulnerabilities, trust-boundary mistakes, and tenant-isolation failures.",
+      "expected_skills": [
+        "review-security"
+      ],
+      "unexpected_skills": [
+        "audit-dependencies",
+        "review-changes"
+      ],
+      "rationale": "The requested outcome is an evidence-backed security assessment rather than a general code review or dependency audit."
+    },
+    {
+      "id": "audit-web-flow-for-accessibility",
+      "title": "Review a web flow for accessibility barriers",
+      "prompt": "Audit the checkout flow for keyboard, screen-reader, zoom, contrast, and reduced-motion barriers. Give actionable findings with the affected journey.",
+      "expected_skills": [
+        "review-accessibility"
+      ],
+      "unexpected_skills": [
+        "build-frontend-interface",
+        "review-changes"
+      ],
+      "rationale": "The goal is an accessibility audit rather than implementation or broad change review."
+    },
+    {
+      "id": "design-risk-based-test-strategy",
+      "title": "Design a test strategy",
+      "prompt": "Design a risk-based test strategy for migrating billing providers, including the most effective test seams and release checks.",
+      "expected_skills": [
+        "design-test-strategy"
+      ],
+      "unexpected_skills": [
+        "test-api",
+        "test-local-webapp"
+      ],
+      "rationale": "The request selects verification approaches across a migration; it does not ask to execute a particular test type."
+    },
+    {
+      "id": "test-api-contract",
+      "title": "Test an API implementation",
+      "prompt": "Test this staging payments API against its contract, including invalid inputs, authorization, retries, pagination, and side effects.",
+      "expected_skills": [
+        "test-api"
+      ],
+      "unexpected_skills": [
+        "design-api",
+        "design-test-strategy"
+      ],
+      "rationale": "The task is to exercise an existing API, not to design an interface or a general strategy."
+    },
+    {
+      "id": "test-local-web-application",
+      "title": "Exercise a local web application",
+      "prompt": "Open the local application at localhost, reproduce the save failure, inspect browser and network evidence, and report the defect without changing code.",
+      "expected_skills": [
+        "test-local-webapp"
+      ],
+      "unexpected_skills": [
+        "build-frontend-interface",
+        "debug-systematically"
+      ],
+      "rationale": "Browser-based evidence is the task boundary; code changes and a broader debugging workflow are not requested."
+    },
+    {
+      "id": "investigate-failed-ci-job",
+      "title": "Investigate a CI failure",
+      "prompt": "The integration-test job began failing on this branch. Find the first actionable error, determine whether it is flaky or a code defect, and propose a verified fix.",
+      "expected_skills": [
+        "investigate-ci-failure"
+      ],
+      "unexpected_skills": [
+        "write-ci-pipeline",
+        "release-software"
+      ],
+      "rationale": "The user needs diagnosis of an existing pipeline failure, not a new workflow or release process."
+    },
+    {
+      "id": "write-continuous-integration-workflow",
+      "title": "Create a CI workflow",
+      "prompt": "Create a GitHub Actions workflow that runs the repository's build, tests, and security checks on pull requests with least-privilege permissions.",
+      "expected_skills": [
+        "write-ci-pipeline"
+      ],
+      "unexpected_skills": [
+        "investigate-ci-failure",
+        "release-software"
+      ],
+      "rationale": "This is workflow authoring, not incident diagnosis or deployment authorization."
+    },
+    {
+      "id": "design-product-interface-before-code",
+      "title": "Set a frontend visual direction",
+      "prompt": "Define the information hierarchy, interaction behavior, responsive layout, and visual direction for a new analytics dashboard before implementation.",
+      "expected_skills": [
+        "design-frontend-interface"
+      ],
+      "unexpected_skills": [
+        "build-frontend-interface",
+        "build-design-system"
+      ],
+      "rationale": "The request is for design direction before code, not implementation or a reusable system."
+    },
+    {
+      "id": "implement-approved-frontend-design",
+      "title": "Build a frontend from an approved design",
+      "prompt": "Implement this approved checkout-page design in the existing React application, including responsive states, validation, accessibility, and browser verification.",
+      "expected_skills": [
+        "build-frontend-interface"
+      ],
+      "unexpected_skills": [
+        "design-frontend-interface",
+        "build-design-system"
+      ],
+      "rationale": "Visual direction is already approved; the task is production implementation in an existing application."
+    },
+    {
+      "id": "evaluate-retrieval-augmented-generation",
+      "title": "Evaluate a RAG system",
+      "prompt": "Evaluate our RAG system by separating retrieval quality, context quality, answer grounding, citation support, latency, and cost.",
+      "expected_skills": [
+        "evaluate-rag"
+      ],
+      "unexpected_skills": [
+        "evaluate-ai-output",
+        "research-with-sources"
+      ],
+      "rationale": "The request explicitly evaluates retrieval-augmented generation rather than a generic model-output task or research question."
+    },
+    {
+      "id": "evaluate-agent-output-quality",
+      "title": "Evaluate an agent workflow",
+      "prompt": "Design a representative dataset and scoring rubric to measure whether our support agent follows policy, uses tools correctly, and regresses after prompt changes.",
+      "expected_skills": [
+        "evaluate-ai-output"
+      ],
+      "unexpected_skills": [
+        "evaluate-rag",
+        "design-agent-tools"
+      ],
+      "rationale": "The goal is output evaluation, not a retrieval-specific assessment or a new tool interface."
+    },
+    {
+      "id": "analyze-structured-dataset",
+      "title": "Analyze a dataset reproducibly",
+      "prompt": "Analyze this customer-retention CSV, document cleaning decisions, check the data grain, identify trends and uncertainty, and deliver a reproducible summary.",
+      "expected_skills": [
+        "analyze-dataset"
+      ],
+      "unexpected_skills": [
+        "write-sql",
+        "design-data-pipeline"
+      ],
+      "rationale": "The task analyzes supplied tabular data; it does not ask for a database query or a recurring data architecture."
+    },
+    {
+      "id": "write-safe-analytical-sql",
+      "title": "Write an analytical SQL query",
+      "prompt": "Write a read-only PostgreSQL query for monthly active accounts, handling event grain, duplicate events, time zones, and validation totals.",
+      "expected_skills": [
+        "write-sql"
+      ],
+      "unexpected_skills": [
+        "analyze-dataset",
+        "design-database-change"
+      ],
+      "rationale": "The requested output is a safe analytical read query, not a data-analysis report or schema migration."
+    }
+  ]
+}

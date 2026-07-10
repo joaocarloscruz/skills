@@ -65,6 +65,20 @@ Copy-mode installations must be refreshed after each update:
 .\scripts\install.ps1 -Mode Copy -Force
 ```
 
+## Activation regression fixtures
+
+`tests/activation-cases.json` records representative requests and the skills
+that should, and should not, activate. It is a catalog-specific regression
+corpus, not a cross-model benchmark. Use it when changing descriptions or
+resolving an overlap: run each prompt in the target agent and compare the
+selected skills with the fixture before accepting the change.
+
+Validate the fixture schema and every referenced skill with:
+
+```bash
+python scripts/validate_activation_cases.py
+```
+
 ## Design rules
 
 - Keep each skill focused on one repeatable job.
