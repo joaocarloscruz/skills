@@ -40,3 +40,18 @@ jobs:
 
       - name: Compile bundled Python scripts
         run: python -m py_compile scripts/validate_skills.py skills/audit-skill-catalog/scripts/audit_catalog.py
+
+      - name: Parse PowerShell installer
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [void][System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path scripts/install.ps1),
+            [ref]$tokens,
+            [ref]$errors
+          )
+          if ($errors) {
+            $errors | Format-List
+            exit 1
+          }

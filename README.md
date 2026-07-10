@@ -34,6 +34,37 @@ Validate the collection with:
 python scripts/validate_skills.py
 ```
 
+## Install on Windows
+
+From a local checkout, install all skills into Codex with:
+
+```powershell
+.\scripts\install.ps1
+```
+
+The installer uses `$CODEX_HOME\skills` when `CODEX_HOME` is set, otherwise
+`$HOME\.codex\skills`. Its default `Symlink` mode keeps the installed skills
+connected to this checkout, so a later `git pull` does not require
+reinstallation. Windows may require Developer Mode or an elevated shell to
+create symbolic links.
+
+Install only selected skills, inspect the available names, or install into a
+different compatible client's skill directory:
+
+```powershell
+.\scripts\install.ps1 -List
+.\scripts\install.ps1 -Skills analyze-codebase,plan-implementation
+.\scripts\install.ps1 -Destination "C:\path\to\skills" -Skills review-changes
+```
+
+Use `-Mode Copy` when symbolic links are unavailable. Existing destinations are
+left untouched unless `-Force` is supplied; use `-WhatIf` to preview changes.
+Copy-mode installations must be refreshed after each update:
+
+```powershell
+.\scripts\install.ps1 -Mode Copy -Force
+```
+
 ## Design rules
 
 - Keep each skill focused on one repeatable job.
