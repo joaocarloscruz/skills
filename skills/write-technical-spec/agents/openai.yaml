@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Technical Spec"
+  short_description: "Turn product intent into testable engineering contracts"
+  default_prompt: "Use $write-technical-spec to define the behavior, constraints, and acceptance criteria."
