@@ -1,0 +1,4 @@
+interface:
+  display_name: "Investigate CI Failure"
+  short_description: "Trace CI failures to actionable root causes"
+  default_prompt: "Use $investigate-ci-failure to inspect this failing pipeline and identify the root cause."
