@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research with Sources"
+  short_description: "Research questions using authoritative primary sources"
+  default_prompt: "Use $research-with-sources to investigate this question and produce a concise cited brief."
