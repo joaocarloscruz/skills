@@ -1,6 +1,6 @@
 ---
 name: build-design-system
-description: Build shared UI foundations: tokens, themes, primitives, component APIs, and accessibility.
+description: "Build shared UI foundations: tokens, themes, primitives, component APIs, and accessibility."
 ---
 
 # Build Design System
