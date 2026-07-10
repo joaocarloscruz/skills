@@ -1,0 +1,4 @@
+interface:
+  display_name: "Migrate Dependency"
+  short_description: "Upgrade dependencies with controlled compatibility"
+  default_prompt: "Use $migrate-dependency to plan and execute this dependency upgrade safely."
