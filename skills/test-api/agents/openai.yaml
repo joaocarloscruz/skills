@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test API"
+  short_description: "Verify API contracts, errors, and side effects"
+  default_prompt: "Use $test-api to verify this API contract and its important failure modes."
