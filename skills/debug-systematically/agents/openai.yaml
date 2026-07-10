@@ -1,0 +1,4 @@
+interface:
+  display_name: "Debug Systematically"
+  short_description: "Reproduce, isolate, fix, and verify software bugs"
+  default_prompt: "Use $debug-systematically to diagnose this failure with a tight reproducible feedback loop."
