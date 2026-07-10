@@ -1,0 +1,4 @@
+interface:
+  display_name: "Break Down Work"
+  short_description: "Turn goals into small verifiable work items"
+  default_prompt: "Use $break-down-work to split this goal into ordered, independently verifiable tasks."
