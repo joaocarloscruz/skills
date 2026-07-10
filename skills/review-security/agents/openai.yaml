@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Security"
+  short_description: "Threat-model changes and find exploitable risks"
+  default_prompt: "Use $review-security to assess this change for concrete security risks."
