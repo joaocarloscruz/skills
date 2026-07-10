@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Documentation"
+  short_description: "Create accurate task-oriented technical docs"
+  default_prompt: "Use $write-documentation to create concise documentation verified against the implementation."
