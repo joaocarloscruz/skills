@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design API"
+  short_description: "Design coherent and evolvable service interfaces"
+  default_prompt: "Use $design-api to design this interface with clear contracts and failure behavior."
