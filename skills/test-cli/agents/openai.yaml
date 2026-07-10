@@ -1,4 +1,0 @@
-interface:
-  display_name: "Test CLI"
-  short_description: "Verify command-line behavior and compatibility"
-  default_prompt: "Use $test-cli to verify this command-line interface across key scenarios."

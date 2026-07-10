@@ -1,4 +1,0 @@
-interface:
-  display_name: "Evaluate AI Output"
-  short_description: "Build rigorous evaluations for model outputs"
-  default_prompt: "Use $evaluate-ai-output to design an evidence-based evaluation for this AI behavior."

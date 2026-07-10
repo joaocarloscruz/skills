@@ -1,4 +1,0 @@
-interface:
-  display_name: "Analyze Codebase"
-  short_description: "Map architecture, boundaries, and execution paths"
-  default_prompt: "Use $analyze-codebase to map this repository and explain the relevant architecture."

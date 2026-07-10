@@ -1,4 +1,0 @@
-interface:
-  display_name: "Improve Performance"
-  short_description: "Measure, isolate, and fix performance bottlenecks"
-  default_prompt: "Use $improve-performance to profile this slowdown and verify a meaningful improvement."

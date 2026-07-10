@@ -1,4 +1,0 @@
-interface:
-  display_name: "Design Database Change"
-  short_description: "Plan safe schemas, migrations, and rollbacks"
-  default_prompt: "Use $design-database-change to plan this schema change and its safe rollout."

@@ -49,11 +49,9 @@ Each skill lives in `skills/<name>/` and contains a portable `SKILL.md` with `na
 - `triage-issues` — Turn reports into prioritized, actionable issues.
 - `write-documentation` — Create accurate, task-oriented documentation.
 
-## What is `agents/openai.yaml`?
+## Portability
 
-`SKILL.md` is the cross-product skill contract. The optional `agents/` directory holds product-specific integration metadata that should not pollute the portable instructions.
-
-This repository currently generates only `agents/openai.yaml`. It supplies OpenAI/Codex UI fields such as a display name, short description, and default invocation prompt. Other agents generally discover these skills directly from `SKILL.md`; product-specific metadata can be added later if another product defines and needs its own format.
+`SKILL.md` is the complete cross-product skill contract. This catalog intentionally omits vendor-specific metadata so every skill has the same portable structure. Individual consumers may generate local integration metadata outside this repository when their product requires it.
 
 ## Use
 

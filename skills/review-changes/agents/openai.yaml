@@ -1,4 +1,0 @@
-interface:
-  display_name: "Review Changes"
-  short_description: "Review a diff for correctness, risk, and scope"
-  default_prompt: "Use $review-changes to review this branch against its base and report actionable findings."

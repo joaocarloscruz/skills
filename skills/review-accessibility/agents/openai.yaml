@@ -1,4 +1,0 @@
-interface:
-  display_name: "Review Accessibility"
-  short_description: "Review interfaces for accessible user journeys"
-  default_prompt: "Use $review-accessibility to assess this interface and report user-impacting barriers."

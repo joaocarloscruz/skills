@@ -1,4 +1,0 @@
-interface:
-  display_name: "Test Local Web App"
-  short_description: "Inspect and verify local web applications safely"
-  default_prompt: "Use $test-local-webapp to verify this local web app with focused browser checks."

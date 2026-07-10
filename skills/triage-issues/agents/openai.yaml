@@ -1,4 +1,0 @@
-interface:
-  display_name: "Triage Issues"
-  short_description: "Classify, reproduce, and prioritize issue reports"
-  default_prompt: "Use $triage-issues to turn these reports into actionable prioritized issues."
