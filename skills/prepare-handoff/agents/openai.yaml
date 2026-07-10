@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prepare Handoff"
+  short_description: "Capture state for seamless work continuation"
+  default_prompt: "Use $prepare-handoff to capture the current state so another agent can continue."
