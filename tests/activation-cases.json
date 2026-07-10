@@ -222,6 +222,20 @@
         "design-database-change"
       ],
       "rationale": "The requested output is a safe analytical read query, not a data-analysis report or schema migration."
+    },
+    {
+      "id": "implement-feature-test-first",
+      "title": "Implement behavior with TDD",
+      "prompt": "Implement the account lockout rule test-first. Show each failing test, make the smallest change to pass it, then refactor while green.",
+      "expected_skills": [
+        "tdd",
+        "implement-feature"
+      ],
+      "unexpected_skills": [
+        "design-test-strategy",
+        "debug-systematically"
+      ],
+      "rationale": "The request explicitly asks for test-first implementation cycles, not a broad test strategy or diagnosis of an unknown defect."
     }
   ]
 }

@@ -6,3 +6,4 @@
 - [migrate-dependency](../../skills/migrate-dependency/) - Upgrade dependencies with controlled compatibility.
 - [refactor-safely](../../skills/refactor-safely/) - Improve structure while preserving behavior.
 - [resolve-merge-conflicts](../../skills/resolve-merge-conflicts/) - Reconcile competing changes by intent.
+- [tdd](../../skills/tdd/) - Build behavior in small red-green-refactor cycles.
