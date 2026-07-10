@@ -1,6 +1,6 @@
 ---
 name: analyze-dataset
-description: Inspect, clean, explore, summarize, and communicate findings from a structured dataset while preserving provenance and uncertainty. Use when analyzing CSV, tabular, database-export, Parquet, JSON-record, or similar data rather than merely formatting a spreadsheet.
+description: Inspect, clean, explore, and summarize structured datasets with provenance and uncertainty.
 ---
 
 # Analyze Dataset

@@ -1,6 +1,6 @@
 ---
 name: improve-performance
-description: Diagnose and improve latency, throughput, memory, CPU, I/O, query, bundle, or startup performance using reproducible measurements and profiling. Use when software is slow, resource-heavy, regressed, or must meet a performance target.
+description: Measure, profile, and improve latency, throughput, memory, CPU, I/O, query, or startup performance.
 ---
 
 # Improve Performance

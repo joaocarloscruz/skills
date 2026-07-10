@@ -1,6 +1,6 @@
 ---
 name: analyze-codebase
-description: Map an unfamiliar repository's architecture, entry points, boundaries, data flow, conventions, and change hotspots. Use when onboarding to a codebase, locating where behavior lives, explaining system structure, or identifying the files relevant to a proposed change.
+description: Map an unfamiliar repository's architecture, entry points, data flow, and change hotspots.
 ---
 
 # Analyze Codebase

@@ -1,6 +1,6 @@
 ---
 name: build-design-system
-description: Create or evolve reusable frontend design foundations, including semantic tokens, themes, primitives, component APIs, variants, interaction states, accessibility contracts, documentation, versioning, and adoption. Use when building a shared UI library or standardizing inconsistent interfaces across products.
+description: Build shared UI foundations: tokens, themes, primitives, component APIs, and accessibility.
 ---
 
 # Build Design System

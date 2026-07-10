@@ -1,6 +1,6 @@
 ---
 name: test-local-webapp
-description: Inspect, exercise, and verify local web applications with browser automation, screenshots, DOM checks, console and network evidence, and focused end-to-end scenarios. Use when testing localhost or file-based web UIs, reproducing frontend bugs, or confirming visual and interactive behavior.
+description: Test local web apps with browser automation, DOM, console, network, and journey evidence.
 ---
 
 # Test Local Web App

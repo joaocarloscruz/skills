@@ -1,6 +1,6 @@
 ---
 name: prepare-handoff
-description: Capture the exact state of ongoing technical work so another person or AI agent can continue without reconstructing context. Use when pausing, switching agents, ending a session, or transferring ownership of an incomplete task.
+description: Capture technical work so another person or AI agent can continue without rebuilding context.
 ---
 
 # Prepare Handoff

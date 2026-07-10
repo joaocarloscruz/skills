@@ -1,6 +1,6 @@
 ---
 name: audit-skill-catalog
-description: Audit a repository or directory of agent skills for structural defects, broken references, overlapping triggers, unsafe instructions, excessive context, weak provenance, portability problems, and maintenance gaps. Use when reviewing skill quality, preparing a catalog for publication, or deciding whether to add, merge, split, or revise skills.
+description: Audit agent skills for structural defects, unsafe instructions, routing, and portability.
 ---
 
 # Audit Skill Catalog

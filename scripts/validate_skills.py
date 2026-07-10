@@ -12,6 +12,8 @@ SKILLS = ROOT / "skills"
 CATALOG = ROOT / "catalog"
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 CATALOG_LINK_RE = re.compile(r"\]\(\.\./\.\./skills/([a-z0-9-]+)/\)")
+DISCOVERY_BUDGET = 8_000
+DISCOVERY_PATH_CHARS = 60
 
 
 def parse_frontmatter(path: Path) -> tuple[dict[str, str], list[str]]:
@@ -105,6 +107,23 @@ def main() -> int:
         failures += 1
     if not (missing_categories or unknown_skills or duplicate_categories):
         print(f"OK   catalog covers {len(skill_names)} skills exactly once")
+
+    metadata = [parse_frontmatter(path)[0] for path in paths]
+    discovery_chars = sum(
+        len(f"- {item['name']}: {item['description']} (file: {'x' * DISCOVERY_PATH_CHARS})")
+        for item in metadata
+    ) + max(0, len(metadata) - 1)
+    if discovery_chars > DISCOVERY_BUDGET:
+        print(
+            "FAIL approximate Codex discovery list uses "
+            f"{discovery_chars}/{DISCOVERY_BUDGET} characters"
+        )
+        failures += 1
+    else:
+        print(
+            "OK   approximate Codex discovery list uses "
+            f"{discovery_chars}/{DISCOVERY_BUDGET} characters"
+        )
     return 1 if failures else 0
 
 

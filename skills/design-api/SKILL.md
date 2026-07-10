@@ -1,6 +1,6 @@
 ---
 name: design-api
-description: Design or revise HTTP, RPC, event, library, or command interfaces with explicit contracts, validation, errors, compatibility, security, observability, and evolution strategy. Use when proposing endpoints, schemas, SDK surfaces, events, or service boundaries.
+description: Design HTTP, RPC, event, library, or command interfaces with evolvable contracts.
 ---
 
 # Design API

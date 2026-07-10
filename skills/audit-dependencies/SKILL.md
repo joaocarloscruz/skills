@@ -1,6 +1,6 @@
 ---
 name: audit-dependencies
-description: Assess project dependencies for security advisories, abandonment, licensing, duplication, version drift, supply-chain exposure, and upgrade risk. Use when asked to audit packages, reduce dependency risk, evaluate outdated libraries, or plan dependency maintenance.
+description: Audit dependencies for advisories, abandonment, licensing, version drift, and supply-chain risk.
 ---
 
 # Audit Dependencies

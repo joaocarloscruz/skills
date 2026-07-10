@@ -1,6 +1,6 @@
 ---
 name: investigate-ci-failure
-description: Diagnose failing continuous-integration jobs by locating the first actionable error, reproducing it locally when possible, distinguishing code defects from flaky or environmental failures, and proposing a verified fix. Use when builds, tests, checks, or pipelines fail.
+description: Diagnose failing CI and separate code defects from flaky or environmental failures.
 ---
 
 # Investigate CI Failure

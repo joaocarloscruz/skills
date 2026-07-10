@@ -1,6 +1,6 @@
 ---
 name: test-api
-description: Verify HTTP, RPC, GraphQL, event, or service APIs against their contracts, including authentication, validation, errors, idempotency, pagination, concurrency, and side effects. Use when testing an API implementation or reproducing integration failures.
+description: Test APIs for contract behavior, authentication, validation, errors, concurrency, and side effects.
 ---
 
 # Test API

@@ -1,6 +1,6 @@
 ---
 name: refactor-safely
-description: Improve code structure, boundaries, naming, duplication, or maintainability while preserving externally observable behavior. Use when asked to refactor, simplify, reorganize, extract, or modernize code without changing product behavior.
+description: Refactor structure, boundaries, naming, or duplication while preserving observable behavior.
 ---
 
 # Refactor Safely

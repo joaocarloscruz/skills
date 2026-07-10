@@ -1,6 +1,6 @@
 ---
 name: write-sql
-description: Write, review, and validate SQL for analysis or application reads with correct grain, joins, filters, null handling, time semantics, performance, and safety. Use when answering a data question or implementing a read query; do not use as authorization to mutate production data.
+description: Write and validate read-only SQL with correct grain, joins, nulls, time semantics, and safety.
 ---
 
 # Write SQL

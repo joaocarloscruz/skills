@@ -1,6 +1,6 @@
 ---
 name: break-down-work
-description: Convert a feature, specification, migration, or broad goal into small ordered work items with dependencies, acceptance criteria, verification, and explicit non-goals. Use when creating implementation tasks, tickets, milestones, or a sequence suitable for incremental delivery.
+description: Break approved work into ordered tasks with dependencies, acceptance criteria, and verification.
 ---
 
 # Break Down Work

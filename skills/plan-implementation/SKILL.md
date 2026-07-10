@@ -1,6 +1,6 @@
 ---
 name: plan-implementation
-description: Produce an implementation-ready plan grounded in an existing codebase, with affected components, ordered changes, tests, rollout, risks, and open decisions. Use when asked how to implement a feature or change before writing code.
+description: Plan a codebase change with affected components, ordered edits, tests, risks, and decisions.
 ---
 
 # Plan Implementation

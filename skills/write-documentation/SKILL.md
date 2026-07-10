@@ -1,6 +1,6 @@
 ---
 name: write-documentation
-description: Create or update accurate technical documentation such as tutorials, how-to guides, explanations, references, runbooks, and README content. Use when documenting software behavior, setup, APIs, operations, architecture, or developer workflows.
+description: Write accurate tutorials, guides, explanations, references, runbooks, and README documentation.
 ---
 
 # Write Documentation

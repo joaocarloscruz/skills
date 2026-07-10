@@ -1,6 +1,6 @@
 ---
 name: review-changes
-description: Review a branch, pull request, commit range, patch, or working-tree diff for correctness, regressions, security, missing tests, maintainability, and alignment with the requested behavior. Use when asked to review code or assess changes without implementing them.
+description: Review code changes for defects, regressions, scope, security, and missing tests.
 ---
 
 # Review Changes

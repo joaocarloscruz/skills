@@ -1,6 +1,6 @@
 ---
 name: write-technical-spec
-description: Convert product intent or a technical proposal into a precise, reviewable specification covering behavior, architecture, contracts, data, failure modes, rollout, and acceptance criteria. Use before implementation when requirements or design decisions need alignment.
+description: Specify product intent through behavior, contracts, failures, and acceptance criteria.
 ---
 
 # Write Technical Spec

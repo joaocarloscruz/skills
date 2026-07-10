@@ -1,6 +1,6 @@
 ---
 name: add-observability
-description: Add or improve logs, metrics, traces, dashboards, alerts, and service-level indicators around a software system or workflow. Use when instrumenting behavior, diagnosing operational blind spots, defining health signals, or making failures observable.
+description: Add logs, metrics, traces, dashboards, alerts, or SLOs to expose system health and failures.
 ---
 
 # Add Observability

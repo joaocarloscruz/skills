@@ -1,6 +1,6 @@
 ---
 name: write-ci-pipeline
-description: Create or improve a continuous-integration pipeline that builds, tests, analyzes, and packages changes reproducibly and securely. Use when authoring CI workflows, matrices, caches, artifacts, quality gates, or pull-request checks; deployment belongs in a separately authorized release workflow.
+description: Create secure CI workflows, matrices, caches, artifacts, tests, and pull-request gates.
 ---
 
 # Write CI Pipeline

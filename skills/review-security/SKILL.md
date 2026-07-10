@@ -1,6 +1,6 @@
 ---
 name: review-security
-description: Review code, architecture, or a change set for concrete security vulnerabilities using threat modeling, trust boundaries, data flow, and exploitability. Use when assessing authentication, authorization, input handling, secrets, cryptography, dependencies, or sensitive data.
+description: Review code or architecture for exploitable flaws across trust boundaries and sensitive operations.
 ---
 
 # Review Security

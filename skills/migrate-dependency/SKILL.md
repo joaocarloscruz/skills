@@ -1,6 +1,6 @@
 ---
 name: migrate-dependency
-description: Upgrade, replace, or remove a library, framework, runtime, SDK, or service dependency while controlling compatibility and rollout risk. Use for dependency migrations, major-version upgrades, deprecated APIs, or vendor replacement.
+description: Upgrade, replace, or remove a dependency while controlling compatibility and rollout risk.
 ---
 
 # Migrate Dependency

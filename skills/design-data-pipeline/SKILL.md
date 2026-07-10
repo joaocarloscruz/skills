@@ -1,6 +1,6 @@
 ---
 name: design-data-pipeline
-description: Design reliable batch or streaming data pipelines with source and sink contracts, transformation semantics, orchestration, idempotency, backfills, quality checks, lineage, and operations. Use when moving or transforming data between systems at recurring scale.
+description: Design batch or streaming pipelines with contracts, idempotency, backfills, quality, and lineage.
 ---
 
 # Design Data Pipeline

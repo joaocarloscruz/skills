@@ -1,6 +1,6 @@
 ---
 name: test-cli
-description: Verify command-line interfaces across arguments, stdin, stdout, stderr, exit codes, files, environment, signals, compatibility, and interactive behavior. Use when testing a CLI, reproducing command failures, or checking scripting contracts.
+description: Test CLIs across arguments, streams, exit codes, files, environment, signals, and interaction.
 ---
 
 # Test CLI

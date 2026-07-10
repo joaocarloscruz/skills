@@ -1,6 +1,6 @@
 ---
 name: containerize-application
-description: Package an application into secure, reproducible container images and a local multi-service setup when needed. Use when creating or improving Dockerfiles, container build contexts, Compose configurations, health checks, runtime configuration, or image delivery.
+description: Package applications with secure Dockerfiles, Compose, health checks, and runtime config.
 ---
 
 # Containerize Application

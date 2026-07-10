@@ -1,6 +1,6 @@
 ---
 name: evaluate-ai-output
-description: Design and run evaluations for AI model or agent outputs using representative datasets, explicit rubrics, deterministic checks, calibrated human judgment, and regression analysis. Use when measuring prompt, model, retrieval, tool-use, safety, or agent workflow quality.
+description: Evaluate AI outputs with representative datasets, rubrics, checks, human judgment, and regressions.
 ---
 
 # Evaluate AI Output

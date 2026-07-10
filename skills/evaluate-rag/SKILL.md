@@ -1,6 +1,6 @@
 ---
 name: evaluate-rag
-description: Evaluate retrieval-augmented generation systems by separating retrieval quality, context quality, answer quality, citation support, latency, and cost. Use when measuring or comparing search, chunking, embeddings, reranking, prompting, or grounded-answer behavior.
+description: Evaluate RAG across retrieval, context, answer grounding, citation support, latency, and cost.
 ---
 
 # Evaluate RAG

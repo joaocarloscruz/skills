@@ -1,6 +1,6 @@
 ---
 name: respond-to-incident
-description: Coordinate technical incident response from detection through mitigation, diagnosis, recovery, communication, and follow-up. Use during outages, severe degradation, security events, data integrity threats, or other time-sensitive production failures.
+description: Coordinate mitigation, diagnosis, recovery, communication, and follow-up during incidents.
 ---
 
 # Respond to Incident

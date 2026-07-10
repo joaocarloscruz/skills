@@ -1,6 +1,6 @@
 ---
 name: debug-systematically
-description: Diagnose bugs, failing tests, crashes, incorrect output, flaky behavior, and performance regressions by building a reproducible feedback loop, testing ranked hypotheses, applying the smallest justified fix, and verifying the result. Use when software is broken, slow, intermittent, or behaving unexpectedly.
+description: Diagnose broken, slow, flaky, or incorrect software with reproducible hypothesis testing.
 ---
 
 # Debug Systematically

@@ -1,6 +1,6 @@
 ---
 name: release-software
-description: Prepare, verify, publish, and monitor a software release with versioning, changelog, artifacts, migrations, rollout, and rollback controls. Use when cutting a release, publishing packages, deploying a version, or assembling release readiness.
+description: Prepare, verify, publish, and monitor a release with artifacts, migrations, rollout, and rollback.
 ---
 
 # Release Software

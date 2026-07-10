@@ -1,6 +1,6 @@
 ---
 name: build-mcp-server
-description: Design, implement, secure, and evaluate a Model Context Protocol server that exposes an external service through useful tools, resources, or prompts. Use when building an MCP integration, wrapping an API for AI agents, or improving an existing MCP server's tool surface.
+description: Design, implement, secure, or evaluate an MCP server exposing a service to AI agents.
 ---
 
 # Build MCP Server

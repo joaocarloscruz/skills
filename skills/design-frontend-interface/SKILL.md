@@ -1,6 +1,6 @@
 ---
 name: design-frontend-interface
-description: Define or improve the visual direction, information hierarchy, interaction behavior, responsive experience, motion, and interface copy for a web UI. Use when designing or redesigning product screens, dashboards, landing pages, marketing sites, or frontend prototypes before or alongside implementation.
+description: Define a web interface's visual direction, hierarchy, interactions, responsive behavior, and copy.
 ---
 
 # Design Frontend Interface

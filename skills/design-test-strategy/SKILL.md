@@ -1,6 +1,6 @@
 ---
 name: design-test-strategy
-description: Create a risk-based test strategy that selects effective unit, integration, contract, end-to-end, property, performance, and manual checks. Use when planning verification for a feature, system, migration, release, or defect class.
+description: Design a risk-based mix of unit, integration, contract, end-to-end, performance, and manual tests.
 ---
 
 # Design Test Strategy

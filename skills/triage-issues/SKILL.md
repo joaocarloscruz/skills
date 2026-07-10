@@ -1,6 +1,6 @@
 ---
 name: triage-issues
-description: Turn incoming bug reports, requests, and operational observations into deduplicated, reproducible, prioritized, and actionable issues. Use when reviewing an issue backlog, classifying reports, finding duplicates, or deciding next actions.
+description: Triage incoming reports into deduplicated, reproducible, prioritized, actionable issues.
 ---
 
 # Triage Issues

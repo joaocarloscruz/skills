@@ -1,6 +1,6 @@
 ---
 name: implement-feature
-description: Implement a scoped software feature from requirements through tests and verification while following repository conventions and preserving unrelated behavior. Use when asked to build, add, or complete user-visible or internal functionality.
+description: Implement a scoped feature through tests while preserving unrelated behavior.
 ---
 
 # Implement Feature

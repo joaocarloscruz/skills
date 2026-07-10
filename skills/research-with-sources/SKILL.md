@@ -1,6 +1,6 @@
 ---
 name: research-with-sources
-description: Investigate technical or factual questions using authoritative, current sources and produce a concise synthesis with claim-level citations, uncertainty, and practical conclusions. Use when asked to research, compare, verify, gather documentation, or prepare an evidence-backed brief.
+description: Research questions with current authoritative sources, citations, and explicit uncertainty.
 ---
 
 # Research with Sources

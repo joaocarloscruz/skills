@@ -1,6 +1,6 @@
 ---
 name: build-frontend-interface
-description: Implement or substantially modify production web interfaces from requirements, an approved design, screenshots, or an existing design system. Use when building pages, components, forms, navigation, responsive layouts, client behavior, or frontend state; focus on implementation rather than choosing the visual direction.
+description: Implement production web pages, components, forms, responsive layouts, and client behavior.
 ---
 
 # Build Frontend Interface

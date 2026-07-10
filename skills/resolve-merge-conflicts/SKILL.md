@@ -1,6 +1,6 @@
 ---
 name: resolve-merge-conflicts
-description: Resolve Git merge, rebase, or cherry-pick conflicts by reconstructing both sides' intent and verifying the integrated behavior. Use when files contain conflict markers or a Git integration operation is blocked by conflicts.
+description: Resolve Git conflicts by reconstructing both sides' intent and verifying the integration.
 ---
 
 # Resolve Merge Conflicts

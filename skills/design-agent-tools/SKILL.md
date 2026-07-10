@@ -1,6 +1,6 @@
 ---
 name: design-agent-tools
-description: Design tools or function-calling interfaces for AI agents, including tool boundaries, names, schemas, permissions, approvals, results, errors, and evaluations. Use when defining an agent's capabilities or improving tools that models select or call unreliably.
+description: Design reliable AI-agent tools with clear boundaries, schemas, permissions, and errors.
 ---
 
 # Design Agent Tools

@@ -1,6 +1,6 @@
 ---
 name: design-database-change
-description: Design safe relational or document database schema changes, data migrations, backfills, constraints, indexes, compatibility windows, validation, and rollback. Use when adding or changing stored data in a live system.
+description: Design safe database changes, migrations, backfills, indexes, compatibility windows, and rollback.
 ---
 
 # Design Database Change

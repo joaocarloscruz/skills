@@ -34,6 +34,12 @@ Validate the collection with:
 python scripts/validate_skills.py
 ```
 
+The validator also keeps the approximate initial discovery list within Codex's
+8,000-character fallback budget. It reserves 60 characters per installed file
+path, so descriptions must stay short and front-load their distinguishing
+trigger. The limit affects initial discovery metadata, not the full skill body
+loaded after activation.
+
 ## Install on Windows
 
 From a local checkout, install all skills into Codex with:

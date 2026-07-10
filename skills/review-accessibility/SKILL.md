@@ -1,6 +1,6 @@
 ---
 name: review-accessibility
-description: Review web or application interfaces for accessibility barriers affecting keyboard, screen-reader, low-vision, motor, cognitive, and motion-sensitive users. Use when auditing UI changes, checking accessibility requirements, or diagnosing inaccessible journeys.
+description: Review interfaces for keyboard, screen-reader, low-vision, motor, cognitive, and motion barriers.
 ---
 
 # Review Accessibility
