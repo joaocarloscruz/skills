@@ -1,0 +1,4 @@
+interface:
+  display_name: "Respond to Incident"
+  short_description: "Stabilize, investigate, and learn from incidents"
+  default_prompt: "Use $respond-to-incident to coordinate this incident from mitigation through follow-up."
