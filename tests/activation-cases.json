@@ -236,6 +236,20 @@
         "debug-systematically"
       ],
       "rationale": "The request explicitly asks for test-first implementation cycles, not a broad test strategy or diagnosis of an unknown defect."
+    },
+    {
+      "id": "model-domain-before-system-design",
+      "title": "Clarify a business domain",
+      "prompt": "Before designing APIs or tables, model the insurance-claim domain. Clarify policy, claim, case, lifecycle transitions, invariants, ownership boundaries, and ambiguous terminology.",
+      "expected_skills": [
+        "domain-modeling"
+      ],
+      "unexpected_skills": [
+        "design-api",
+        "design-database-change",
+        "analyze-codebase"
+      ],
+      "rationale": "The request is for domain language and rules before choosing API, storage, or implementation structures."
     }
   ]
 }

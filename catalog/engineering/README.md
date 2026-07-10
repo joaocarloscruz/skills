@@ -2,6 +2,7 @@
 
 - [design-api](../../skills/design-api/) - Design coherent, evolvable interfaces.
 - [design-database-change](../../skills/design-database-change/) - Plan safe schemas, migrations, and rollbacks.
+- [domain-modeling](../../skills/domain-modeling/) - Clarify domain language, rules, lifecycles, and boundaries.
 - [implement-feature](../../skills/implement-feature/) - Implement scoped behavior with verification.
 - [migrate-dependency](../../skills/migrate-dependency/) - Upgrade dependencies with controlled compatibility.
 - [refactor-safely](../../skills/refactor-safely/) - Improve structure while preserving behavior.
