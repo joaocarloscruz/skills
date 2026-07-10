@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resolve Merge Conflicts"
+  short_description: "Resolve conflicts by reconstructing intent"
+  default_prompt: "Use $resolve-merge-conflicts to reconcile these changes and verify both intentions."
