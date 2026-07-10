@@ -23,6 +23,12 @@ Each skill lives in `skills/<name>/` and contains a portable `SKILL.md` with `na
 - `refactor-safely` — Improve structure while preserving behavior.
 - `resolve-merge-conflicts` — Reconcile competing changes by intent.
 
+### Frontend
+
+- `design-frontend-interface` — Define intentional product and marketing interface direction.
+- `build-frontend-interface` — Implement production web interfaces and interaction behavior.
+- `build-design-system` — Create reusable tokens, primitives, components, and governance.
+
 ### Debug, test, and review
 
 - `debug-systematically` — Reproduce, isolate, fix, and verify defects.
