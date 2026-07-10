@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Test Strategy"
+  short_description: "Choose risk-based tests at effective seams"
+  default_prompt: "Use $design-test-strategy to create a focused test strategy for this change."
