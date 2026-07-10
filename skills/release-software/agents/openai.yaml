@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release Software"
+  short_description: "Prepare and verify controlled software releases"
+  default_prompt: "Use $release-software to prepare this release with checks, notes, and rollback guidance."
