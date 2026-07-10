@@ -6,54 +6,19 @@ Each skill lives in `skills/<name>/` and contains a portable `SKILL.md` with `na
 
 ## Catalog
 
-### Understand and plan
+Skills remain flat under `skills/` for broad client and installer compatibility. Human-facing topic folders organize the catalog without changing each portable skill package.
 
-- `analyze-codebase` — Map architecture, boundaries, and execution paths.
-- `break-down-work` — Turn goals into small, verifiable work items.
-- `plan-implementation` — Create implementation-ready plans grounded in code.
-- `research-with-sources` — Produce concise, source-backed research.
-- `write-technical-spec` — Define testable behavior and engineering contracts.
-
-### Build and change
-
-- `design-api` — Design coherent, evolvable interfaces.
-- `design-database-change` — Plan safe schemas, migrations, and rollbacks.
-- `implement-feature` — Implement scoped behavior with verification.
-- `migrate-dependency` — Upgrade dependencies with controlled compatibility.
-- `refactor-safely` — Improve structure while preserving behavior.
-- `resolve-merge-conflicts` — Reconcile competing changes by intent.
-
-### Frontend
-
-- `design-frontend-interface` — Define intentional product and marketing interface direction.
-- `build-frontend-interface` — Implement production web interfaces and interaction behavior.
-- `build-design-system` — Create reusable tokens, primitives, components, and governance.
-
-### Debug, test, and review
-
-- `debug-systematically` — Reproduce, isolate, fix, and verify defects.
-- `design-test-strategy` — Select risk-based tests at effective seams.
-- `evaluate-ai-output` — Build rigorous evaluations for AI behavior.
-- `investigate-ci-failure` — Trace pipeline failures to root causes.
-- `review-accessibility` — Find barriers in essential user journeys.
-- `review-changes` — Review diffs for correctness, risk, and scope.
-- `review-security` — Threat-model changes and find exploitable risks.
-- `test-api` — Verify contracts, errors, and side effects.
-- `test-cli` — Verify command-line behavior and compatibility.
-- `test-local-webapp` — Inspect and verify local web applications.
-
-### Operate and maintain
-
-- `audit-dependencies` — Assess dependency health and supply-chain risk.
-- `improve-performance` — Measure and fix performance bottlenecks.
-- `release-software` — Prepare and verify controlled releases.
-- `respond-to-incident` — Stabilize, investigate, recover, and learn.
-
-### Collaborate
-
-- `prepare-handoff` — Capture state for seamless continuation.
-- `triage-issues` — Turn reports into prioritized, actionable issues.
-- `write-documentation` — Create accurate, task-oriented documentation.
+| Category | Scope |
+| --- | --- |
+| [Planning and discovery](catalog/planning/) | Research, codebase understanding, specifications, and implementation planning |
+| [Software engineering](catalog/engineering/) | APIs, database changes, implementation, migrations, and refactoring |
+| [Frontend](catalog/frontend/) | Interface design, frontend implementation, design systems, accessibility, and browser testing |
+| [Quality and security](catalog/quality-security/) | Debugging, test strategy, reviews, security, CI diagnosis, and interface testing |
+| [Operations and maintenance](catalog/operations/) | Dependencies, performance, releases, and incident response |
+| [Collaboration](catalog/collaboration/) | Handoffs, issue triage, and documentation |
+| [AI engineering](catalog/ai-engineering/) | MCP servers, agent tools, and retrieval evaluation |
+| [Data](catalog/data/) | Dataset analysis, SQL, and data pipelines |
+| [Platform engineering](catalog/platform/) | Containers, observability, and continuous integration |
 
 ## Portability
 

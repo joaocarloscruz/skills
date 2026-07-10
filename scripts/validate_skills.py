@@ -9,7 +9,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
+CATALOG = ROOT / "catalog"
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+CATALOG_LINK_RE = re.compile(r"\]\(\.\./\.\./skills/([a-z0-9-]+)/\)")
 
 
 def parse_frontmatter(path: Path) -> tuple[dict[str, str], list[str]]:
@@ -71,6 +73,38 @@ def main() -> int:
                 print(f"  - {error}")
         else:
             print(f"OK   {path.relative_to(ROOT)}")
+
+    skill_names = {path.parent.name for path in paths}
+    categorized: dict[str, list[Path]] = {}
+    category_files = sorted(CATALOG.glob("*/README.md"))
+    if not category_files:
+        print("FAIL no category indexes found")
+        failures += 1
+    for category_file in category_files:
+        category = category_file.parent.name
+        if not NAME_RE.fullmatch(category):
+            print(f"FAIL invalid category folder: {category}")
+            failures += 1
+        for name in CATALOG_LINK_RE.findall(category_file.read_text(encoding="utf-8")):
+            categorized.setdefault(name, []).append(category_file)
+
+    missing_categories = skill_names - set(categorized)
+    unknown_skills = set(categorized) - skill_names
+    duplicate_categories = {
+        name: files for name, files in categorized.items() if len(files) > 1
+    }
+    if missing_categories:
+        print(f"FAIL uncategorized skills: {', '.join(sorted(missing_categories))}")
+        failures += 1
+    if unknown_skills:
+        print(f"FAIL category links to unknown skills: {', '.join(sorted(unknown_skills))}")
+        failures += 1
+    for name, files in sorted(duplicate_categories.items()):
+        locations = ", ".join(str(path.relative_to(ROOT)) for path in files)
+        print(f"FAIL skill {name!r} appears in multiple categories: {locations}")
+        failures += 1
+    if not (missing_categories or unknown_skills or duplicate_categories):
+        print(f"OK   catalog covers {len(skill_names)} skills exactly once")
     return 1 if failures else 0
 
 

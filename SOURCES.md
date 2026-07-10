@@ -11,5 +11,7 @@ The skills in this repository are original syntheses informed by patterns observ
 - [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) — license information is supplied per skill. Informed React performance, scalable component composition, and current-rule references.
 - [joshuadavidthomas/agent-skills](https://github.com/joshuadavidthomas/agent-skills) — MIT License. Informed the internal split between product and marketing interface guidance.
 - [google-labs-code/stitch-skills](https://github.com/google-labs-code/stitch-skills) — Apache-2.0. Informed design-to-code verification, token extraction, and progressive workflow gates.
+- [microsoft/skills](https://github.com/microsoft/skills) — MIT License. Informed AI integration, SDK grounding, governance, data, monitoring, and acceptance-test patterns.
+- [elastic/agent-skills](https://github.com/elastic/agent-skills) — licenses are supplied by the project. Informed observability-oriented domain skills and evaluation-driven maintenance.
 
 Review the linked upstream license before importing future material; a repository-level license may not cover every skill or contribution.
