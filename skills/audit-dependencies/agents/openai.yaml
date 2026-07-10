@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Dependencies"
+  short_description: "Assess dependency health, risk, and maintenance"
+  default_prompt: "Use $audit-dependencies to assess this project dependencies and recommend prioritized actions."
