@@ -9,9 +9,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
+LIBRARY = ROOT / "library"
 CATALOG = ROOT / "catalog"
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
-CATALOG_LINK_RE = re.compile(r"\]\(\.\./\.\./skills/([a-z0-9-]+)/\)")
+CATALOG_LINK_RE = re.compile(r"\]\(\.\./\.\./library/([a-z0-9-]+)/\)")
 DISCOVERY_BUDGET = 8_000
 DISCOVERY_PATH_CHARS = 60
 
@@ -60,9 +61,11 @@ def validate(path: Path) -> list[str]:
 
 
 def main() -> int:
-    paths = sorted(SKILLS.glob("*/SKILL.md"))
-    if not paths:
-        print("No skills found.", file=sys.stderr)
+    router_paths = sorted(SKILLS.glob("*/SKILL.md"))
+    library_paths = sorted(LIBRARY.glob("*/SKILL.md"))
+    paths = router_paths + library_paths
+    if not router_paths or not library_paths:
+        print("Router skills and the individual-skill library are both required.", file=sys.stderr)
         return 1
 
     failures = 0
@@ -76,7 +79,7 @@ def main() -> int:
         else:
             print(f"OK   {path.relative_to(ROOT)}")
 
-    skill_names = {path.parent.name for path in paths}
+    skill_names = {path.parent.name for path in library_paths}
     categorized: dict[str, list[Path]] = {}
     category_files = sorted(CATALOG.glob("*/README.md"))
     if not category_files:
@@ -108,20 +111,20 @@ def main() -> int:
     if not (missing_categories or unknown_skills or duplicate_categories):
         print(f"OK   catalog covers {len(skill_names)} skills exactly once")
 
-    metadata = [parse_frontmatter(path)[0] for path in paths]
+    metadata = [parse_frontmatter(path)[0] for path in router_paths]
     discovery_chars = sum(
         len(f"- {item['name']}: {item['description']} (file: {'x' * DISCOVERY_PATH_CHARS})")
         for item in metadata
     ) + max(0, len(metadata) - 1)
     if discovery_chars > DISCOVERY_BUDGET:
         print(
-            "FAIL approximate Codex discovery list uses "
+            "FAIL default router discovery list uses "
             f"{discovery_chars}/{DISCOVERY_BUDGET} characters"
         )
         failures += 1
     else:
         print(
-            "OK   approximate Codex discovery list uses "
+            "OK   default router discovery list uses "
             f"{discovery_chars}/{DISCOVERY_BUDGET} characters"
         )
     return 1 if failures else 0

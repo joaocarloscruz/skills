@@ -2,11 +2,16 @@
 
 A model-neutral collection of small, composable skills for AI coding agents.
 
-Each skill lives in `skills/<name>/` and contains a portable `SKILL.md` with `name` and `description` frontmatter. Reusable scripts, references, and assets should be added only when they earn their keep.
+The default installation exposes nine portable router skills. Each router selects
+and loads one of 43 generated workflow references, keeping the initial skill list
+small without removing capabilities. Canonical individual skills remain under
+`library/<name>/` for direct installation and maintenance.
 
 ## Catalog
 
-Skills remain flat under `skills/` for broad client and installer compatibility. Human-facing topic folders organize the catalog without changing each portable skill package.
+Routers remain flat under `skills/` for broad client and installer compatibility.
+Human-facing topic folders define their workflow membership, and the individual
+portable packages remain flat under `library/`.
 
 | Category | Scope |
 | --- | --- |
@@ -22,11 +27,17 @@ Skills remain flat under `skills/` for broad client and installer compatibility.
 
 ## Portability
 
-`SKILL.md` is the complete cross-product skill contract. This catalog intentionally omits vendor-specific metadata so every skill has the same portable structure. Individual consumers may generate local integration metadata outside this repository when their product requires it.
+`SKILL.md` and referenced Markdown files form the complete cross-product contract.
+Routers use ordinary progressive disclosure rather than vendor-specific dynamic
+registration, so clients only need to support bundled references. The catalog
+intentionally omits vendor-specific metadata.
 
 ## Use
 
-Copy or symlink an individual folder into the skills directory supported by your agent, or point the agent directly at its `SKILL.md`. Discovery and installation paths vary by product.
+Install the nine folders under `skills/` for the complete routed catalog. Install
+an exact folder under `library/` when you want a leaf workflow such as `tdd` to
+appear as a native top-level skill. Discovery and installation paths vary by
+product.
 
 Validate the collection with:
 
@@ -34,41 +45,51 @@ Validate the collection with:
 python scripts/validate_skills.py
 ```
 
-The validator also keeps the approximate initial discovery list within Codex's
-8,000-character fallback budget. It reserves 60 characters per installed file
-path, so descriptions must stay short and front-load their distinguishing
-trigger. The limit affects initial discovery metadata, not the full skill body
-loaded after activation.
+The validator measures the routers' approximate contribution to Codex's initial
+discovery list using a 60-character installed-path allowance. The 8,000-character
+fallback affects initial metadata, not the workflow loaded after routing.
+
+Regenerate and verify router bundles with:
+
+```bash
+python scripts/build_router_bundles.py
+python scripts/build_router_bundles.py --check
+```
 
 ## Install on Windows
 
-From a local checkout, install all skills into Codex with:
+From a local checkout, install the nine routers into Codex with:
 
 ```powershell
 .\scripts\install.ps1
 ```
 
 The installer uses `$CODEX_HOME\skills` when `CODEX_HOME` is set, otherwise
-`$HOME\.codex\skills`. Its default `Symlink` mode keeps the installed skills
+`$HOME\.codex\skills`. Its default `Routers` profile provides all workflows
+through hierarchical routing. Its default `Symlink` mode keeps the installation
 connected to this checkout, so a later `git pull` does not require
 reinstallation. Windows may require Developer Mode or an elevated shell to
 create symbolic links.
 
-Install only selected skills, inspect the available names, or install into a
-different compatible client's skill directory:
+Inspect both routers and individual workflows, install an individual workflow,
+or install into a different compatible client's skill directory:
 
 ```powershell
 .\scripts\install.ps1 -List
-.\scripts\install.ps1 -Skills analyze-codebase,plan-implementation
+.\scripts\install.ps1 -Skills tdd,domain-modeling
 .\scripts\install.ps1 -Destination "C:\path\to\skills" -Skills review-changes
 ```
+
+Use `-Profile Library` to install all 43 individual workflows or `-Profile All`
+to install routers and workflows together. `-Prune` removes other entries from
+this catalog when switching profiles without touching unrelated skills.
 
 Use `-Mode Copy` when symbolic links are unavailable. Existing destinations are
 left untouched unless `-Force` is supplied; use `-WhatIf` to preview changes.
 Copy-mode installations must be refreshed after each update:
 
 ```powershell
-.\scripts\install.ps1 -Mode Copy -Force
+.\scripts\install.ps1 -Mode Copy -Force -Prune
 ```
 
 ## Activation regression fixtures

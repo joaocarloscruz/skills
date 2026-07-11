@@ -3,8 +3,11 @@ param(
     [string]$Destination,
     [ValidateSet("Symlink", "Copy")]
     [string]$Mode = "Symlink",
-    [string[]]$Skills = @("*"),
+    [ValidateSet("Routers", "Library", "All")]
+    [string]$Profile = "Routers",
+    [string[]]$Skills = @(),
     [switch]$Force,
+    [switch]$Prune,
     [switch]$List
 )
 
@@ -13,14 +16,22 @@ $ErrorActionPreference = "Stop"
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $skillsRoot = Join-Path $repositoryRoot "skills"
-$availableSkills = @(
+$libraryRoot = Join-Path $repositoryRoot "library"
+$availableRouters = @(
     Get-ChildItem -LiteralPath $skillsRoot -Directory |
         Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName "SKILL.md") -PathType Leaf } |
         Sort-Object Name
 )
+$availableLibrary = @(
+    Get-ChildItem -LiteralPath $libraryRoot -Directory |
+        Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName "SKILL.md") -PathType Leaf } |
+        Sort-Object Name
+)
+$availableSkills = @($availableRouters + $availableLibrary)
 
 if ($List) {
-    $availableSkills.Name
+    $availableRouters | ForEach-Object { [pscustomobject]@{ Type = "Router"; Name = $_.Name } }
+    $availableLibrary | ForEach-Object { [pscustomobject]@{ Type = "Workflow"; Name = $_.Name } }
     return
 }
 
@@ -35,7 +46,11 @@ foreach ($skill in $availableSkills) {
 }
 
 if ($Skills.Count -eq 0 -or $Skills -contains "*") {
-    $selectedSkills = $availableSkills
+    $selectedSkills = switch ($Profile) {
+        "Routers" { $availableRouters }
+        "Library" { $availableLibrary }
+        "All" { $availableSkills }
+    }
 }
 else {
     $unknownSkills = @($Skills | Where-Object { -not $byName.ContainsKey($_) })
@@ -52,6 +67,11 @@ else {
     }
 }
 
+$selectedNames = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
+foreach ($skill in $selectedSkills) {
+    [void]$selectedNames.Add($skill.Name)
+}
+
 if (-not (Test-Path -LiteralPath $Destination -PathType Container)) {
     if ($PSCmdlet.ShouldProcess($Destination, "Create skills destination")) {
         New-Item -ItemType Directory -Path $Destination -Force | Out-Null
@@ -60,6 +80,21 @@ if (-not (Test-Path -LiteralPath $Destination -PathType Container)) {
 
 $destinationRoot = [System.IO.Path]::GetFullPath($Destination)
 $conflicts = @()
+
+if ($Prune -and (Test-Path -LiteralPath $destinationRoot -PathType Container)) {
+    foreach ($skill in $availableSkills) {
+        if ($selectedNames.Contains($skill.Name)) {
+            continue
+        }
+        $target = Join-Path $destinationRoot $skill.Name
+        if (Test-Path -LiteralPath $target) {
+            if ($PSCmdlet.ShouldProcess($target, "Remove unselected catalog skill")) {
+                Remove-Item -LiteralPath $target -Recurse -Force
+                Write-Output "Pruned: $($skill.Name)"
+            }
+        }
+    }
+}
 
 foreach ($skill in $selectedSkills) {
     $source = (Resolve-Path -LiteralPath $skill.FullName).Path

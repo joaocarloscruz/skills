@@ -29,20 +29,23 @@ jobs:
       - name: Validate repository catalog
         run: python scripts/validate_skills.py
 
+      - name: Verify generated router bundles
+        run: python scripts/build_router_bundles.py --check
+
       - name: Audit catalog quality
-        run: python skills/audit-skill-catalog/scripts/audit_catalog.py . --fail-on-warning
+        run: python library/audit-skill-catalog/scripts/audit_catalog.py library --fail-on-warning
 
       - name: Validate activation regression fixtures
         run: python scripts/validate_activation_cases.py
 
       - name: Validate Agent Skills format
         run: |
-          for skill in skills/*; do
+          for skill in skills/* library/*; do
             agentskills validate "$skill"
           done
 
       - name: Compile bundled Python scripts
-        run: python -m py_compile scripts/validate_skills.py scripts/validate_activation_cases.py skills/audit-skill-catalog/scripts/audit_catalog.py
+        run: python -m py_compile scripts/build_router_bundles.py scripts/validate_skills.py scripts/validate_activation_cases.py library/audit-skill-catalog/scripts/audit_catalog.py
 
       - name: Parse PowerShell installer
         shell: pwsh

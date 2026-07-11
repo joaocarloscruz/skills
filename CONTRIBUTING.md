@@ -1,6 +1,9 @@
 # Contributing
 
-Create skills at `skills/<lowercase-hyphen-name>/SKILL.md`.
+Create individual workflows at `library/<lowercase-hyphen-name>/SKILL.md`, then
+add the workflow to exactly one `catalog/<category>/README.md` index. Run
+`python scripts/build_router_bundles.py` to regenerate the installable routers
+under `skills/`; do not edit generated references directly.
 
 The YAML frontmatter must contain only:
 
@@ -15,4 +18,9 @@ Write the body as concise, imperative instructions. Add `scripts/`, `references/
 
 If a skill is copied or adapted, confirm that the source license permits redistribution. Preserve required notices, identify modified files, and add the source to `SOURCES.md`. Prefer synthesis over copying.
 
-Run `python scripts/validate_skills.py` before committing.
+Run these checks before committing:
+
+```bash
+python scripts/build_router_bundles.py --check
+python scripts/validate_skills.py
+```

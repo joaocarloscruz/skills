@@ -17,6 +17,7 @@ REQUIRED_FIELDS = {
     "id",
     "title",
     "prompt",
+    "expected_router",
     "expected_skills",
     "unexpected_skills",
     "rationale",
@@ -26,11 +27,23 @@ REQUIRED_FIELDS = {
 def known_skills(root: Path) -> set[str]:
     return {
         path.parent.name
+        for path in (root / "library").glob("*/SKILL.md")
+    }
+
+
+def known_routers(root: Path) -> set[str]:
+    return {
+        path.parent.name
         for path in (root / "skills").glob("*/SKILL.md")
     }
 
 
-def validate_case(case: object, index: int, skills: set[str]) -> list[str]:
+def validate_case(
+    case: object,
+    index: int,
+    skills: set[str],
+    routers: set[str],
+) -> list[str]:
     prefix = f"case {index + 1}"
     if not isinstance(case, dict):
         return [f"{prefix}: must be an object"]
@@ -50,6 +63,10 @@ def validate_case(case: object, index: int, skills: set[str]) -> list[str]:
     for field in ("title", "prompt", "rationale"):
         if not isinstance(case.get(field), str) or not case[field].strip():
             errors.append(f"{prefix}: {field} must be a non-empty string")
+
+    expected_router = case.get("expected_router")
+    if not isinstance(expected_router, str) or expected_router not in routers:
+        errors.append(f"{prefix}: expected_router must name a known router")
 
     expected = case.get("expected_skills")
     unexpected = case.get("unexpected_skills")
@@ -99,7 +116,12 @@ def main() -> int:
         return 1
 
     skills = known_skills(ROOT)
-    errors = [error for index, case in enumerate(cases) for error in validate_case(case, index, skills)]
+    routers = known_routers(ROOT)
+    errors = [
+        error
+        for index, case in enumerate(cases)
+        for error in validate_case(case, index, skills, routers)
+    ]
     ids = [case.get("id") for case in cases if isinstance(case, dict) and isinstance(case.get("id"), str)]
     duplicates = sorted(case_id for case_id in set(ids) if ids.count(case_id) > 1)
     if duplicates:
@@ -116,7 +138,18 @@ def main() -> int:
         for case in cases
         for skill in case["expected_skills"]
     }
-    print(f"OK   {len(cases)} activation cases cover {len(covered)} expected skills")
+    covered_routers = {case["expected_router"] for case in cases}
+    missing_routers = routers - covered_routers
+    if missing_routers:
+        print(
+            f"Activation fixtures do not cover routers: {', '.join(sorted(missing_routers))}",
+            file=sys.stderr,
+        )
+        return 1
+    print(
+        f"OK   {len(cases)} activation cases cover "
+        f"{len(covered_routers)} routers and {len(covered)} workflows"
+    )
     return 0
 
 

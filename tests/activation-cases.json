@@ -4,6 +4,7 @@
     {
       "id": "plan-change-in-existing-codebase",
       "title": "Plan a change from existing behavior",
+      "expected_router": "planning-discovery",
       "prompt": "Before writing code, trace the existing checkout and give me an implementation plan for adding account-level usage limits.",
       "expected_skills": [
         "analyze-codebase",
@@ -18,6 +19,7 @@
     {
       "id": "break-approved-feature-into-tickets",
       "title": "Break an approved feature into work items",
+      "expected_router": "planning-discovery",
       "prompt": "The feature requirements are approved. Split the work into small ordered tickets with dependencies, acceptance criteria, and verification.",
       "expected_skills": [
         "break-down-work"
@@ -31,6 +33,7 @@
     {
       "id": "write-technical-specification",
       "title": "Turn product intent into an engineering specification",
+      "expected_router": "planning-discovery",
       "prompt": "Turn this product brief into a technical specification with behavior, interfaces, failure cases, rollout, and acceptance criteria. Do not implement it.",
       "expected_skills": [
         "write-technical-spec"
@@ -44,6 +47,7 @@
     {
       "id": "review-pull-request-without-edits",
       "title": "Review a pull request",
+      "expected_router": "quality-security",
       "prompt": "Review this pull request for correctness, regressions, missing tests, and scope. Report findings only; do not modify code.",
       "expected_skills": [
         "review-changes"
@@ -57,6 +61,7 @@
     {
       "id": "review-authentication-design-for-vulnerabilities",
       "title": "Review an authentication design for security flaws",
+      "expected_router": "quality-security",
       "prompt": "Assess this authentication and authorization design for exploitable vulnerabilities, trust-boundary mistakes, and tenant-isolation failures.",
       "expected_skills": [
         "review-security"
@@ -70,6 +75,7 @@
     {
       "id": "audit-web-flow-for-accessibility",
       "title": "Review a web flow for accessibility barriers",
+      "expected_router": "frontend",
       "prompt": "Audit the checkout flow for keyboard, screen-reader, zoom, contrast, and reduced-motion barriers. Give actionable findings with the affected journey.",
       "expected_skills": [
         "review-accessibility"
@@ -83,6 +89,7 @@
     {
       "id": "design-risk-based-test-strategy",
       "title": "Design a test strategy",
+      "expected_router": "quality-security",
       "prompt": "Design a risk-based test strategy for migrating billing providers, including the most effective test seams and release checks.",
       "expected_skills": [
         "design-test-strategy"
@@ -96,6 +103,7 @@
     {
       "id": "test-api-contract",
       "title": "Test an API implementation",
+      "expected_router": "quality-security",
       "prompt": "Test this staging payments API against its contract, including invalid inputs, authorization, retries, pagination, and side effects.",
       "expected_skills": [
         "test-api"
@@ -109,6 +117,7 @@
     {
       "id": "test-local-web-application",
       "title": "Exercise a local web application",
+      "expected_router": "frontend",
       "prompt": "Open the local application at localhost, reproduce the save failure, inspect browser and network evidence, and report the defect without changing code.",
       "expected_skills": [
         "test-local-webapp"
@@ -122,6 +131,7 @@
     {
       "id": "investigate-failed-ci-job",
       "title": "Investigate a CI failure",
+      "expected_router": "quality-security",
       "prompt": "The integration-test job began failing on this branch. Find the first actionable error, determine whether it is flaky or a code defect, and propose a verified fix.",
       "expected_skills": [
         "investigate-ci-failure"
@@ -135,6 +145,7 @@
     {
       "id": "write-continuous-integration-workflow",
       "title": "Create a CI workflow",
+      "expected_router": "platform-engineering",
       "prompt": "Create a GitHub Actions workflow that runs the repository's build, tests, and security checks on pull requests with least-privilege permissions.",
       "expected_skills": [
         "write-ci-pipeline"
@@ -148,6 +159,7 @@
     {
       "id": "design-product-interface-before-code",
       "title": "Set a frontend visual direction",
+      "expected_router": "frontend",
       "prompt": "Define the information hierarchy, interaction behavior, responsive layout, and visual direction for a new analytics dashboard before implementation.",
       "expected_skills": [
         "design-frontend-interface"
@@ -161,6 +173,7 @@
     {
       "id": "implement-approved-frontend-design",
       "title": "Build a frontend from an approved design",
+      "expected_router": "frontend",
       "prompt": "Implement this approved checkout-page design in the existing React application, including responsive states, validation, accessibility, and browser verification.",
       "expected_skills": [
         "build-frontend-interface"
@@ -174,6 +187,7 @@
     {
       "id": "evaluate-retrieval-augmented-generation",
       "title": "Evaluate a RAG system",
+      "expected_router": "ai-engineering",
       "prompt": "Evaluate our RAG system by separating retrieval quality, context quality, answer grounding, citation support, latency, and cost.",
       "expected_skills": [
         "evaluate-rag"
@@ -187,6 +201,7 @@
     {
       "id": "evaluate-agent-output-quality",
       "title": "Evaluate an agent workflow",
+      "expected_router": "quality-security",
       "prompt": "Design a representative dataset and scoring rubric to measure whether our support agent follows policy, uses tools correctly, and regresses after prompt changes.",
       "expected_skills": [
         "evaluate-ai-output"
@@ -200,6 +215,7 @@
     {
       "id": "analyze-structured-dataset",
       "title": "Analyze a dataset reproducibly",
+      "expected_router": "data",
       "prompt": "Analyze this customer-retention CSV, document cleaning decisions, check the data grain, identify trends and uncertainty, and deliver a reproducible summary.",
       "expected_skills": [
         "analyze-dataset"
@@ -213,6 +229,7 @@
     {
       "id": "write-safe-analytical-sql",
       "title": "Write an analytical SQL query",
+      "expected_router": "data",
       "prompt": "Write a read-only PostgreSQL query for monthly active accounts, handling event grain, duplicate events, time zones, and validation totals.",
       "expected_skills": [
         "write-sql"
@@ -226,6 +243,7 @@
     {
       "id": "implement-feature-test-first",
       "title": "Implement behavior with TDD",
+      "expected_router": "software-engineering",
       "prompt": "Implement the account lockout rule test-first. Show each failing test, make the smallest change to pass it, then refactor while green.",
       "expected_skills": [
         "tdd",
@@ -240,6 +258,7 @@
     {
       "id": "model-domain-before-system-design",
       "title": "Clarify a business domain",
+      "expected_router": "software-engineering",
       "prompt": "Before designing APIs or tables, model the insurance-claim domain. Clarify policy, claim, case, lifecycle transitions, invariants, ownership boundaries, and ambiguous terminology.",
       "expected_skills": [
         "domain-modeling"
@@ -250,6 +269,34 @@
         "analyze-codebase"
       ],
       "rationale": "The request is for domain language and rules before choosing API, storage, or implementation structures."
+    },
+    {
+      "id": "respond-to-production-incident",
+      "title": "Coordinate an urgent production incident",
+      "expected_router": "operations",
+      "prompt": "Production checkout is failing for most customers. Coordinate mitigation, diagnosis, recovery, communication, and follow-up while preserving an incident timeline.",
+      "expected_skills": [
+        "respond-to-incident"
+      ],
+      "unexpected_skills": [
+        "debug-systematically",
+        "release-software"
+      ],
+      "rationale": "The request is an urgent production response rather than ordinary debugging or a planned release."
+    },
+    {
+      "id": "prepare-cross-agent-handoff",
+      "title": "Prepare an incomplete-work handoff",
+      "expected_router": "collaboration",
+      "prompt": "Capture the exact state of this unfinished migration so another AI agent can continue tomorrow without reconstructing the investigation.",
+      "expected_skills": [
+        "prepare-handoff"
+      ],
+      "unexpected_skills": [
+        "write-documentation",
+        "plan-implementation"
+      ],
+      "rationale": "The requested artifact transfers live work context rather than documenting a finished system or planning a new change."
     }
   ]
 }
