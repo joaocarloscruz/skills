@@ -14,4 +14,7 @@ The skills in this repository are original syntheses informed by patterns observ
 - [microsoft/skills](https://github.com/microsoft/skills) — MIT License. Informed AI integration, SDK grounding, governance, data, monitoring, and acceptance-test patterns.
 - [elastic/agent-skills](https://github.com/elastic/agent-skills) — licenses are supplied by the project. Informed observability-oriented domain skills and evaluation-driven maintenance.
 
+- [benchflow-ai/skillsbench](https://github.com/benchflow-ai/skillsbench) — Apache-2.0. Informed paired no-skill versus with-skill evaluation principles; no result from this benchmark is attributed to this catalog.
+- [GeniusHTX/SWE-Skills-Bench](https://github.com/GeniusHTX/SWE-Skills-Bench) — MIT License. Provides public software-engineering comparison artifacts; dataset membership is not treated as evidence that a specific skill or revision improves outcomes.
+
 Review the linked upstream license before importing future material; a repository-level license may not cover every skill or contribution.

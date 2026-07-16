@@ -43,6 +43,8 @@ Validate the collection with:
 
 ```bash
 python scripts/validate_skills.py
+python scripts/validate_activation_cases.py
+python scripts/validate_evidence_registry.py
 ```
 
 The validator measures the routers' approximate contribution to Codex's initial
@@ -96,14 +98,40 @@ Copy-mode installations must be refreshed after each update:
 
 `tests/activation-cases.json` records representative requests and the skills
 that should, and should not, activate. It is a catalog-specific regression
-corpus, not a cross-model benchmark. Use it when changing descriptions or
-resolving an overlap: run each prompt in the target agent and compare the
-selected skills with the fixture before accepting the change.
+corpus, not an executed test or cross-model benchmark. The validator checks
+fixture structure and requires every router and workflow to be represented; it
+does not run an agent or establish that routing works in a particular model.
+Use the prompts as declared expectations when manually checking a target agent.
 
 Validate the fixture schema and every referenced skill with:
 
 ```bash
 python scripts/validate_activation_cases.py
+```
+
+## Evidence and provenance
+
+`evidence/skills.json` records the catalog's current claim boundary. Its default
+classification applies to every individual skill:
+
+- `structural_validation: passed` means deterministic repository and format
+  checks pass.
+- `activation_evidence: fixture-only` means a routing expectation exists but
+  has not been executed across models.
+- `behavioral_evidence: unvalidated` means the repository has no evidence that
+  the skill improves task outcomes over a no-skill baseline.
+- `provenance: original-synthesis` reflects the repository's authorship claim;
+  catalog-level inspiration remains documented in `SOURCES.md`.
+
+The registry also pins reviewed revisions of plausible public alternatives.
+These entries are comparison candidates, not endorsements. Vendor maintenance,
+repository popularity, or inclusion in a benchmark dataset does not by itself
+show that a skill improves performance.
+
+Validate the registry with:
+
+```bash
+python scripts/validate_evidence_registry.py
 ```
 
 ## Design rules
@@ -114,5 +142,6 @@ python scripts/validate_activation_cases.py
 - Make observations before conclusions; verify before declaring success.
 - Avoid product-specific tool names unless the skill truly requires them.
 - Record upstream inspiration and licenses in `SOURCES.md`.
+- Keep evidence claims and external candidates current in `evidence/skills.json`.
 
 See `CONTRIBUTING.md` before adding or adapting a skill.
