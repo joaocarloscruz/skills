@@ -140,9 +140,16 @@ def main() -> int:
     }
     covered_routers = {case["expected_router"] for case in cases}
     missing_routers = routers - covered_routers
+    missing_skills = skills - covered
     if missing_routers:
         print(
             f"Activation fixtures do not cover routers: {', '.join(sorted(missing_routers))}",
+            file=sys.stderr,
+        )
+        return 1
+    if missing_skills:
+        print(
+            f"Activation fixtures do not cover workflows: {', '.join(sorted(missing_skills))}",
             file=sys.stderr,
         )
         return 1

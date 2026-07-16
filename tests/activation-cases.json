@@ -297,6 +297,286 @@
         "plan-implementation"
       ],
       "rationale": "The requested artifact transfers live work context rather than documenting a finished system or planning a new change."
+    },
+    {
+      "id": "add-service-observability",
+      "title": "Instrument a service for production visibility",
+      "expected_router": "platform-engineering",
+      "prompt": "Add structured logs, request metrics, distributed traces, an availability SLO, and actionable alerts to this service. Verify that operators can diagnose a failed request end to end.",
+      "expected_skills": [
+        "add-observability"
+      ],
+      "unexpected_skills": [
+        "improve-performance",
+        "respond-to-incident"
+      ],
+      "rationale": "The request adds operational telemetry and health signals; it is not a performance investigation or active incident response."
+    },
+    {
+      "id": "audit-project-dependencies",
+      "title": "Audit dependency risk",
+      "expected_router": "operations",
+      "prompt": "Audit this repository's direct and transitive dependencies for known advisories, abandoned packages, incompatible licenses, stale versions, and supply-chain risk. Do not upgrade anything yet.",
+      "expected_skills": [
+        "audit-dependencies"
+      ],
+      "unexpected_skills": [
+        "migrate-dependency",
+        "review-security"
+      ],
+      "rationale": "The user requests a dependency inventory and risk assessment without authorizing a migration or broader security review."
+    },
+    {
+      "id": "audit-agent-skill-catalog",
+      "title": "Audit a collection of agent skills",
+      "expected_router": "quality-security",
+      "prompt": "Audit this Agent Skills catalog for invalid metadata, broken references, unsafe instructions, overlapping activation, unclear provenance, and maintenance risks. Report findings without editing the catalog.",
+      "expected_skills": [
+        "audit-skill-catalog"
+      ],
+      "unexpected_skills": [
+        "review-changes",
+        "review-security"
+      ],
+      "rationale": "The artifact under review is a skill catalog, requiring its structural, routing, provenance, and governance checks."
+    },
+    {
+      "id": "build-shared-design-system",
+      "title": "Create reusable frontend foundations",
+      "expected_router": "frontend",
+      "prompt": "Create a shared design system for our three web products with tokens, themes, accessible primitives, component APIs, documentation, and a controlled migration path.",
+      "expected_skills": [
+        "build-design-system"
+      ],
+      "unexpected_skills": [
+        "design-frontend-interface",
+        "build-frontend-interface"
+      ],
+      "rationale": "The request establishes reusable cross-product foundations rather than one screen's design or implementation."
+    },
+    {
+      "id": "build-model-context-protocol-server",
+      "title": "Implement an MCP server",
+      "expected_router": "ai-engineering",
+      "prompt": "Build an MCP server that exposes our ticketing service through narrow tools and resources with validated schemas, least privilege, useful errors, and integration tests.",
+      "expected_skills": [
+        "build-mcp-server"
+      ],
+      "unexpected_skills": [
+        "design-agent-tools",
+        "design-api"
+      ],
+      "rationale": "The user asks for an MCP implementation, while general tool or API design are supporting concerns rather than the primary workflow."
+    },
+    {
+      "id": "containerize-existing-service",
+      "title": "Package an application in containers",
+      "expected_router": "platform-engineering",
+      "prompt": "Containerize this existing API with a secure multi-stage Dockerfile, non-root runtime, health check, runtime configuration, and a local Compose setup.",
+      "expected_skills": [
+        "containerize-application"
+      ],
+      "unexpected_skills": [
+        "write-ci-pipeline",
+        "release-software"
+      ],
+      "rationale": "The requested deliverables are container packaging and runtime configuration, not CI authoring or release coordination."
+    },
+    {
+      "id": "debug-intermittent-data-loss",
+      "title": "Diagnose an unknown software defect",
+      "expected_router": "quality-security",
+      "prompt": "Users intermittently lose draft changes. Reproduce the failure, gather evidence, rank hypotheses, isolate the cause, implement the smallest justified fix, and verify the original failure no longer occurs.",
+      "expected_skills": [
+        "debug-systematically"
+      ],
+      "unexpected_skills": [
+        "implement-feature",
+        "test-local-webapp"
+      ],
+      "rationale": "The cause is unknown and requires hypothesis-driven diagnosis rather than planned feature work or browser-only testing."
+    },
+    {
+      "id": "design-agent-tool-contracts",
+      "title": "Design tools for an AI agent",
+      "expected_router": "ai-engineering",
+      "prompt": "Design the tools an account-support agent needs. Define narrow responsibilities, input and output schemas, permissions, idempotency, errors, and how destructive actions require confirmation. Do not implement a server.",
+      "expected_skills": [
+        "design-agent-tools"
+      ],
+      "unexpected_skills": [
+        "build-mcp-server",
+        "design-api"
+      ],
+      "rationale": "The goal is an agent-facing tool contract and permission model, not a transport-specific server or general service API."
+    },
+    {
+      "id": "design-public-service-api",
+      "title": "Design an evolvable API",
+      "expected_router": "software-engineering",
+      "prompt": "Design a versioned public API for subscriptions, including resources, operations, pagination, idempotency, errors, compatibility rules, and example contracts. Do not implement it.",
+      "expected_skills": [
+        "design-api"
+      ],
+      "unexpected_skills": [
+        "test-api",
+        "design-agent-tools"
+      ],
+      "rationale": "The requested artifact is a general service interface contract, not API execution testing or an AI-agent tool surface."
+    },
+    {
+      "id": "design-zero-downtime-database-change",
+      "title": "Plan a compatible database migration",
+      "expected_router": "software-engineering",
+      "prompt": "Design a zero-downtime migration that splits the customer name column, including expand-and-contract steps, backfill, indexes, compatibility windows, verification, and rollback.",
+      "expected_skills": [
+        "design-database-change"
+      ],
+      "unexpected_skills": [
+        "migrate-dependency",
+        "design-data-pipeline"
+      ],
+      "rationale": "The task concerns a database schema migration and compatibility window, not package migration or recurring data movement."
+    },
+    {
+      "id": "design-event-data-pipeline",
+      "title": "Design a recurring data pipeline",
+      "expected_router": "data",
+      "prompt": "Design a daily pipeline that ingests product events, deduplicates them, enforces contracts, supports idempotent reruns and backfills, records lineage, and publishes quality metrics.",
+      "expected_skills": [
+        "design-data-pipeline"
+      ],
+      "unexpected_skills": [
+        "analyze-dataset",
+        "design-database-change"
+      ],
+      "rationale": "The user needs a repeatable data-processing architecture rather than one dataset analysis or a storage migration."
+    },
+    {
+      "id": "improve-api-latency",
+      "title": "Measure and improve performance",
+      "expected_router": "operations",
+      "prompt": "The search endpoint's p95 latency doubled. Establish a reproducible baseline, profile CPU, memory, queries, and I/O, identify the dominant bottleneck, optimize it, and compare before and after results.",
+      "expected_skills": [
+        "improve-performance"
+      ],
+      "unexpected_skills": [
+        "debug-systematically",
+        "add-observability"
+      ],
+      "rationale": "The explicit objective is measured performance improvement, not general defect diagnosis or telemetry installation."
+    },
+    {
+      "id": "migrate-framework-dependency",
+      "title": "Upgrade a major dependency",
+      "expected_router": "software-engineering",
+      "prompt": "Upgrade this application from framework version 4 to version 5. Inventory breaking changes, update code and configuration incrementally, verify compatibility, and define rollback steps.",
+      "expected_skills": [
+        "migrate-dependency"
+      ],
+      "unexpected_skills": [
+        "audit-dependencies",
+        "refactor-safely"
+      ],
+      "rationale": "A specific dependency migration is authorized; the task is beyond inventory-only auditing and has compatibility requirements absent from generic refactoring."
+    },
+    {
+      "id": "refactor-parser-without-behavior-change",
+      "title": "Refactor while preserving behavior",
+      "expected_router": "software-engineering",
+      "prompt": "Refactor this parser to remove duplication and clarify its module boundaries while preserving every observable behavior and public interface. Strengthen characterization tests first.",
+      "expected_skills": [
+        "refactor-safely"
+      ],
+      "unexpected_skills": [
+        "implement-feature",
+        "migrate-dependency"
+      ],
+      "rationale": "The requested change is explicitly behavior-preserving structural work rather than new functionality or dependency migration."
+    },
+    {
+      "id": "release-new-software-version",
+      "title": "Coordinate a software release",
+      "expected_router": "operations",
+      "prompt": "Prepare and publish version 3.2 with verified artifacts, migration sequencing, staged rollout, monitoring, rollback criteria, and post-release checks.",
+      "expected_skills": [
+        "release-software"
+      ],
+      "unexpected_skills": [
+        "write-ci-pipeline",
+        "respond-to-incident"
+      ],
+      "rationale": "The task coordinates an authorized release lifecycle rather than authoring CI or responding to an unplanned outage."
+    },
+    {
+      "id": "research-current-technical-options",
+      "title": "Research with authoritative sources",
+      "expected_router": "planning-discovery",
+      "prompt": "Research the current supported approaches for Python package signing. Use authoritative sources, distinguish facts from inference, cite claims, and explain uncertainty. Do not change the repository.",
+      "expected_skills": [
+        "research-with-sources"
+      ],
+      "unexpected_skills": [
+        "analyze-codebase",
+        "write-technical-spec"
+      ],
+      "rationale": "The user asks for current sourced research rather than repository analysis or a requirements specification."
+    },
+    {
+      "id": "resolve-git-merge-conflicts",
+      "title": "Resolve conflicting Git changes",
+      "expected_router": "software-engineering",
+      "prompt": "Resolve the merge conflicts between these branches by reconstructing both sides' intent, preserving compatible behavior, and running focused integration tests before completing the merge.",
+      "expected_skills": [
+        "resolve-merge-conflicts"
+      ],
+      "unexpected_skills": [
+        "review-changes",
+        "refactor-safely"
+      ],
+      "rationale": "The work centers on reconciling Git conflict intent and validating the combined result, not reviewing or restructuring an ordinary diff."
+    },
+    {
+      "id": "test-command-line-interface",
+      "title": "Exercise a CLI contract",
+      "expected_router": "quality-security",
+      "prompt": "Test this CLI across valid and invalid arguments, stdin and stdout behavior, exit codes, environment variables, filesystem effects, signals, and interactive prompts.",
+      "expected_skills": [
+        "test-cli"
+      ],
+      "unexpected_skills": [
+        "test-api",
+        "design-test-strategy"
+      ],
+      "rationale": "The task executes a command-line contract and its process semantics rather than an API or a general test-planning exercise."
+    },
+    {
+      "id": "triage-incoming-bug-reports",
+      "title": "Turn reports into actionable issues",
+      "expected_router": "collaboration",
+      "prompt": "Triage these incoming bug reports: find duplicates, reproduce credible failures, separate support questions, assign severity and priority, and produce actionable issues with acceptance criteria.",
+      "expected_skills": [
+        "triage-issues"
+      ],
+      "unexpected_skills": [
+        "debug-systematically",
+        "write-documentation"
+      ],
+      "rationale": "The request processes a queue of reports into prioritized work rather than deeply debugging one defect or writing general documentation."
+    },
+    {
+      "id": "write-operator-runbook",
+      "title": "Document an operational procedure",
+      "expected_router": "collaboration",
+      "prompt": "Write an operator runbook for rotating signing keys, including prerequisites, exact steps, verification, rollback, troubleshooting, and ownership. Validate every command against the repository.",
+      "expected_skills": [
+        "write-documentation"
+      ],
+      "unexpected_skills": [
+        "prepare-handoff",
+        "write-technical-spec"
+      ],
+      "rationale": "The output is durable task-oriented documentation, not a live-work handoff or a specification for new behavior."
     }
   ]
 }
