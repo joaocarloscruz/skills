@@ -42,6 +42,11 @@ class RouterBundleTests(unittest.TestCase):
             content,
         )
 
+    def test_expected_bundle_ignores_python_cache(self) -> None:
+        for path in router_builder.expected_files():
+            self.assertNotIn("__pycache__", path.parts)
+            self.assertNotIn(path.suffix.lower(), {".pyc", ".pyo"})
+
 
 class CatalogAuditorTests(unittest.TestCase):
     def test_nested_resource_reference_is_reachable(self) -> None:

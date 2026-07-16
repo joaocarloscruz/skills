@@ -16,6 +16,8 @@ ROUTERS = ROOT / "skills"
 CATALOG = ROOT / "catalog"
 LINK_RE = re.compile(r"^- \[([a-z0-9-]+)\]\(\.\./\.\./library/[a-z0-9-]+/\) - (.+)$")
 TEXT_SUFFIXES = {".md", ".py", ".ps1", ".json", ".yaml", ".yml", ".txt"}
+IGNORED_RESOURCE_DIRS = {"__pycache__"}
+IGNORED_RESOURCE_SUFFIXES = {".pyc", ".pyo"}
 
 ROUTER_CONFIG = {
     "planning-discovery": (
@@ -96,7 +98,12 @@ def router_files(router: str, category: str, description: str) -> dict[Path, byt
             f"<!-- Generated from library/{skill}/SKILL.md; do not edit. -->\n\n{body}\n"
         ).encode()
         for bundled in sorted(source.parent.rglob("*")):
-            if bundled.is_file() and bundled != source:
+            if (
+                bundled.is_file()
+                and bundled != source
+                and not any(part in IGNORED_RESOURCE_DIRS for part in bundled.parts)
+                and bundled.suffix.lower() not in IGNORED_RESOURCE_SUFFIXES
+            ):
                 files[workflow_root / bundled.relative_to(source.parent)] = bundled.read_bytes()
 
     title = router.replace("-", " ").title()
