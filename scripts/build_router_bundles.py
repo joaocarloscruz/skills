@@ -15,6 +15,7 @@ LIBRARY = ROOT / "library"
 ROUTERS = ROOT / "skills"
 CATALOG = ROOT / "catalog"
 LINK_RE = re.compile(r"^- \[([a-z0-9-]+)\]\(\.\./\.\./library/[a-z0-9-]+/\) - (.+)$")
+TEXT_SUFFIXES = {".md", ".py", ".ps1", ".json", ".yaml", ".yml", ".txt"}
 
 ROUTER_CONFIG = {
     "planning-discovery": (
@@ -129,6 +130,13 @@ def expected_files() -> dict[Path, bytes]:
     return expected
 
 
+def comparable_content(path: Path, content: bytes) -> bytes:
+    """Normalize text line endings while preserving binary resource bytes."""
+    if path.suffix.lower() in TEXT_SUFFIXES:
+        return content.replace(b"\r\n", b"\n")
+    return content
+
+
 def check() -> int:
     expected = expected_files()
     actual = {
@@ -142,7 +150,7 @@ def check() -> int:
         if not path.exists():
             print(f"MISSING {path.relative_to(ROOT)}")
             failures += 1
-        elif path.read_bytes() != content:
+        elif comparable_content(path, path.read_bytes()) != comparable_content(path, content):
             print(f"STALE   {path.relative_to(ROOT)}")
             failures += 1
     for relative in sorted(actual - set(expected)):

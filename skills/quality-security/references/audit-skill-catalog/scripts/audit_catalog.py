@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from collections import defaultdict
@@ -104,6 +105,35 @@ def tokenize(text: str) -> set[str]:
     }
 
 
+def reachable_documents(skill_file: Path) -> dict[Path, str]:
+    """Return Markdown documents reachable from a skill's entrypoint."""
+    pending = [skill_file.resolve()]
+    documents: dict[Path, str] = {}
+    while pending:
+        document = pending.pop()
+        if document in documents or not document.is_file():
+            continue
+        text = document.read_text(encoding="utf-8")
+        documents[document] = text
+        for raw_link in LINK_RE.findall(text):
+            target_text = raw_link.strip().split("#", 1)[0].strip().strip("<>")
+            if not target_text or re.match(r"^[a-z]+://|^mailto:", target_text, re.I):
+                continue
+            target = (document.parent / target_text).resolve()
+            if target.suffix.lower() == ".md" and target.is_file():
+                pending.append(target)
+    return documents
+
+
+def resource_is_referenced(resource: Path, documents: dict[Path, str]) -> bool:
+    resolved = resource.resolve()
+    for document, text in documents.items():
+        relative = Path(os.path.relpath(resolved, document.parent)).as_posix()
+        if relative in text:
+            return True
+    return False
+
+
 def audit(root: Path, overlap_threshold: float) -> list[Finding]:
     findings: list[Finding] = []
     skill_files = discover_skill_files(root)
@@ -117,6 +147,7 @@ def audit(root: Path, overlap_threshold: float) -> list[Finding]:
         skill_dir = skill_file.parent
         skill_path = relative(root, skill_file)
         text = skill_file.read_text(encoding="utf-8")
+        documents = reachable_documents(skill_file)
         metadata, errors = parse_frontmatter(skill_file)
         for error in errors:
             findings.append(Finding("error", "frontmatter", skill_path, error))
@@ -167,8 +198,7 @@ def audit(root: Path, overlap_threshold: float) -> list[Finding]:
             if not files:
                 findings.append(Finding("warning", "empty-resource-dir", relative(root, resource_dir), "resource directory is empty"))
             for resource in files:
-                resource_ref = resource.relative_to(skill_dir).as_posix()
-                if resource_ref not in text:
+                if not resource_is_referenced(resource, documents):
                     findings.append(Finding("warning", "unreferenced-resource", relative(root, resource), "resource is not referenced from SKILL.md"))
 
         for candidate in skill_dir.rglob("*"):
