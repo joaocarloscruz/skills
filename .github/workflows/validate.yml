@@ -38,6 +38,9 @@ jobs:
       - name: Validate activation regression fixtures
         run: python scripts/validate_activation_cases.py
 
+      - name: Validate evidence registry
+        run: python scripts/validate_evidence_registry.py
+
       - name: Test repository tooling
         run: python -m unittest discover -s tests -p "test_*.py"
 
@@ -48,7 +51,7 @@ jobs:
           done
 
       - name: Compile bundled Python scripts
-        run: python -m py_compile scripts/build_router_bundles.py scripts/validate_skills.py scripts/validate_activation_cases.py library/audit-skill-catalog/scripts/audit_catalog.py
+        run: python -m py_compile scripts/build_router_bundles.py scripts/validate_skills.py scripts/validate_activation_cases.py scripts/validate_evidence_registry.py library/audit-skill-catalog/scripts/audit_catalog.py
 
       - name: Parse PowerShell installer
         shell: pwsh

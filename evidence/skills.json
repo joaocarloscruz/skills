@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-07-16",
+  "catalog_inspiration": "SOURCES.md",
+  "classification_defaults": {
+    "provenance": "original-synthesis",
+    "structural_validation": "passed",
+    "activation_evidence": "fixture-only",
+    "behavioral_evidence": "unvalidated"
+  },
+  "external_sources": {
+    "anthropic-skills": {
+      "repository": "https://github.com/anthropics/skills",
+      "reviewed_revision": "9d2f1ae187231d8199c64b5b762e1bdf2244733d"
+    },
+    "openai-skills": {
+      "repository": "https://github.com/openai/skills",
+      "reviewed_revision": "49f948faa9258a0c61caceaf225e179651397431"
+    },
+    "swe-skills-bench": {
+      "repository": "https://github.com/GeniusHTX/SWE-Skills-Bench",
+      "reviewed_revision": "95b3ce519fcb58d0b19e90a5b6e5165211dc6dd1"
+    }
+  },
+  "skills": {
+    "add-observability": {},
+    "analyze-codebase": {},
+    "analyze-dataset": {},
+    "audit-dependencies": {},
+    "audit-skill-catalog": {},
+    "break-down-work": {},
+    "build-design-system": {},
+    "build-frontend-interface": {},
+    "build-mcp-server": {
+      "external_candidates": [
+        {
+          "source": "anthropic-skills",
+          "path": "skills/mcp-builder",
+          "relationship": "scope-overlap",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+        }
+      ]
+    },
+    "containerize-application": {},
+    "debug-systematically": {},
+    "design-agent-tools": {},
+    "design-api": {},
+    "design-database-change": {},
+    "design-data-pipeline": {},
+    "design-frontend-interface": {
+      "external_candidates": [
+        {
+          "source": "anthropic-skills",
+          "path": "skills/frontend-design",
+          "relationship": "scope-overlap",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+        }
+      ]
+    },
+    "design-test-strategy": {},
+    "domain-modeling": {},
+    "evaluate-ai-output": {},
+    "evaluate-rag": {},
+    "implement-feature": {},
+    "improve-performance": {},
+    "investigate-ci-failure": {
+      "external_candidates": [
+        {
+          "source": "openai-skills",
+          "path": "skills/.curated/gh-fix-ci",
+          "relationship": "tool-specific-specialization",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+        }
+      ]
+    },
+    "migrate-dependency": {},
+    "plan-implementation": {},
+    "prepare-handoff": {},
+    "refactor-safely": {},
+    "release-software": {},
+    "research-with-sources": {},
+    "resolve-merge-conflicts": {},
+    "respond-to-incident": {},
+    "review-accessibility": {},
+    "review-changes": {},
+    "review-security": {
+      "external_candidates": [
+        {
+          "source": "openai-skills",
+          "path": "skills/.curated/security-best-practices",
+          "relationship": "tool-specific-specialization",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+        },
+        {
+          "source": "openai-skills",
+          "path": "skills/.curated/security-threat-model",
+          "relationship": "scope-overlap",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+        }
+      ]
+    },
+    "tdd": {},
+    "test-api": {},
+    "test-cli": {},
+    "test-local-webapp": {
+      "external_candidates": [
+        {
+          "source": "anthropic-skills",
+          "path": "skills/webapp-testing",
+          "relationship": "scope-overlap",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+        },
+        {
+          "source": "openai-skills",
+          "path": "skills/.curated/playwright",
+          "relationship": "tool-specific-specialization",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+        }
+      ]
+    },
+    "triage-issues": {},
+    "write-ci-pipeline": {
+      "external_candidates": [
+        {
+          "source": "swe-skills-bench",
+          "path": "skills/github-actions-templates",
+          "relationship": "tool-specific-specialization",
+          "evidence": "benchmark-dataset-member-revision-result-unverified"
+        }
+      ]
+    },
+    "write-documentation": {},
+    "write-sql": {},
+    "write-technical-spec": {}
+  }
+}
