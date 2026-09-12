@@ -6,7 +6,7 @@
 
 1. Identify the catalog root, supported agent runtimes, portability goals, licensing policy, and whether executable resources are allowed.
 2. Read the repository's authoring and contribution guidance before applying generic rules.
-3. Treat installed skills as third-party code: do not execute bundled scripts during an audit unless their behavior has been reviewed and execution is separately authorized.
+3. Treat installed skills as third-party code: inspect a script before executing it, and run only bounded checks within the user's authorized audit scope. A request to review a catalog does not authorize its installation, publishing, destructive cleanup, or unrelated external effects.
 
 ## Run deterministic checks
 
@@ -25,7 +25,7 @@ Treat warnings as investigation leads. Text similarity is not proof of conflicti
 1. Compare descriptions pairwise for requests that could activate multiple skills. Rewrite boundaries before adding more routing text to the bodies.
 2. Check whether each skill represents one repeatable workflow with observable completion criteria.
 3. Move optional variants and detailed knowledge into directly linked references; move repeated deterministic operations into reviewed scripts.
-4. Verify that instructions preserve user authority, separate read and write paths, avoid secret exposure, and require approval for destructive or externally visible actions.
+4. Verify that instructions preserve user authority, distinguish read and write scope, avoid secret exposure, and respect existing authorization. Require a new decision only for material actions outside that scope; flag blanket approval gates that repeatedly interrupt already authorized work.
 5. Trace copied or adapted material to its source and confirm license, attribution, modification notices, and redistribution terms.
 6. Check current documentation for tool- or version-specific claims and label unsupported runtimes or dependencies.
 7. Review evidence from real usage: misactivations, missed activations, repeated mistakes, unnecessary context, and failed verification.

@@ -16,6 +16,21 @@ Read this reference only after confirming the project's React, framework, router
 - Use streaming boundaries for independently useful regions when supported.
 - Deduplicate repeated reads with the project's supported cache mechanism and understand its request, process, and deployment scope.
 
+When a profile depends on an account but preferences do not, start preferences and the account together; chain the profile to the account instead of waiting for both initial reads:
+
+```javascript
+const accountTask = readAccount(accountId);
+const preferencesTask = readPreferences(accountId);
+const profileTask = accountTask.then(account => readProfile(account.profileId));
+const [account, preferences, profile] = await Promise.all([
+  accountTask, preferencesTask, profileTask,
+]);
+```
+
+These are illustrative function names, not framework APIs. Only parallelize independent, authorized operations; preserve required ordering for mutations. Handle cancellation and partial failure according to the page's contract.
+
+Do not treat React `cache` as a persistent application cache: its documented server-rendering scope differs from a shared process cache or a framework data cache. Before sharing cached data across requests, establish tenant/user keys, authorization, invalidation, lifetime, memory bounds, and deployment behavior.
+
 ## Place state by meaning
 
 - Derive values during rendering instead of synchronizing redundant state with effects.
@@ -39,6 +54,19 @@ Read this reference only after confirming the project's React, framework, router
 - Defer heavy optional features and non-critical third-party scripts.
 - Prevent hydration mismatches by making server and initial client output agree.
 
+Do not move an input change into a transition: keep the controlled input update immediate and defer the expensive derived view when the installed React version supports it. For a filtered list, derive `visibleItems` from items and the filter; use an Effect only for synchronization with an external system, not to maintain a redundant copy of that derived list.
+
+Prefer documented package exports. A deep import that reduces modules but loses type declarations or violates the package's export map is not a valid optimization. Check the framework's existing import optimization before rewriting imports.
+
 ## Verify
 
 Test behavior through user-visible roles and interactions. Include server and client rendering paths, navigation, mutation success and failure, cache invalidation, and hydration. Profile actual renders and bundles before claiming a performance improvement.
+
+## Primary references
+
+- [React: effects and derived state](https://react.dev/learn/you-might-not-need-an-effect)
+- [React: cache scope and limitations](https://react.dev/reference/react/cache)
+- [React: useTransition restrictions](https://react.dev/reference/react/useTransition)
+- [Next.js: optimizePackageImports](https://nextjs.org/docs/app/api-reference/config/next-config-js/optimizePackageImports)
+
+Check the documentation for the installed versions before using version-specific APIs. These examples are original guidance, not imported upstream rules or measured performance claims.

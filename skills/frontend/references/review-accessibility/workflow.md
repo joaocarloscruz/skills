@@ -9,4 +9,6 @@
 5. Use automated tooling for broad signals, then manually verify; automated checks do not prove accessibility.
 6. Reproduce findings with the user impact, exact state, element, and relevant criterion.
 
+For web interfaces reviewed against WCAG 2.2, read `references/wcag-checks.md` for measurement thresholds, exceptions, and manual interaction evidence. Confirm the requested level and standard before reporting conformance findings.
+
 Prioritize blockers in essential journeys over raw finding count. Recommend native semantics before custom ARIA and avoid claiming conformance from a partial review.

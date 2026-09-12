@@ -33,4 +33,4 @@ Order findings by severity. For each actionable finding, provide:
 4. why the current tests or guards do not prevent it;
 5. a brief fix direction when it clarifies the issue.
 
-Keep summaries short. If there are no actionable findings, say so and name any important verification gaps or residual risks. Do not modify code unless the user separately asks for fixes.
+Keep summaries short. If there are no actionable findings, say so and name any important verification gaps or residual risks. A review-only request ends with findings; when fixes are already part of the user's task, apply and verify the in-scope corrections without requesting the same authorization again.

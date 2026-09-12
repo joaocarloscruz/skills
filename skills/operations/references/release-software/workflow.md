@@ -7,7 +7,7 @@
 3. Verify tests, builds, generated artifacts, dependency locks, signatures, provenance, and packaging from a clean checkout.
 4. Write release notes for users: behavior changes, upgrade steps, known issues, and rollback considerations.
 5. Sequence irreversible steps last. Define preflight checks, rollout stages, health signals, stop conditions, and rollback.
-6. Publish only with explicit authorization and verify the resulting artifact or deployment independently.
+6. Publish within the user's explicit authorization and verify the resulting artifact or deployment independently. Reuse authorization already given for that destination and release; ask only if a material change exceeds it.
 7. Monitor critical signals and record final version, commit, artifact, and outcome.
 
 Never infer permission to publish from a request to prepare a release.

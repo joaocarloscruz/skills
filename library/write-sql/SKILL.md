@@ -15,4 +15,6 @@ description: Write and validate read-only SQL with correct grain, joins, nulls, 
 8. Run read-only samples, row-count checks, reconciliation totals, and edge cases. Use explain or dry-run facilities before expensive scans.
 9. Optimize only after correctness: reduce scanned columns and partitions, filter early where semantics allow, and verify plan changes.
 
+For analytical joins, anti-joins, time windows, or plan inspection, read `references/query-correctness.md`; PostgreSQL-specific examples are labeled. A statement starting with `SELECT` or `EXPLAIN` is not automatically free of side effects.
+
 Return the query, assumptions, expected columns and grain, validation performed, and performance considerations. Never execute writes, DDL, or destructive statements without explicit authorization.

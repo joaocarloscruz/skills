@@ -9,4 +9,6 @@
 5. Define checkpoints and measurable invariants for row counts, nulls, duplicates, checksums, and application behavior.
 6. Make rollback explicit; distinguish reversible schema steps from irreversible data transformations.
 
+For PostgreSQL, read `references/postgresql.md` after confirming the server version and migration runner's transaction behavior. Do not apply its locking or syntax assumptions to other engines.
+
 Deliver ordered migration and deployment steps, compatibility requirements, monitoring, stop conditions, rollback, and cleanup. Never assume a migration is safe solely because it succeeds on an empty database.

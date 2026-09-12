@@ -25,6 +25,8 @@
 4. Preserve escape hatches for valid composition without exposing internal DOM or styling as accidental public API.
 5. Test default, hover, focus, active, disabled, loading, empty, error, selected, overflow, long-content, and localized states as applicable.
 
+For React component libraries with competing variants or state ownership problems, read `references/react-components.md`. Use it for component contracts; it does not replace token, theme, or governance decisions.
+
 ## Govern change
 
 - Publish usage guidance with do, do-not, and selection examples; do not document props without explaining decisions.

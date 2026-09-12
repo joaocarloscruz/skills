@@ -13,8 +13,31 @@ The skills in this repository are original syntheses informed by patterns observ
 - [google-labs-code/stitch-skills](https://github.com/google-labs-code/stitch-skills) — Apache-2.0. Informed design-to-code verification, token extraction, and progressive workflow gates.
 - [microsoft/skills](https://github.com/microsoft/skills) — MIT License. Informed AI integration, SDK grounding, governance, data, monitoring, and acceptance-test patterns.
 - [elastic/agent-skills](https://github.com/elastic/agent-skills) — licenses are supplied by the project. Informed observability-oriented domain skills and evaluation-driven maintenance.
+- [obra/superpowers](https://github.com/obra/superpowers) — MIT License. Informed independently reviewed workflow structure, debugging discipline, and behavioral skill testing. Mandatory gates and diagnostic snippets were not imported wholesale.
+- [trailofbits/skills](https://github.com/trailofbits/skills) — CC-BY-SA-4.0. Reviewed for security specialization and testable property selection. No upstream text or code was copied; future adaptations require separate license review.
+- [supabase/agent-skills](https://github.com/supabase/agent-skills) — MIT License. Informed PostgreSQL-specific review categories and conditional database references.
+- [dbt-labs/dbt-agent-skills](https://github.com/dbt-labs/dbt-agent-skills) — Apache-2.0. Reviewed for domain-specific package boundaries and validation support.
 
 - [benchflow-ai/skillsbench](https://github.com/benchflow-ai/skillsbench) — Apache-2.0. Informed paired no-skill versus with-skill evaluation principles; no result from this benchmark is attributed to this catalog.
 - [GeniusHTX/SWE-Skills-Bench](https://github.com/GeniusHTX/SWE-Skills-Bench) — MIT License. Provides public software-engineering comparison artifacts; dataset membership is not treated as evidence that a specific skill or revision improves outcomes.
+- [OpenAI: Testing Agent Skills with Evals](https://developers.openai.com/blog/eval-skills) — informed controlled trials, recorded artifacts, and separating routing checks from task outcomes.
+
+Original technical references also cite the relevant primary documentation:
+
+- [React](https://react.dev/learn) and [Next.js](https://nextjs.org/docs) for component behavior and framework-specific performance guidance.
+- [PostgreSQL](https://www.postgresql.org/docs/current/) for query semantics, planning, concurrency, and migration constraints; check the deployed major version.
+- [GitHub Actions](https://docs.github.com/en/actions) and [GitHub CLI](https://cli.github.com/manual/) for CI permissions, event trust, artifacts, and failure diagnosis.
+- [Model Context Protocol](https://modelcontextprotocol.io/specification/2025-11-25) for tool schemas, pagination, errors, and protocol boundaries.
+- [HTTP semantics (RFC 9110)](https://www.rfc-editor.org/rfc/rfc9110), [HTTP caching (RFC 9111)](https://www.rfc-editor.org/rfc/rfc9111), and [OpenAPI](https://spec.openapis.org/oas/latest.html) for API contract tests.
+- [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/) for concrete trust boundaries and security controls.
+- [Hypothesis](https://hypothesis.readthedocs.io/) and [fast-check](https://fast-check.dev/docs/introduction/) for property-based testing and reproducible failures.
+- [Ragas](https://docs.ragas.io/en/stable/) for retrieval and generation evaluation concepts.
+- [Playwright](https://playwright.dev/docs/best-practices) for locator behavior, web assertions, and observable readiness.
+- [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/) for accessibility success criteria and test limitations.
+
+Specific supporting pages are linked inside each package. Documentation supports
+technical guidance; it does not establish that the skill improves agent outcomes.
+Reviewed candidate revisions and qualifications are recorded in
+`evidence/skills.json` and [the dated research review](docs/research-2026-09-12.md).
 
 Review the linked upstream license before importing future material; a repository-level license may not cover every skill or contribution.

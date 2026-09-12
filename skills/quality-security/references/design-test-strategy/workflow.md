@@ -9,4 +9,6 @@
 5. Cover normal behavior, boundaries, invalid input, partial failure, concurrency, recovery, compatibility, and observability where relevant.
 6. Assign non-functional checks only when tied to measurable requirements.
 
+For parsers, transformations, serialization, financial arithmetic, or state machines with many input combinations, read `references/property-tests.md`. Use generated tests where a meaningful invariant exists, rather than turning every example test into fuzzing.
+
 Produce a traceable matrix of risk, scenario, test level, assertion, and owner. Call out what remains manual or untested and why. Prefer a small high-signal suite over a large shallow checklist.

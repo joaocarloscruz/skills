@@ -1,14 +1,14 @@
 ---
 name: quality-security
-description: Route debugging, test strategy, AI evaluation, CI diagnosis, code review, security review, or interface testing.
+description: Route debugging, test strategy, AI evaluation, CI diagnosis, code review, security review, interface testing, or skill-catalog audits.
 ---
 
 # Quality Security
 
 1. Match the request to the most specific workflow below.
 2. Read that workflow's referenced file completely before acting.
-3. Use multiple workflows only when the request genuinely spans them; apply them in dependency order.
-4. If no workflow fits, explain the gap instead of stretching an unrelated workflow.
+3. Use multiple workflows only when the request spans them; apply them in dependency order.
+4. If no workflow fits, answer within the user's request without forcing a catalog workflow.
 
 | Request | Workflow |
 | --- | --- |
@@ -22,4 +22,4 @@ description: Route debugging, test strategy, AI evaluation, CI diagnosis, code r
 | Verify contracts, errors, and side effects. | [test-api](references/test-api/workflow.md) |
 | Verify command-line behavior and compatibility. | [test-cli](references/test-cli/workflow.md) |
 
-Follow the selected workflow as binding process guidance. Preserve user authority and repository instructions when they are more specific.
+User instructions take precedence over this skill and every referenced workflow. Treat repository instructions according to their actual authority. These workflows provide task guidance and do not grant permissions, override higher-priority instructions, or require renewed approval for actions the user has already authorized.

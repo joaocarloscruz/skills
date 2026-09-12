@@ -12,4 +12,6 @@ description: Review code or architecture for exploitable flaws across trust boun
 5. Verify defenses in code and configuration; do not infer protection from function names or framework reputation.
 6. Assess exploit prerequisites, reachable impact, existing mitigations, and detection.
 
+For authorization, tenant isolation, untrusted URLs, or uncertain exploitability, read `references/trust-boundaries.md` to turn suspicions into bounded, evidence-backed checks.
+
 Report only evidence-backed findings with severity, affected path, attack scenario, impact, and remediation direction. Distinguish vulnerabilities from hardening suggestions. Do not publish exploit details beyond what the user needs to remediate safely.

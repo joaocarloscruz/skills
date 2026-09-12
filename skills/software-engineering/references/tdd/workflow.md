@@ -2,9 +2,9 @@
 
 # Test-Driven Development
 
-1. Translate the requested behavior into one observable example. Confirm ambiguous behavior before encoding it.
+1. Translate the requested behavior into one observable example. Resolve ambiguity from the contract and existing behavior; ask only when a material product decision remains.
 2. Choose the narrowest stable seam that proves user-visible behavior without coupling the test to implementation details.
-3. Write one test that fails for the intended reason. Run it and inspect the failure; a test that starts green proves nothing new.
+3. Write one test that fails for the intended reason. If it starts green, verify whether the behavior already exists or the assertion misses the new requirement; do not break working code to manufacture a red result.
 4. Add the smallest production change that makes the test pass. Avoid unrelated cleanup or speculative abstractions.
 5. Run the focused test until green, then run nearby tests to catch local regressions.
 6. Refactor only while tests remain green. Improve names, duplication, and boundaries without changing behavior.

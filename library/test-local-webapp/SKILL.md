@@ -10,7 +10,9 @@ description: Test local web apps with browser automation, DOM, console, network,
 1. Determine whether the app is already running and identify its local URL.
 2. If startup is required, inspect the repository's documented development command and use a managed process that can be stopped reliably.
 3. Read static HTML directly when sufficient. For dynamic apps, inspect the rendered page after the relevant load state.
-4. Do not send credentials, private data, or destructive actions through a test flow without explicit authorization.
+4. Use authorized accounts and isolated test data for the requested journey. Do not broaden it to unrelated private data, destructive operations, or external submissions without authorization.
+
+For Playwright-based checks, read `references/playwright.md` after confirming whether the environment provides a browser tool, CLI, or test runner. Use the supported interface and installed version.
 
 ## Reconnoiter before acting
 

@@ -6,7 +6,7 @@ description: Refactor structure, boundaries, naming, or duplication while preser
 # Refactor Safely
 
 1. Define the structural problem and the behavior that must remain unchanged.
-2. Establish a green baseline and add characterization tests where important behavior is not protected.
+2. Record the baseline and add characterization tests where important behavior is not protected. Isolate pre-existing failures; continue independent refactoring when focused checks can still establish preserved behavior.
 3. Choose one structural objective and identify the smallest reversible transformation toward it.
 4. Separate moves and renames from semantic edits so diffs remain reviewable.
 5. Keep the system runnable after each step; run focused checks frequently.

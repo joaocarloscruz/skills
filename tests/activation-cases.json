@@ -577,6 +577,60 @@
         "write-technical-spec"
       ],
       "rationale": "The output is durable task-oriented documentation, not a live-work handoff or a specification for new behavior."
+    },
+    {
+      "id": "no-match-friendly-greeting",
+      "title": "Greet without invoking an engineering workflow",
+      "prompt": "Good morning!",
+      "expected_router": null,
+      "expected_skills": [],
+      "unexpected_skills": ["prepare-handoff", "plan-implementation"],
+      "rationale": "A greeting needs a direct conversational response and no catalog workflow."
+    },
+    {
+      "id": "no-match-nontechnical-security",
+      "title": "Security vocabulary outside software",
+      "prompt": "Rewrite this sentence in plain English: The building security guard reviews visitor badges at reception.",
+      "expected_router": null,
+      "expected_skills": [],
+      "unexpected_skills": ["review-security", "review-changes", "write-documentation"],
+      "rationale": "Security and review are lexical overlaps; the actual task is a single nontechnical sentence rewrite."
+    },
+    {
+      "id": "no-match-travel-pipeline-metaphor",
+      "title": "Planning vocabulary without engineering work",
+      "prompt": "Suggest a short title for my personal photo album about a train journey through the Alps.",
+      "expected_router": null,
+      "expected_skills": [],
+      "unexpected_skills": ["plan-implementation", "design-data-pipeline", "design-frontend-interface"],
+      "rationale": "A creative album title is outside the engineering catalog even though it asks for a small planning decision."
+    },
+    {
+      "id": "incident-mitigation-before-root-cause",
+      "title": "Active outage requires incident handling",
+      "prompt": "Checkout errors are rising in production after the last deploy. Coordinate immediate mitigation and rollback while preserving evidence for later root-cause analysis.",
+      "expected_router": "operations",
+      "expected_skills": ["respond-to-incident"],
+      "unexpected_skills": ["debug-systematically", "release-software"],
+      "rationale": "Restoring an active service and coordinating mitigation is the primary outcome; root-cause work follows stabilization."
+    },
+    {
+      "id": "ci-signal-repair-not-new-pipeline",
+      "title": "Diagnose a failing existing workflow",
+      "prompt": "Yesterday's change made the existing Linux CI job fail only on pull requests from forks. Identify the failing step from logs and fix the regression without redesigning the workflow.",
+      "expected_router": "quality-security",
+      "expected_skills": ["investigate-ci-failure"],
+      "unexpected_skills": ["write-ci-pipeline", "audit-dependencies"],
+      "rationale": "Existing CI failure diagnosis is distinct from creating a pipeline, despite shared workflow vocabulary."
+    },
+    {
+      "id": "measure-retrieval-not-generic-model",
+      "title": "Diagnose evidence retrieval quality",
+      "prompt": "Our assistant answers correctly when given the right document, but search retrieves outdated or irrelevant passages. Measure retrieval recall and freshness against labeled queries before changing prompts.",
+      "expected_router": "ai-engineering",
+      "expected_skills": ["evaluate-rag"],
+      "unexpected_skills": ["evaluate-ai-output", "design-agent-tools"],
+      "rationale": "The diagnosed boundary is retrieval quality, not a generic model-output evaluation or tool-contract redesign."
     }
   ]
 }

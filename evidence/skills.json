@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "reviewed_on": "2026-07-16",
+  "schema_version": 2,
+  "reviewed_on": "2026-09-12",
   "catalog_inspiration": "SOURCES.md",
   "classification_defaults": {
     "provenance": "original-synthesis",
@@ -11,15 +11,43 @@
   "external_sources": {
     "anthropic-skills": {
       "repository": "https://github.com/anthropics/skills",
-      "reviewed_revision": "9d2f1ae187231d8199c64b5b762e1bdf2244733d"
+      "reviewed_revision": "34040c9c568585f6929bedeaad110ad08f079624",
+      "license": "Per skill; selected MCP, frontend and skill-creator packages declare Apache-2.0"
     },
     "openai-skills": {
       "repository": "https://github.com/openai/skills",
-      "reviewed_revision": "49f948faa9258a0c61caceaf225e179651397431"
+      "reviewed_revision": "49f948faa9258a0c61caceaf225e179651397431",
+      "license": "Per skill; selected Playwright and gh-fix-ci packages declare Apache-2.0"
     },
     "swe-skills-bench": {
       "repository": "https://github.com/GeniusHTX/SWE-Skills-Bench",
-      "reviewed_revision": "95b3ce519fcb58d0b19e90a5b6e5165211dc6dd1"
+      "reviewed_revision": "95b3ce519fcb58d0b19e90a5b6e5165211dc6dd1",
+      "notes": "Historical reviewed revision retained. Repository unavailable during 2026-09-12 review; paper labels cannot be mapped reliably to current skill artifacts."
+    },
+    "vercel-skills": {
+      "repository": "https://github.com/vercel-labs/agent-skills",
+      "reviewed_revision": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "license": "MIT for selected React/composition skills"
+    },
+    "trailofbits-skills": {
+      "repository": "https://github.com/trailofbits/skills",
+      "reviewed_revision": "321ccfe628eca0d314b0ee4eaffcdd8a05639aaf",
+      "license": "CC BY-SA 4.0; no material vendored"
+    },
+    "supabase-skills": {
+      "repository": "https://github.com/supabase/agent-skills",
+      "reviewed_revision": "8331f910845103c08d51f6ca1d86ebb7d1f745e3",
+      "license": "MIT"
+    },
+    "superpowers": {
+      "repository": "https://github.com/obra/superpowers",
+      "reviewed_revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "license": "MIT"
+    },
+    "dbt-skills": {
+      "repository": "https://github.com/dbt-labs/dbt-agent-skills",
+      "reviewed_revision": "a8607fc02a679e81a2b0fe7fcb32a7568802e16a",
+      "license": "Apache-2.0"
     }
   },
   "skills": {
@@ -27,10 +55,43 @@
     "analyze-codebase": {},
     "analyze-dataset": {},
     "audit-dependencies": {},
-    "audit-skill-catalog": {},
+    "audit-skill-catalog": {
+      "external_candidates": [
+        {
+          "source": "anthropic-skills",
+          "path": "skills/skill-creator",
+          "relationship": "tool-specific-specialization",
+          "evidence": "maintainer-with-evaluation-assets-no-verified-uplift",
+          "assessment": "Paired evaluation and review machinery; adapt runtime assumptions and preserve user authority."
+        }
+      ]
+    },
     "break-down-work": {},
-    "build-design-system": {},
-    "build-frontend-interface": {},
+    "build-design-system": {
+      "external_candidates": [
+        {
+          "source": "vercel-skills",
+          "path": "skills/composition-patterns",
+          "relationship": "tool-specific-specialization",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark",
+          "assessment": "Component API examples supplement semantic tokens, governance and migration; respect React version gates."
+        }
+      ]
+    },
+    "build-frontend-interface": {
+      "external_candidates": [
+        {
+          "source": "vercel-skills",
+          "path": "skills/react-best-practices",
+          "relationship": "tool-specific-specialization",
+          "evidence": "limited-comparative-evaluation-revision-unverified",
+          "assessment": "Concrete React/Next.js rules; Tessl reports a narrow positive comparison, with inconsistent displayed revision. Not demonstrated better than this catalog.",
+          "citations": [
+            "https://tessl.io/registry/skills/github/vercel-labs/agent-skills/vercel-react-best-practices/evals"
+          ]
+        }
+      ]
+    },
     "build-mcp-server": {
       "external_candidates": [
         {
@@ -42,11 +103,41 @@
       ]
     },
     "containerize-application": {},
-    "debug-systematically": {},
+    "debug-systematically": {
+      "external_candidates": [
+        {
+          "source": "superpowers",
+          "path": "skills/systematic-debugging",
+          "relationship": "tool-specific-specialization",
+          "evidence": "maintainer-with-evaluation-assets-no-verified-uplift",
+          "assessment": "Useful examples and pressure tests; adapt rigid gates and omit the diagnostic example that reveals an environment variable value."
+        }
+      ]
+    },
     "design-agent-tools": {},
     "design-api": {},
-    "design-database-change": {},
-    "design-data-pipeline": {},
+    "design-database-change": {
+      "external_candidates": [
+        {
+          "source": "supabase-skills",
+          "path": "skills/supabase-postgres-best-practices",
+          "relationship": "tool-specific-specialization",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark",
+          "assessment": "PostgreSQL-only specialization; retain query grain/time/cardinality and project-specific migration checks."
+        }
+      ]
+    },
+    "design-data-pipeline": {
+      "external_candidates": [
+        {
+          "source": "dbt-skills",
+          "path": "skills/dbt/skills/using-dbt-for-analytics-engineering",
+          "relationship": "tool-specific-specialization",
+          "evidence": "maintainer-with-evaluation-assets-no-verified-uplift",
+          "assessment": "dbt-specific modeling and validation references with an A/B harness; no verified general outcome gain."
+        }
+      ]
+    },
     "design-frontend-interface": {
       "external_candidates": [
         {
@@ -57,9 +148,29 @@
         }
       ]
     },
-    "design-test-strategy": {},
+    "design-test-strategy": {
+      "external_candidates": [
+        {
+          "source": "trailofbits-skills",
+          "path": "plugins/property-based-testing/skills/property-based-testing",
+          "relationship": "tool-specific-specialization",
+          "evidence": "maintainer-with-evaluation-assets-no-verified-uplift",
+          "assessment": "Invariant design and execution graders; published small evaluations do not establish better defect detection."
+        }
+      ]
+    },
     "domain-modeling": {},
-    "evaluate-ai-output": {},
+    "evaluate-ai-output": {
+      "external_candidates": [
+        {
+          "source": "anthropic-skills",
+          "path": "skills/skill-creator",
+          "relationship": "tool-specific-specialization",
+          "evidence": "maintainer-with-evaluation-assets-no-verified-uplift",
+          "assessment": "Paired evaluation and review machinery; adapt runtime assumptions and preserve user authority."
+        }
+      ]
+    },
     "evaluate-rag": {},
     "implement-feature": {},
     "improve-performance": {},
@@ -69,7 +180,8 @@
           "source": "openai-skills",
           "path": "skills/.curated/gh-fix-ci",
           "relationship": "tool-specific-specialization",
-          "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark",
+          "assessment": "GitHub log adapter; review explicit plan approval policy and exclusion of external providers."
         }
       ]
     },
@@ -96,6 +208,13 @@
           "path": "skills/.curated/security-threat-model",
           "relationship": "scope-overlap",
           "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+        },
+        {
+          "source": "trailofbits-skills",
+          "path": "plugins/differential-review/skills/differential-review",
+          "relationship": "tool-specific-specialization",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark",
+          "assessment": "Specialist changed-code attack methodology; retain broader threat-model scope and verify actual coverage."
         }
       ]
     },
@@ -108,7 +227,8 @@
           "source": "anthropic-skills",
           "path": "skills/webapp-testing",
           "relationship": "scope-overlap",
-          "evidence": "vendor-maintained-no-public-per-skill-benchmark"
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark",
+          "assessment": "Server helper is useful, but networkidle/fixed-wait guidance and Windows process cleanup need adaptation; not a clear replacement."
         },
         {
           "source": "openai-skills",
@@ -125,12 +245,26 @@
           "source": "swe-skills-bench",
           "path": "skills/github-actions-templates",
           "relationship": "tool-specific-specialization",
-          "evidence": "benchmark-dataset-member-revision-result-unverified"
+          "evidence": "benchmark-dataset-member-revision-result-unverified",
+          "assessment": "Preliminary SWE-Skills-Bench namesake row reports 70% with and without skill; exact artifact/revision match remains unverified.",
+          "citations": [
+            "https://arxiv.org/html/2603.15401v1#S4.T2"
+          ]
         }
       ]
     },
     "write-documentation": {},
-    "write-sql": {},
+    "write-sql": {
+      "external_candidates": [
+        {
+          "source": "supabase-skills",
+          "path": "skills/supabase-postgres-best-practices",
+          "relationship": "tool-specific-specialization",
+          "evidence": "vendor-maintained-no-public-per-skill-benchmark",
+          "assessment": "PostgreSQL-only specialization; retain query grain/time/cardinality and project-specific migration checks."
+        }
+      ]
+    },
     "write-technical-spec": {}
   }
 }

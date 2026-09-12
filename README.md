@@ -27,10 +27,11 @@ portable packages remain flat under `library/`.
 
 ## Portability
 
-`SKILL.md` and referenced Markdown files form the complete cross-product contract.
+`SKILL.md` and linked, bundled resources form the portable package contract.
 Routers use ordinary progressive disclosure rather than vendor-specific dynamic
 registration, so clients only need to support bundled references. The catalog
-intentionally omits vendor-specific metadata.
+intentionally omits vendor-specific metadata. Optional Python helpers require a
+local Python runtime; their instructions also explain the underlying workflow.
 
 ## Use
 
@@ -42,9 +43,17 @@ product.
 Validate the collection with:
 
 ```bash
-python scripts/validate_skills.py
-python scripts/validate_activation_cases.py
-python scripts/validate_evidence_registry.py
+python scripts/check.py
+```
+
+This runs package, resource, activation, evidence, generation, and regression
+checks. Installer tests require PowerShell; unavailable capabilities are reported
+as skips. CI requires PowerShell and also validates all 52 packages with the
+official reference validator on Linux and Windows. To run that configuration
+locally with [uv](https://docs.astral.sh/uv/):
+
+```bash
+uv run --with skills-ref==0.1.1 python scripts/check.py --official --require-powershell
 ```
 
 The validator measures the routers' approximate contribution to Codex's initial
@@ -57,6 +66,12 @@ Regenerate and verify router bundles with:
 python scripts/build_router_bundles.py
 python scripts/build_router_bundles.py --check
 ```
+
+Edit `library/` and the category indexes, then regenerate. The checked-in
+`skills/.generated-files.json` records generated file ownership and hashes. The
+builder refuses to overwrite locally modified generated files or delete unknown
+files. Resolve those conflicts explicitly and commit the updated bundles and
+manifest together. See [the architecture guide](docs/architecture.md).
 
 ## Install on Windows
 
@@ -83,12 +98,21 @@ or install into a different compatible client's skill directory:
 ```
 
 Use `-Profile Library` to install all 43 individual workflows or `-Profile All`
-to install routers and workflows together. `-Prune` removes other entries from
-this catalog when switching profiles without touching unrelated skills.
+to install routers and workflows together. The destination must be outside the
+checkout, must not contain the checkout, and must use a real directory path
+without symlink or junction ancestors.
 
-Use `-Mode Copy` when symbolic links are unavailable. Existing destinations are
-left untouched unless `-Force` is supplied; use `-WhatIf` to preview changes.
-Copy-mode installations must be refreshed after each update:
+The installer records ownership in `.skills-install-manifest.json`. `-Prune`
+removes only verified, unchanged owned entries outside the current selection. Locally
+modified copies and unrelated entries survive pruning. Older copies without a
+manifest remain unowned until explicitly replaced; legacy symlinks pointing to
+the exact source in this checkout can be adopted.
+
+Use `-Mode Copy` when symbolic links are unavailable. `-Force` explicitly permits
+replacement of selected destination names, including unrelated content at those
+names. Use `-WhatIf` to preview the plan without writing files. Replacements are
+staged before application and ordinary failures roll back entries and the
+manifest. An unchanged installation is a no-op. Refresh copies after updates:
 
 ```powershell
 .\scripts\install.ps1 -Mode Copy -Force -Prune
@@ -99,8 +123,9 @@ Copy-mode installations must be refreshed after each update:
 `tests/activation-cases.json` records representative requests and the skills
 that should, and should not, activate. It is a catalog-specific regression
 corpus, not an executed test or cross-model benchmark. The validator checks
-fixture structure and requires every router and workflow to be represented; it
-does not run an agent or establish that routing works in a particular model.
+fixture structure, actual router membership, near misses, and explicit no-match
+requests, and requires every router and workflow to be represented. It does not
+run an agent or establish that routing works in a particular model.
 Use the prompts as declared expectations when manually checking a target agent.
 
 Validate the fixture schema and every referenced skill with:
@@ -128,6 +153,14 @@ These entries are comparison candidates, not endorsements. Vendor maintenance,
 repository popularity, or inclusion in a benchmark dataset does not by itself
 show that a skill improves performance.
 
+The [research review](docs/research-2026-09-12.md) compares the structure of widely
+used upstream repositories and explains the changes adopted here. The
+[evaluation protocol](evals/README.md) describes paired trials against a no-skill
+baseline. Its comparison helper validates recorded results and computes
+task-weighted success differences; it does not run models or establish a winner
+automatically. Stronger registry claims require linked behavioral run files and
+their raw artifacts. No such claim is made for this catalog yet.
+
 Validate the registry with:
 
 ```bash
@@ -144,4 +177,4 @@ python scripts/validate_evidence_registry.py
 - Record upstream inspiration and licenses in `SOURCES.md`.
 - Keep evidence claims and external candidates current in `evidence/skills.json`.
 
-See `CONTRIBUTING.md` before adding or adapting a skill.
+See [CONTRIBUTING.md](CONTRIBUTING.md) before adding or adapting a skill.

@@ -8,6 +8,10 @@ import json
 import re
 import sys
 from pathlib import Path
+try:
+    from .catalog_utils import catalog_membership, strict_json_loads
+except ImportError:
+    from catalog_utils import catalog_membership, strict_json_loads
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,10 +36,7 @@ def known_skills(root: Path) -> set[str]:
 
 
 def known_routers(root: Path) -> set[str]:
-    return {
-        path.parent.name
-        for path in (root / "skills").glob("*/SKILL.md")
-    }
+    return set(catalog_membership(root))
 
 
 def validate_case(
@@ -43,6 +44,7 @@ def validate_case(
     index: int,
     skills: set[str],
     routers: set[str],
+    membership: dict[str, set[str]] | None = None,
 ) -> list[str]:
     prefix = f"case {index + 1}"
     if not isinstance(case, dict):
@@ -65,17 +67,26 @@ def validate_case(
             errors.append(f"{prefix}: {field} must be a non-empty string")
 
     expected_router = case.get("expected_router")
-    if not isinstance(expected_router, str) or expected_router not in routers:
-        errors.append(f"{prefix}: expected_router must name a known router")
+    if expected_router is not None and (not isinstance(expected_router, str) or expected_router not in routers):
+        errors.append(f"{prefix}: expected_router must name a known router or be null for no match")
 
     expected = case.get("expected_skills")
     unexpected = case.get("unexpected_skills")
-    if not isinstance(expected, list) or not expected or not all(isinstance(item, str) for item in expected):
-        errors.append(f"{prefix}: expected_skills must be a non-empty list of skill names")
+    if not isinstance(expected, list) or not all(isinstance(item, str) for item in expected):
+        errors.append(f"{prefix}: expected_skills must be a list of skill names")
         expected = []
-    if not isinstance(unexpected, list) or not all(isinstance(item, str) for item in unexpected):
-        errors.append(f"{prefix}: unexpected_skills must be a list of skill names")
+    if not isinstance(unexpected, list) or not unexpected or not all(isinstance(item, str) for item in unexpected):
+        errors.append(f"{prefix}: unexpected_skills must be a non-empty list of skill names")
         unexpected = []
+
+    if expected_router is None and expected:
+        errors.append(f"{prefix}: no-match cases must have no expected skills")
+    elif expected_router is not None and not expected:
+        errors.append(f"{prefix}: a matched router requires expected skills")
+    if membership is not None and isinstance(expected_router, str) and expected_router in membership:
+        outside = set(expected) - membership[expected_router]
+        if outside:
+            errors.append(f"{prefix}: expected skills are not members of {expected_router}: {', '.join(sorted(outside))}")
 
     if len(expected) != len(set(expected)):
         errors.append(f"{prefix}: expected_skills contains duplicates")
@@ -96,18 +107,18 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        document = json.loads(args.cases.read_text(encoding="utf-8"))
-    except FileNotFoundError:
-        print(f"Missing activation cases file: {args.cases}", file=sys.stderr)
-        return 1
-    except json.JSONDecodeError as error:
-        print(f"Invalid JSON in {args.cases}: {error}", file=sys.stderr)
+        document = strict_json_loads(args.cases.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, ValueError) as error:
+        print(f"Cannot read activation cases {args.cases}: {error}", file=sys.stderr)
         return 1
 
     if not isinstance(document, dict):
         print("Activation cases document must be an object", file=sys.stderr)
         return 1
-    if document.get("schema_version") != 1:
+    if set(document) != {"schema_version", "cases"}:
+        print("Activation cases document must contain only schema_version and cases", file=sys.stderr)
+        return 1
+    if type(document.get("schema_version")) is not int or document["schema_version"] != 1:
         print("schema_version must be 1", file=sys.stderr)
         return 1
     cases = document.get("cases")
@@ -115,17 +126,27 @@ def main() -> int:
         print("cases must be a non-empty list", file=sys.stderr)
         return 1
 
-    skills = known_skills(ROOT)
-    routers = known_routers(ROOT)
+    try:
+        membership = catalog_membership(ROOT)
+    except (OSError, UnicodeError, ValueError) as error:
+        print(f"Invalid catalog membership: {error}", file=sys.stderr)
+        return 1
+    skills = set().union(*membership.values())
+    routers = set(membership)
     errors = [
         error
         for index, case in enumerate(cases)
-        for error in validate_case(case, index, skills, routers)
+        for error in validate_case(case, index, skills, routers, membership)
     ]
     ids = [case.get("id") for case in cases if isinstance(case, dict) and isinstance(case.get("id"), str)]
     duplicates = sorted(case_id for case_id in set(ids) if ids.count(case_id) > 1)
     if duplicates:
         errors.append(f"duplicate case ids: {', '.join(duplicates)}")
+    prompts = [case["prompt"].strip().casefold() for case in cases if isinstance(case, dict) and isinstance(case.get("prompt"), str)]
+    if len(prompts) != len(set(prompts)):
+        errors.append("duplicate activation prompts")
+    if not any(isinstance(case, dict) and case.get("expected_router") is None and case.get("expected_skills") == [] for case in cases):
+        errors.append("activation fixtures must include no-match requests to check overactivation")
 
     if errors:
         print("Activation fixture validation failed:", file=sys.stderr)
@@ -138,7 +159,7 @@ def main() -> int:
         for case in cases
         for skill in case["expected_skills"]
     }
-    covered_routers = {case["expected_router"] for case in cases}
+    covered_routers = {case["expected_router"] for case in cases if case["expected_router"] is not None}
     missing_routers = routers - covered_routers
     missing_skills = skills - covered
     if missing_routers:

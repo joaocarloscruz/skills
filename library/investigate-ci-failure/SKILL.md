@@ -10,6 +10,8 @@ description: Diagnose failing CI and separate code defects from flaky or environ
 3. Compare with the last successful run and inspect changes to code, dependencies, caches, secrets, images, and workflow configuration.
 4. Classify the failure as deterministic code, test flake, infrastructure, configuration, resource limit, or external dependency.
 5. Reproduce with the closest available command and environment. For flakes, estimate frequency and preserve seeds, timing, and artifacts.
-6. Make the smallest justified fix and rerun the exact failing check plus nearby checks.
+6. When fixes are in scope, make the smallest justified fix and rerun the exact failing check plus nearby checks. For diagnosis-only work, provide the evidence and next concrete action.
+
+When using GitHub Actions and `gh`, read `references/github-actions.md` for revision selection, logs, and rerun boundaries. If an external provider or unavailable runner blocks reproduction, continue with available source, configuration, and logs; identify the remaining provider-specific verification.
 
 Report evidence, root cause confidence, reproduction, proposed or applied fix, and residual uncertainty. Never "fix" a flaky test by weakening its assertion without demonstrating why the assertion was wrong.

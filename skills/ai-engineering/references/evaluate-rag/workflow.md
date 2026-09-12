@@ -12,4 +12,6 @@
 8. Report results by meaningful slices, not only one average. Include latency, token use, index cost, and failure examples.
 9. Trace representative failures from query through retrieved chunks to final answer and assign them to retrieval, context construction, or generation.
 
+Read `references/isolating-failures.md` when selecting metrics or comparing retrieval and generation changes. Keep retrieval relevance, answer correctness, and evidence support as distinct measurements.
+
 Prevent evaluation leakage and unstable live-web answers. Recommend changes only when improvements hold on relevant slices without weakening authorization or groundedness.

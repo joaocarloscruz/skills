@@ -20,4 +20,6 @@ description: Design, implement, secure, or evaluate an MCP server exposing a ser
 7. Test protocol behavior, schemas, authentication, failures, timeouts, pagination, concurrency, and representative client connections.
 8. Create realistic evaluations that require agents to select and compose tools. Include ambiguous names, empty results, permission failures, and large collections.
 
+Read `references/protocol-and-evaluation.md` when defining result schemas, errors, authorization, or task evaluations. Its protocol-specific details are tied to the stated specification version; match the negotiated protocol and installed SDK.
+
 Report the supported workflows, tool contracts, security boundaries, commands run, client evidence, and known limitations. Do not claim quality from protocol compliance alone; verify that agents can complete real tasks reliably.

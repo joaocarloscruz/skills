@@ -1,133 +1,87 @@
 #!/usr/bin/env python3
-"""Validate the repository's SKILL.md files using only the standard library."""
-
+"""Validate repository packages and discovery metadata using the portable auditor."""
 from __future__ import annotations
-
-import re
+import importlib.util
 import sys
 from pathlib import Path
-
+try:
+    from .catalog_utils import ROUTER_CONFIG, catalog_membership, is_link
+except ImportError:
+    from catalog_utils import ROUTER_CONFIG, catalog_membership, is_link
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
 LIBRARY = ROOT / "library"
 CATALOG = ROOT / "catalog"
-NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
-CATALOG_LINK_RE = re.compile(r"\]\(\.\./\.\./library/([a-z0-9-]+)/\)")
 DISCOVERY_BUDGET = 8_000
 DISCOVERY_PATH_CHARS = 60
-
-
-def parse_frontmatter(path: Path) -> tuple[dict[str, str], list[str]]:
-    errors: list[str] = []
-    text = path.read_text(encoding="utf-8")
-    lines = text.splitlines()
-    if not lines or lines[0] != "---":
-        return {}, ["frontmatter must start on the first line"]
-    try:
-        end = lines.index("---", 1)
-    except ValueError:
-        return {}, ["frontmatter is missing its closing delimiter"]
-
-    values: dict[str, str] = {}
-    for line in lines[1:end]:
-        if not line.strip() or line.lstrip().startswith("#"):
-            continue
-        if ":" not in line:
-            errors.append(f"invalid frontmatter line: {line!r}")
-            continue
-        key, value = line.split(":", 1)
-        values[key.strip()] = value.strip().strip("\"'")
-    return values, errors
+# Repository tools reuse the portable auditor; installed skills need no repo imports.
+_spec = importlib.util.spec_from_file_location(
+    "portable_catalog_auditor", LIBRARY / "audit-skill-catalog" / "scripts" / "audit_catalog.py"
+)
+if _spec is None or _spec.loader is None:
+    raise RuntimeError("cannot load portable catalog auditor")
+_auditor = importlib.util.module_from_spec(_spec)
+sys.modules[_spec.name] = _auditor
+_spec.loader.exec_module(_auditor)
+parse_frontmatter = _auditor.parse_frontmatter
 
 
 def validate(path: Path) -> list[str]:
-    metadata, errors = parse_frontmatter(path)
-    allowed = {"name", "description"}
-    extra = set(metadata) - allowed
-    missing = allowed - set(metadata)
-    if extra:
-        errors.append(f"unexpected frontmatter keys: {', '.join(sorted(extra))}")
-    if missing:
-        errors.append(f"missing frontmatter keys: {', '.join(sorted(missing))}")
-
-    name = metadata.get("name", "")
-    if name and not NAME_RE.fullmatch(name):
-        errors.append("name must use lowercase letters, digits, and hyphens")
-    if name and name != path.parent.name:
-        errors.append(f"name {name!r} must match folder {path.parent.name!r}")
-    if not metadata.get("description", "").strip():
-        errors.append("description must not be empty")
+    if is_link(path) or is_link(path.parent):
+        return ["skill package and SKILL.md must not be symlinks or junctions"]
+    errors = [finding.message for finding in _auditor.audit(path.parent, 1.0) if finding.severity == "error"]
+    if _auditor.discover_skill_files(path.parent) != [path]:
+        errors.append("a repository package must contain exactly its top-level SKILL.md")
     return errors
 
 
 def main() -> int:
-    router_paths = sorted(SKILLS.glob("*/SKILL.md"))
-    library_paths = sorted(LIBRARY.glob("*/SKILL.md"))
-    paths = router_paths + library_paths
-    if not router_paths or not library_paths:
-        print("Router skills and the individual-skill library are both required.", file=sys.stderr)
-        return 1
-
-    failures = 0
-    for path in paths:
-        errors = validate(path)
-        if errors:
+    try:
+        if is_link(SKILLS) or not SKILLS.is_dir():
+            raise ValueError("skills must be a real directory")
+        router_paths = sorted(SKILLS.glob("*/SKILL.md"))
+        library_paths = sorted(LIBRARY.glob("*/SKILL.md"))
+        paths = router_paths + library_paths
+        if not router_paths or not library_paths:
+            raise ValueError("Router skills and the individual-skill library are both required")
+        actual_routers = {path.name for path in SKILLS.iterdir() if path.is_dir()}
+        if actual_routers != set(ROUTER_CONFIG):
+            raise ValueError(f"router directory mismatch: missing={sorted(set(ROUTER_CONFIG) - actual_routers)}, extra={sorted(actual_routers - set(ROUTER_CONFIG))}")
+        failures = 0
+        names: set[str] = set()
+        router_metadata = []
+        for path in paths:
+            errors = validate(path)
+            metadata, _ = parse_frontmatter(path)
+            name = metadata.get("name")
+            if isinstance(name, str):
+                if name in names:
+                    errors.append(f"duplicate skill name: {name}")
+                names.add(name)
+            if errors:
+                failures += 1
+                print(f"FAIL {path.relative_to(ROOT)}")
+                for error in errors:
+                    print(f"  - {error}")
+            else:
+                print(f"OK   {path.relative_to(ROOT)}")
+                if path in router_paths:
+                    router_metadata.append(metadata)
+        membership = catalog_membership(ROOT)
+        print(f"OK   catalog covers {sum(map(len, membership.values()))} skills exactly once")
+        discovery_chars = sum(
+            len(f"- {item['name']}: {item['description']} (file: {'x' * DISCOVERY_PATH_CHARS})")
+            for item in router_metadata
+        ) + max(0, len(router_metadata) - 1)
+        if discovery_chars > DISCOVERY_BUDGET:
+            print(f"FAIL default router discovery list uses {discovery_chars}/{DISCOVERY_BUDGET} characters")
             failures += 1
-            print(f"FAIL {path.relative_to(ROOT)}")
-            for error in errors:
-                print(f"  - {error}")
         else:
-            print(f"OK   {path.relative_to(ROOT)}")
-
-    skill_names = {path.parent.name for path in library_paths}
-    categorized: dict[str, list[Path]] = {}
-    category_files = sorted(CATALOG.glob("*/README.md"))
-    if not category_files:
-        print("FAIL no category indexes found")
-        failures += 1
-    for category_file in category_files:
-        category = category_file.parent.name
-        if not NAME_RE.fullmatch(category):
-            print(f"FAIL invalid category folder: {category}")
-            failures += 1
-        for name in CATALOG_LINK_RE.findall(category_file.read_text(encoding="utf-8")):
-            categorized.setdefault(name, []).append(category_file)
-
-    missing_categories = skill_names - set(categorized)
-    unknown_skills = set(categorized) - skill_names
-    duplicate_categories = {
-        name: files for name, files in categorized.items() if len(files) > 1
-    }
-    if missing_categories:
-        print(f"FAIL uncategorized skills: {', '.join(sorted(missing_categories))}")
-        failures += 1
-    if unknown_skills:
-        print(f"FAIL category links to unknown skills: {', '.join(sorted(unknown_skills))}")
-        failures += 1
-    for name, files in sorted(duplicate_categories.items()):
-        locations = ", ".join(str(path.relative_to(ROOT)) for path in files)
-        print(f"FAIL skill {name!r} appears in multiple categories: {locations}")
-        failures += 1
-    if not (missing_categories or unknown_skills or duplicate_categories):
-        print(f"OK   catalog covers {len(skill_names)} skills exactly once")
-
-    metadata = [parse_frontmatter(path)[0] for path in router_paths]
-    discovery_chars = sum(
-        len(f"- {item['name']}: {item['description']} (file: {'x' * DISCOVERY_PATH_CHARS})")
-        for item in metadata
-    ) + max(0, len(metadata) - 1)
-    if discovery_chars > DISCOVERY_BUDGET:
-        print(
-            "FAIL default router discovery list uses "
-            f"{discovery_chars}/{DISCOVERY_BUDGET} characters"
-        )
-        failures += 1
-    else:
-        print(
-            "OK   default router discovery list uses "
-            f"{discovery_chars}/{DISCOVERY_BUDGET} characters"
-        )
-    return 1 if failures else 0
+            print(f"OK   default router discovery list uses {discovery_chars}/{DISCOVERY_BUDGET} characters")
+        return 1 if failures else 0
+    except (OSError, UnicodeError, ValueError) as error:
+        print(f"Catalog validation error: {error}", file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":

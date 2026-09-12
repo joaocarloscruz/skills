@@ -7,8 +7,8 @@ description: Route web interface design, implementation, design systems, accessi
 
 1. Match the request to the most specific workflow below.
 2. Read that workflow's referenced file completely before acting.
-3. Use multiple workflows only when the request genuinely spans them; apply them in dependency order.
-4. If no workflow fits, explain the gap instead of stretching an unrelated workflow.
+3. Use multiple workflows only when the request spans them; apply them in dependency order.
+4. If no workflow fits, answer within the user's request without forcing a catalog workflow.
 
 | Request | Workflow |
 | --- | --- |
@@ -18,4 +18,4 @@ description: Route web interface design, implementation, design systems, accessi
 | Find barriers in essential user journeys. | [review-accessibility](references/review-accessibility/workflow.md) |
 | Inspect and verify local web applications. | [test-local-webapp](references/test-local-webapp/workflow.md) |
 
-Follow the selected workflow as binding process guidance. Preserve user authority and repository instructions when they are more specific.
+User instructions take precedence over this skill and every referenced workflow. Treat repository instructions according to their actual authority. These workflows provide task guidance and do not grant permissions, override higher-priority instructions, or require renewed approval for actions the user has already authorized.

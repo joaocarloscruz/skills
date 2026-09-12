@@ -12,4 +12,6 @@ description: Test APIs for contract behavior, authentication, validation, errors
 5. Assert stored state and emitted events, not only response bodies.
 6. Keep tests isolated, deterministic, and safe to rerun; clean up created data.
 
+For HTTP APIs with retries, pagination, caching, or concurrent updates, read `references/http-contracts.md` and select cases promised by the actual API contract.
+
 Report contract violations separately from environment or client problems. Preserve minimal request and response evidence with secrets redacted.
