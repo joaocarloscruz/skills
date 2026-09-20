@@ -16,6 +16,8 @@ from urllib.parse import unquote, urlsplit
 
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+CODE_SPAN_RE = re.compile(r"(?<!`)(`+)(?!`)(.*?)(?<!`)\1(?!`)", re.S)
+RESOURCE_PATH_RE = re.compile(r"(?:\.\.?/)*(?:references|scripts|assets)/[^\s`<>]+")
 TOP_KEY_RE = re.compile(r"^([A-Za-z0-9_-]+):\s*(.*)$")
 ALLOWED_KEYS = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
 IGNORED_DIRS = {".git", ".hg", ".svn", "node_modules", "__pycache__"}
@@ -176,10 +178,21 @@ def tokenize(text: str) -> set[str]:
 
 
 def document_links(text: str) -> list[str]:
-    # Code examples are not document references. Inline code remains available
-    # to resource_is_referenced for executable-resource mentions.
+    # Standalone inline resource paths are instructions in this catalog. Commands
+    # and sample Markdown inside code spans/fences are not document references.
     text = re.sub(r"(?ms)^\s*(`{3,}|~{3,}).*?^\s*\1\s*$", "", text)
-    return LINK_RE.findall(text) + re.findall(r"(?m)^\s{0,3}\[[^\]]+\]:\s*(\S+)", text)
+    inline_paths: list[str] = []
+
+    def read_span(match: re.Match) -> str:
+        value = match.group(2).strip()
+        if RESOURCE_PATH_RE.fullmatch(value):
+            inline_paths.append(value)
+        return ""
+
+    text = CODE_SPAN_RE.sub(read_span, text)
+    return (LINK_RE.findall(text)
+            + re.findall(r"(?m)^\s{0,3}\[[^\]]+\]:\s*(\S+)", text)
+            + inline_paths)
 
 
 def local_target(document: Path, raw_link: str) -> Path | None:
@@ -217,9 +230,9 @@ def reachable_documents(skill_file: Path) -> dict[Path, str]:
 def resource_is_referenced(resource: Path, documents: dict[Path, str]) -> bool:
     resolved = resource.resolve()
     for document, text in documents.items():
-        relative = Path(os.path.relpath(resolved, document.parent)).as_posix()
-        if relative in text:
-            return True
+        for raw_link in document_links(text):
+            if local_target(document, raw_link) == resolved:
+                return True
     return False
 
 

@@ -6,5 +6,5 @@
 - [implement-feature](../../library/implement-feature/) - Implement scoped behavior with verification.
 - [migrate-dependency](../../library/migrate-dependency/) - Upgrade dependencies with controlled compatibility.
 - [refactor-safely](../../library/refactor-safely/) - Improve structure while preserving behavior.
-- [resolve-merge-conflicts](../../library/resolve-merge-conflicts/) - Reconcile competing changes by intent.
+- [resolve-merge-conflicts](../../library/resolve-merge-conflicts/) - Resolve merge, rebase, and cherry-pick conflicts by intent.
 - [tdd](../../library/tdd/) - Build behavior in small red-green-refactor cycles.

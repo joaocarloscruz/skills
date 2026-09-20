@@ -10,13 +10,15 @@
 
 ## Run deterministic checks
 
-Run the bundled auditor against the catalog root:
+Inspect [the bundled auditor](scripts/audit_catalog.py), then run it against the catalog root:
 
 ```bash
 python "<skill-path>/scripts/audit_catalog.py" "<catalog-root>"
 ```
 
 Run `--help` for JSON output, overlap thresholds, and warning-sensitive exit behavior. The script checks frontmatter, names, descriptions, duplicate identities, size, broken relative links, unused resources, risky instruction patterns, and lexical trigger overlap.
+
+Resource checks follow Markdown links and standalone inline paths under `references/`, `scripts/`, or `assets/`, relative to the document containing them. Command examples and fenced code do not establish resource reachability; link the resource separately. The parser covers this documented subset, not arbitrary Markdown or runtime-computed paths.
 
 Treat warnings as investigation leads. Text similarity is not proof of conflicting activation, and a risky command may appear inside a prohibition or safety example.
 

@@ -38,6 +38,11 @@ reaching into this repository. Keep resource paths inside the package and avoid
 symlink or junction resources. The auditor checks this supported Markdown and
 frontmatter subset; it is not a general YAML parser.
 
+Use Markdown links or standalone inline resource paths such as
+`references/guide.md` to connect package resources. Paths are relative to the
+containing document. Link helpers separately from fenced command examples;
+examples and incidental prose mentions do not make a resource reachable.
+
 Preserve the user's authority and authorization across the workflow. Make
 verification proportional to the change, report unavailable checks accurately,
 and avoid making unrelated baseline failures or a missing reproduction block

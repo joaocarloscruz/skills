@@ -42,6 +42,10 @@ def relocate_entry_links(text: str, document: Path, source: Path) -> str:
             replacement = raw.replace("SKILL.md", "workflow.md")
             text = text.replace(f"]({raw})", f"]({replacement})")
             text = re.sub(r"(?m)(^\s{0,3}\[[^\]]+\]:\s*)" + re.escape(raw) + r"(?=\s|$)", lambda match: match.group(1) + replacement, text)
+            text = _auditor.CODE_SPAN_RE.sub(
+                lambda match: match.group(1) + match.group(2).replace(raw, replacement) + match.group(1)
+                if match.group(2).strip() == raw else match.group(0), text
+            )
     return text
 
 

@@ -153,8 +153,9 @@ These entries are comparison candidates, not endorsements. Vendor maintenance,
 repository popularity, or inclusion in a benchmark dataset does not by itself
 show that a skill improves performance.
 
-The [research review](docs/research-2026-09-12.md) compares the structure of widely
-used upstream repositories and explains the changes adopted here. The
+The [latest research review](docs/research-2026-09-20.md) compares widely installed
+skills with this catalog and records demonstrated fixes. The earlier
+[structural review](docs/research-2026-09-12.md) explains the repository design. The
 [evaluation protocol](evals/README.md) describes paired trials against a no-skill
 baseline. Its comparison helper validates recorded results and computes
 task-weighted success differences; it does not run models or establish a winner

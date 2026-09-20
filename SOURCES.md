@@ -4,6 +4,7 @@ The skills in this repository are original syntheses informed by patterns observ
 
 - [Agent Skills specification](https://github.com/agentskills/agentskills) — Apache-2.0 code and CC-BY-4.0 documentation. Defines the portable `SKILL.md` format and progressive-disclosure model.
 - [mattpocock/skills](https://github.com/mattpocock/skills) — MIT License. Inspired tight debugging feedback loops, explicit review baselines, primary-source research, handoffs, specifications, and issue workflows.
+- [vercel-labs/skills](https://github.com/vercel-labs/skills) — reviewed discovery guidance and its [skills.sh directory](https://www.skills.sh/) to select widely installed comparison candidates. Adoption counts are not effectiveness evidence; no implementation was copied.
 - [openai/skills](https://github.com/openai/skills) — licenses are supplied per skill. Informed concise skill structure, progressive disclosure, and validation.
 - [anthropics/skills](https://github.com/anthropics/skills) — licenses are supplied per skill. Informed reconnaissance-before-action, reusable resources, and artifact-oriented workflows.
 - [github/awesome-copilot](https://github.com/github/awesome-copilot) — community collection with license information per contribution. Informed catalog breadth, AI evaluation, supply-chain, documentation, and engineering workflow coverage.
@@ -33,11 +34,13 @@ Original technical references also cite the relevant primary documentation:
 - [Hypothesis](https://hypothesis.readthedocs.io/) and [fast-check](https://fast-check.dev/docs/introduction/) for property-based testing and reproducible failures.
 - [Ragas](https://docs.ragas.io/en/stable/) for retrieval and generation evaluation concepts.
 - [Playwright](https://playwright.dev/docs/best-practices) for locator behavior, web assertions, and observable readiness.
+- [Git manuals](https://git-scm.com/docs) for conflict stages, rebase side names, sequencer continuation, and targeted staging.
 - [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/) for accessibility success criteria and test limitations.
 
 Specific supporting pages are linked inside each package. Documentation supports
 technical guidance; it does not establish that the skill improves agent outcomes.
 Reviewed candidate revisions and qualifications are recorded in
-`evidence/skills.json` and [the dated research review](docs/research-2026-09-12.md).
+`evidence/skills.json`, [the structural review](docs/research-2026-09-12.md), and
+[the latest comparison](docs/research-2026-09-20.md).
 
 Review the linked upstream license before importing future material; a repository-level license may not cover every skill or contribution.

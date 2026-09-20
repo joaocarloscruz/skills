@@ -106,6 +106,50 @@ class FrontmatterAndPackageTests(unittest.TestCase):
             self.assertIn("escaping-link", codes)
             self.assertIn("broken-link", codes)
 
+    def test_inline_resource_paths_are_validated(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = write_skill(Path(directory) / "sample",
+                               "Read `references/missing.md` and run `scripts/missing.py`.\n"
+                               "Use `assets/../../../outside.txt`.\n")
+            findings = auditor.audit(path.parent, 1.0)
+            self.assertEqual(sum(item.code == "broken-link" for item in findings), 2)
+            self.assertTrue(any(item.code == "escaping-link" for item in findings))
+
+    def test_inline_reference_chain_is_reachable_and_cycles_terminate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = write_skill(Path(directory) / "sample", "Read `references/guide.md`.\n")
+            guide = path.parent / "references" / "guide.md"
+            helper = guide.parent / "scripts" / "check.py"
+            helper.parent.mkdir(parents=True)
+            guide.write_text("Run `scripts/check.py`. Return to [start](../SKILL.md).\n", encoding="utf-8")
+            helper.write_text("print('ok')\n", encoding="utf-8")
+            self.assertEqual(set(auditor.reachable_documents(path)), {path, guide})
+            self.assertEqual(auditor.audit(path.parent, 1.0), [])
+
+    def test_resource_mentions_are_exact_and_decode_link_targets(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = write_skill(Path(directory) / "sample",
+                               'Read [the guide](references/query%20guide.md#usage "Details") '
+                               "and `references/guide.md.old`.\n")
+            resources = path.parent / "references"
+            resources.mkdir()
+            for name in ("query guide.md", "guide.md", "guide.md.old"):
+                (resources / name).write_text("Details.\n", encoding="utf-8")
+            findings = auditor.audit(path.parent, 1.0)
+            unused = [item.path for item in findings if item.code == "unreferenced-resource"]
+            self.assertEqual(unused, ["references/guide.md"])
+            self.assertFalse(any(item.severity == "error" for item in findings))
+
+    def test_code_examples_are_not_live_resource_links(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = write_skill(Path(directory) / "sample",
+                               "Example syntax: `[guide](references/missing.md)`.\n"
+                               "``Use `references/missing.md` in an example.``\n"
+                               "```markdown\nRead [guide](references/missing.md).\n"
+                               "Run `scripts/missing.py`.\n```\n"
+                               "Run `python scripts/example.py --help` after substituting a real path.\n")
+            self.assertEqual(auditor.audit(path.parent, 1.0), [])
+
     def test_resource_symlink_is_rejected_without_following(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -253,6 +297,16 @@ class GenerationOwnershipTests(unittest.TestCase):
         output = self.root / "skills" / "data"
         bundled = output / "references" / skill.name / "references" / "guide.md"
         self.assertIn("../workflow.md#usage", bundled.read_text(encoding="utf-8"))
+        self.assertFalse([finding for finding in auditor.audit(output, 1.0) if finding.severity == "error"])
+
+    def test_inline_backlink_survives_entrypoint_renaming(self):
+        skill = self.root / "library" / self.names["data"]
+        write_skill(skill, "Read `references/guide.md`.\n")
+        guide = skill / "references" / "guide.md"
+        guide.parent.mkdir()
+        guide.write_text("Return to `../references/../SKILL.md#usage`.\n", encoding="utf-8")
+        builder.build()
+        output = self.root / "skills" / "data"
         self.assertFalse([finding for finding in auditor.audit(output, 1.0) if finding.severity == "error"])
 
     def test_text_checkout_line_endings_do_not_stale_manifest(self):

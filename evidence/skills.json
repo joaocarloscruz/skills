@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "reviewed_on": "2026-09-12",
+  "reviewed_on": "2026-09-20",
   "catalog_inspiration": "SOURCES.md",
   "classification_defaults": {
     "provenance": "original-synthesis",
@@ -9,6 +9,16 @@
     "behavioral_evidence": "unvalidated"
   },
   "external_sources": {
+    "mattpocock-skills": {
+      "repository": "https://github.com/mattpocock/skills",
+      "reviewed_revision": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7",
+      "notes": "Reviewed conflict resolution and grilling for the 2026-09-20 comparison; no upstream text or code copied and no measured superiority claimed."
+    },
+    "vercel-discovery": {
+      "repository": "https://github.com/vercel-labs/skills",
+      "reviewed_revision": "7407f3893ad4dceab546ac002c3ef806e4000c73",
+      "notes": "Reviewed find-skills for candidate discovery; installation popularity is not behavioral evidence."
+    },
     "anthropic-skills": {
       "repository": "https://github.com/anthropics/skills",
       "reviewed_revision": "34040c9c568585f6929bedeaad110ad08f079624",
@@ -41,7 +51,7 @@
     },
     "superpowers": {
       "repository": "https://github.com/obra/superpowers",
-      "reviewed_revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "reviewed_revision": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
       "license": "MIT"
     },
     "dbt-skills": {

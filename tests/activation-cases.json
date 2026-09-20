@@ -624,6 +624,33 @@
       "rationale": "Existing CI failure diagnosis is distinct from creating a pipeline, despite shared workflow vocabulary."
     },
     {
+      "id": "resolve-rebase-with-local-notes",
+      "title": "Complete a rebase while preserving unrelated work",
+      "prompt": "My feature branch stopped halfway through a rebase onto main. Resolve the remaining conflicts and finish the rebase; keep my untracked notes out of the commits.",
+      "expected_router": "software-engineering",
+      "expected_skills": ["resolve-merge-conflicts"],
+      "unexpected_skills": ["refactor-safely", "review-changes"],
+      "rationale": "An active Git rebase needs operation-specific conflict resolution and continuation, not ordinary refactoring or a review-only result."
+    },
+    {
+      "id": "resolve-cherry-pick-with-deletion",
+      "title": "Reconcile a modify/delete cherry-pick conflict",
+      "prompt": "Finish the cherry-pick of the fix. Git reports a modify/delete conflict, but I cannot find conflict markers. Preserve the fix's behavior and the intended file removal.",
+      "expected_router": "software-engineering",
+      "expected_skills": ["resolve-merge-conflicts"],
+      "unexpected_skills": ["debug-systematically", "migrate-dependency"],
+      "rationale": "The unmerged index and cherry-pick state are the primary evidence; a marker search alone cannot establish completion."
+    },
+    {
+      "id": "no-match-git-concept-question",
+      "title": "Explain a Git term without operating on a repository",
+      "prompt": "In one sentence, what is the difference between a Git merge and a rebase? Do not inspect or change a repository.",
+      "expected_router": null,
+      "expected_skills": [],
+      "unexpected_skills": ["resolve-merge-conflicts", "analyze-codebase"],
+      "rationale": "Git vocabulary in a simple conceptual question does not request the in-progress conflict-resolution workflow."
+    },
+    {
       "id": "measure-retrieval-not-generic-model",
       "title": "Diagnose evidence retrieval quality",
       "prompt": "Our assistant answers correctly when given the right document, but search retrieves outdated or irrelevant passages. Measure retrieval recall and freshness against labeled queries before changing prompts.",
