@@ -65,6 +65,7 @@ def main() -> int:
         encoded = base64.b64encode(INSTALLER_PARSE_SCRIPT.encode('utf-16-le')).decode('ascii')
         commands.append([powershell, '-NoLogo', '-NoProfile', '-NonInteractive', '-EncodedCommand', encoded])
     commands.append([sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_*.py'])
+    commands.append([sys.executable, '-m', 'unittest', 'discover', '-s', 'evals/smoke', '-p', 'test_*.py'])
     if args.official:
         validator = shutil.which('agentskills')
         if not validator:
@@ -79,7 +80,7 @@ def main() -> int:
             print('Running: ' + label, flush=True)
             if subprocess.run(command, cwd=ROOT, check=False).returncode:
                 return 1
-        for directory in ('scripts', 'library', 'skills', 'tests'):
+        for directory in ('scripts', 'library', 'skills', 'tests', 'evals'):
             for path in (ROOT / directory).rglob('*.py'):
                 compile(path.read_text(encoding='utf-8'), str(path), 'exec')
     except (OSError, UnicodeError, SyntaxError) as error:

@@ -22,6 +22,14 @@ Use computed foreground/background colors and the actual rendered size/state. Do
 4. Submit an invalid form and verify the error is associated with the field and reachable/announced as appropriate. Avoid duplicate or excessively chatty live announcements.
 5. Test zoom/reflow, reduced motion, and touch target interactions in states that matter, including menus, validation, and sticky overlays.
 
+When authentication is part of the journey, include login and any verification
+step. For SC 3.3.8 AA, check whether a cognitive-function test has the required
+alternative, assistance mechanism, or applicable exception. Test password-manager
+support and paste; a segmented one-time-code input should accept the complete
+code, not silently keep its first digit. Blocking paste is not automatically a
+conformance failure if a qualifying alternative exists, so record the complete
+flow and the actual barrier rather than judging one attribute in isolation.
+
 Native buttons already handle keyboard activation. Do not add duplicate Enter/Space handlers merely because a general checklist says interactive elements need them. Custom widgets need the behavior of their selected pattern, not arbitrary ARIA attributes.
 
 Run an available automated checker to find leads, then reproduce and map each finding to the actual criterion and user impact. Report the tested pages/states and any unavailable manual checks. A clean automated result is not a complete audit.
@@ -34,3 +42,4 @@ Run an available automated checker to find leads, then reproduce and map each fi
 - [W3C: target size minimum and exceptions](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
 - [W3C: focus not obscured](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html)
 - [WAI-ARIA Authoring Practices: modal dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+- [W3C: accessible authentication, alternatives, and verification-code paste](https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html)

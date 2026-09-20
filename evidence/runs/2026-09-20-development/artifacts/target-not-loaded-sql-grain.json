@@ -1,0 +1,76 @@
+{
+  "task_id": "sql-grain",
+  "condition": "target-not-loaded",
+  "artifact_name": "query.sql",
+  "source_sha256": "81c55117be3be51ca4ad1dbb0d751d01d513010fbb289cf063bfa6cf9ca9a20e",
+  "source_utf8": "WITH item_revenue AS (\n    SELECT\n        order_id,\n        SUM(quantity * unit_price_cents) AS revenue_cents\n    FROM order_items\n    GROUP BY order_id\n)\nSELECT\n    c.id AS customer_id,\n    COUNT(o.id) AS paid_order_count,\n    COALESCE(SUM(ir.revenue_cents), 0) AS revenue_cents\nFROM customers AS c\nLEFT JOIN orders AS o\n    ON o.customer_id = c.id\n    AND o.status = 'paid'\nLEFT JOIN item_revenue AS ir\n    ON ir.order_id = o.id\nGROUP BY c.id\nORDER BY c.id ASC;\n",
+  "task_contract": "# Paid customer revenue\n\nWrite `query.sql`, one read-only SQLite SELECT. The schema is:\n\n```sql\nCREATE TABLE customers (id INTEGER PRIMARY KEY, name TEXT NOT NULL);\nCREATE TABLE orders (id INTEGER PRIMARY KEY, customer_id INTEGER NOT NULL, status TEXT NOT NULL);\nCREATE TABLE order_items (id INTEGER PRIMARY KEY, order_id INTEGER NOT NULL,\n                         quantity INTEGER NOT NULL, unit_price_cents INTEGER NOT NULL);\n```\n\nReturn exactly `customer_id`, `paid_order_count`, `revenue_cents`, one row for\nevery customer in ascending customer ID order. Count each order with status\n`paid` once, even when it has several items or no items. Revenue is the sum of\nquantity times unit price for items on paid orders only. Customers without paid\norders must have zero count and zero revenue. Customer names are not unique.\nThe query must work on other data with this schema, including an empty orders\ntable; do not hardcode fixture values. No extensions or external files.\n\n`fixture.json` contains a visible example; its expected rows are\n`[[1, 2, 850], [2, 0, 0], [3, 0, 0]]`.\n",
+  "visible_fixture": {
+    "customers": [
+      [
+        1,
+        "Ari"
+      ],
+      [
+        2,
+        "Ari"
+      ],
+      [
+        3,
+        "Bo"
+      ]
+    ],
+    "orders": [
+      [
+        11,
+        1,
+        "paid"
+      ],
+      [
+        12,
+        1,
+        "paid"
+      ],
+      [
+        13,
+        2,
+        "cancelled"
+      ]
+    ],
+    "order_items": [
+      [
+        101,
+        11,
+        2,
+        300
+      ],
+      [
+        102,
+        11,
+        1,
+        250
+      ],
+      [
+        103,
+        13,
+        10,
+        999
+      ]
+    ]
+  },
+  "target_package": null,
+  "grader_result": {
+    "task": "sql-grain",
+    "success": true,
+    "checks": [
+      {
+        "case": "dataset-1",
+        "passed": true
+      },
+      {
+        "case": "dataset-2",
+        "passed": true
+      }
+    ]
+  }
+}

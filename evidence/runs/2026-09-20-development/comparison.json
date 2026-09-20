@@ -1,0 +1,35 @@
+{
+  "kind": "behavioral",
+  "baseline": "target-not-loaded",
+  "candidate": "target-loaded",
+  "planned_coverage_verified": true,
+  "distinct_tasks": 3,
+  "paired_trials": 3,
+  "baseline_success_rate": 1,
+  "candidate_success_rate": 1,
+  "success_delta_percentage_points": 0,
+  "task_cluster_bootstrap_95_percent_interval_pp": [
+    0,
+    0
+  ],
+  "costs": {
+    "seconds": {
+      "observed_pairs": 0,
+      "baseline_mean": null,
+      "candidate_mean": null
+    },
+    "tokens": {
+      "observed_pairs": 0,
+      "baseline_mean": null,
+      "candidate_mean": null
+    }
+  },
+  "regressions": [],
+  "candidate_critical_failures": [],
+  "warnings": [
+    "Fewer than 10 distinct tasks: treat this as a smoke result, not general superiority.",
+    "seconds: missing measurements are excluded, never treated as zero.",
+    "tokens: missing measurements are excluded, never treated as zero."
+  ],
+  "interpretation": "Descriptive paired comparison; does not automatically establish causality or authorize deployment."
+}

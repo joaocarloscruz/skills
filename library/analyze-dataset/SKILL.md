@@ -15,4 +15,6 @@ description: Inspect, clean, explore, and summarize structured datasets with pro
 8. Validate important results through an independent calculation, reconciliation total, or alternative grouping.
 9. Communicate the answer first, followed by evidence, method, uncertainty, limitations, and reproducible artifacts.
 
+For enrichment joins, rates across groups, or predictive comparisons, read [analytical failure checks](references/analytical-checks.md).
+
 Do not manufacture precision or silently repair data. Separate observed facts, analytical choices, and interpretations.

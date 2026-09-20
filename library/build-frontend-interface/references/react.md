@@ -39,6 +39,13 @@ Do not treat React `cache` as a persistent application cache: its documented ser
 - Keep transient interaction state local; lift it only to the nearest shared owner.
 - Reserve broad context or global stores for genuinely cross-cutting state with clear update behavior.
 
+When a query, selection, or route changes during a request, prevent an older
+response from replacing the current result. Prefer the framework/data library's
+request lifecycle. For a manual Effect, clean up subscriptions and cancel or
+ignore obsolete reads; test A then B with B resolving first. Client cancellation
+does not establish that a server mutation was undone, so reconcile its outcome
+before offering a retry that could duplicate the operation.
+
 ## Design component APIs
 
 - Prefer children, slots, compound components, and explicit variants over many boolean switches.
@@ -65,6 +72,7 @@ Test behavior through user-visible roles and interactions. Include server and cl
 ## Primary references
 
 - [React: effects and derived state](https://react.dev/learn/you-might-not-need-an-effect)
+- [React: Effect cleanup and out-of-order responses](https://react.dev/reference/react/useEffect)
 - [React: cache scope and limitations](https://react.dev/reference/react/cache)
 - [React: useTransition restrictions](https://react.dev/reference/react/useTransition)
 - [Next.js: optimizePackageImports](https://nextjs.org/docs/app/api-reference/config/next-config-js/optimizePackageImports)

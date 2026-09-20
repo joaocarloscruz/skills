@@ -1,0 +1,1 @@
+{"payload": {"account": "example", "amount_cents": 400}, "key": "request-example", "success": {"state": "succeeded", "result": {"receipt": "example-receipt"}}}

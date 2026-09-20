@@ -15,4 +15,6 @@ description: Design batch or streaming pipelines with contracts, idempotency, ba
 8. Preserve lineage and access controls; minimize sensitive data and define deletion and retention propagation.
 9. Define metrics, logs, alerts, dashboards, runbooks, ownership, cost controls, and recovery objectives.
 
+For checkpointed ingestion, streaming windows, replay, or live backfills, read [recovery and delivery contracts](references/recovery-contracts.md).
+
 Deliver the architecture, contracts, failure model, operational plan, backfill and rollback strategy, and verification criteria. State where data loss, duplication, or staleness can still occur.

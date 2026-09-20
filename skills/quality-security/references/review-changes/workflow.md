@@ -9,6 +9,8 @@
 3. Read repository instructions and the originating issue, specification, or acceptance criteria when available.
 4. List changed files and commits, then inspect the full diff plus enough surrounding code to understand behavior.
 
+For branch, commit, or working-tree reviews, read `references/review-boundaries.md` to select the correct comparison and preserve revision-specific evidence.
+
 ## Review behavior before style
 
 Trace changed inputs through outputs and side effects. Look for:
@@ -22,6 +24,8 @@ Trace changed inputs through outputs and side effects. Look for:
 - violations of documented repository conventions that tools do not already enforce.
 
 Treat maintainability smells as judgment calls, not defects by themselves. Avoid speculative findings; follow the actual execution path and cite concrete evidence.
+
+Check whether a candidate defect already exists at the base and whether the change introduces or materially worsens it. Trace changed contracts into unchanged callers, configuration, and migrations; the faulty consequence may sit outside the changed lines. Keep unrelated baseline defects separate from patch findings.
 
 ## Report findings
 

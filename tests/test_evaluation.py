@@ -31,6 +31,43 @@ def experiment():
 
 
 class EvaluationTests(unittest.TestCase):
+    def test_recorded_plan_detects_tasks_missing_from_every_condition(self):
+        data = experiment()
+        data["schema_version"] = 2
+        data["planned_tasks"] = [{"task_id": "task", "repeats": [1]},
+                                 {"task_id": "omitted", "repeats": [1]}]
+        with self.assertRaisesRegex(comparison.InvalidExperiment, "planned task/repeat"):
+            comparison.validate(data)
+
+    def test_recorded_plan_accepts_complete_cells_and_rejects_unplanned_trials(self):
+        data = experiment()
+        data["schema_version"] = 2
+        data["planned_tasks"] = [{"task_id": "task", "repeats": [1]}]
+        self.assertEqual(comparison.validate(data), data)
+        result = comparison.compare(data, "no-skill", "candidate", 100)
+        self.assertTrue(result["planned_coverage_verified"])
+        for row in list(data["results"]):
+            data["results"].append({**row, "repeat": 2})
+        with self.assertRaisesRegex(comparison.InvalidExperiment, "planned task/repeat"):
+            comparison.validate(data)
+
+    def test_malformed_trial_plans_are_rejected(self):
+        for plan in ([], {}, [{"task_id": [], "repeats": [1]}],
+                     [{"task_id": "task", "repeats": []}],
+                     [{"task_id": "task", "repeats": [True]}],
+                     [{"task_id": "task", "repeats": [1, 1]}],
+                     [{"task_id": "task", "repeats": [0]}],
+                     [{"task_id": "task", "repeats": [1]}] * 2):
+            with self.subTest(plan=plan), self.assertRaises(comparison.InvalidExperiment):
+                data = experiment()
+                data.update(schema_version=2, planned_tasks=plan)
+                comparison.validate(data)
+
+    def test_legacy_results_explain_unverified_plan_coverage(self):
+        result = comparison.compare(experiment(), "no-skill", "candidate", 100)
+        self.assertFalse(result["planned_coverage_verified"])
+        self.assertTrue(any("trial plan" in warning for warning in result["warnings"]))
+
     def test_single_task_does_not_claim_confidence(self):
         result = comparison.compare(experiment(), "no-skill", "candidate", 100)
         self.assertEqual(result["success_delta_percentage_points"], 100)

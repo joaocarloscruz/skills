@@ -22,6 +22,19 @@ These are separate decisions: who may trigger a job, which revision it executes,
 
 Avoid blanket bans on every build cache: an existing cache can be useful when provenance and invalidation are sound. Never store credentials or allow cache reuse to cross a trust boundary unintentionally.
 
+## Required checks must represent completed work
+
+These cases have different GitHub behavior:
+
+| Situation | Consequence and design choice |
+| --- | --- |
+| A required workflow is filtered out by paths or branches | Its check can remain pending. Keep the required entry workflow eligible and put selective execution behind an explicit result policy. |
+| A job is skipped by its condition | It may satisfy a required check without testing anything. Distinguish an intentional no-op from missing coverage. |
+| A prerequisite fails and the final gate depends on it | Run the gate with `always()` and `needs`, then explicitly fail unless required dependencies succeeded or were skipped for an allowed reason. `always()` by itself is not a success policy. |
+| A merge queue is enabled | Include `merge_group` for required validation; test the queued merge revision. |
+
+Exercise at least one intended failure through the final gate, plus an irrelevant-path change when filtering is used. A green manually dispatched run does not establish that the required PR check will be reported. See [GitHub required-check troubleshooting](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks).
+
 ## Primary references
 
 - [GitHub: secure workflow use](https://docs.github.com/en/actions/reference/security/secure-use)

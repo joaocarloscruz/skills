@@ -27,7 +27,7 @@ For Playwright-based checks, read `references/playwright.md` after confirming wh
 2. Wait on explicit UI or network conditions instead of arbitrary delays.
 3. Capture evidence at the failure point: screenshot, DOM state, console message, request, response, or trace.
 4. Keep scenarios independent and avoid mutating shared or production-like data.
-5. Re-run failures to distinguish deterministic defects from timing or environment problems.
+5. Re-run failures when useful to distinguish deterministic defects from timing or environment problems. Keep the initial failure and retry evidence; a later pass does not erase flakiness. Stop after enough evidence to classify the result rather than retrying until green.
 
 ## Report
 

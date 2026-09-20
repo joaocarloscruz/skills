@@ -9,6 +9,8 @@
 5. Cover normal behavior, boundaries, invalid input, partial failure, concurrency, recovery, compatibility, and observability where relevant.
 6. Assign non-functional checks only when tied to measurable requirements.
 
+For each critical assertion, name a plausible wrong implementation it would reject. A test that only checks a mocked return value, successful HTTP status, or executed line can miss the promised behavior. Keep one real boundary check where replacing a dependency would otherwise hide serialization, persistence, authorization, or retry defects. Use targeted fault injection or mutation testing when it resolves a specific assurance gap; do not add a universal coverage or mutation-score gate.
+
 For parsers, transformations, serialization, financial arithmetic, or state machines with many input combinations, read `references/property-tests.md`. Use generated tests where a meaningful invariant exists, rather than turning every example test into fuzzing.
 
 Produce a traceable matrix of risk, scenario, test level, assertion, and owner. Call out what remains manual or untested and why. Prefer a small high-signal suite over a large shallow checklist.

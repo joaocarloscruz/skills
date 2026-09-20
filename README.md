@@ -128,6 +128,10 @@ requests, and requires every router and workflow to be represented. It does not
 run an agent or establish that routing works in a particular model.
 Use the prompts as declared expectations when manually checking a target agent.
 
+[The routing exercise](evals/README.md#metadata-selection-smoke) exports these
+requests without expected answers and scores a recorded model response. This
+tests metadata selection separately from a client's native activation behavior.
+
 Validate the fixture schema and every referenced skill with:
 
 ```bash
@@ -156,11 +160,21 @@ show that a skill improves performance.
 The [latest research review](docs/research-2026-09-20.md) compares widely installed
 skills with this catalog and records demonstrated fixes. The earlier
 [structural review](docs/research-2026-09-12.md) explains the repository design. The
+[complete follow-up review](docs/full-review-2026-09-20.md) records the disposition
+of all 43 workflows, including 35 revised packages and eight retained packages. The
 [evaluation protocol](evals/README.md) describes paired trials against a no-skill
 baseline. Its comparison helper validates recorded results and computes
 task-weighted success differences; it does not run models or establish a winner
 automatically. Stronger registry claims require linked behavioral run files and
 their raw artifacts. No such claim is made for this catalog yet.
+
+The [development smoke harness](evals/smoke/README.md) includes resettable SQL,
+pipeline replay, and tool-write recovery tasks with executable outcome graders.
+Its grader regressions run in normal repository checks; these regressions do
+not call a model or constitute agent task results.
+[The recorded development run](evidence/runs/2026-09-20-development/README.md)
+preserves six real submissions, both conditions' passing outcomes, and the
+model/isolation limits that prevent a claim of measured improvement.
 
 Validate the registry with:
 

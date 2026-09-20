@@ -67,10 +67,30 @@ def validate(document: object, root: Path | None = None) -> dict:
         json.dumps(document, allow_nan=False)
     except (ValueError, TypeError, OverflowError, RecursionError) as error:
         raise InvalidExperiment("experiment must contain finite JSON values") from error
-    require(set(document) == {"schema_version", "kind", "experiment", "conditions", "results"},
-            "experiment fields must be schema_version, kind, experiment, conditions, results")
-    require(type(document["schema_version"]) is int and document["schema_version"] == 1,
-            "schema_version must be 1")
+    version = document.get("schema_version")
+    require(type(version) is int and version in (1, 2), "schema_version must be 1 or 2")
+    top_fields = {"schema_version", "kind", "experiment", "conditions", "results"}
+    if version == 2:
+        top_fields.add("planned_tasks")
+    require(set(document) == top_fields,
+            f"experiment fields must be: {', '.join(sorted(top_fields))}")
+    planned_pairs = set()
+    if version == 2:
+        plan = document["planned_tasks"]
+        require(isinstance(plan, list) and bool(plan), "planned_tasks must be a non-empty list")
+        planned_ids = set()
+        for task in plan:
+            require(isinstance(task, dict) and set(task) == {"task_id", "repeats"},
+                    "planned task fields must be task_id and repeats")
+            task_id, repeats = task["task_id"], task["repeats"]
+            require(nonempty(task_id), "planned task_id must be non-empty")
+            require(task_id not in planned_ids, f"duplicate planned task: {task_id}")
+            planned_ids.add(task_id)
+            require(isinstance(repeats, list) and bool(repeats)
+                    and all(type(r) is int and r >= 1 for r in repeats),
+                    "planned repeats must be a non-empty list of positive integers")
+            require(len(repeats) == len(set(repeats)), "duplicate planned repeat")
+            planned_pairs.update((task_id, repeat) for repeat in repeats)
     require(document["kind"] in ("behavioral", "synthetic"), "kind must be behavioral or synthetic")
     settings = document["experiment"]
     require(isinstance(settings, dict), "experiment settings must be an object")
@@ -119,6 +139,9 @@ def validate(document: object, root: Path | None = None) -> dict:
     reference = next(iter(coverage.values()))
     require(all(pairs == reference for pairs in coverage.values()),
             "conditions must contain exactly the same task/repeat pairs; retain failed trials")
+    if version == 2:
+        require(reference == planned_pairs,
+                "results must contain exactly the planned task/repeat pairs in every condition; retain failed trials")
     return document
 
 
@@ -146,6 +169,8 @@ def compare(document: dict, baseline: str, candidate: str, resamples: int = 5000
         samples = sorted(statistics.mean(rng.choices(task_deltas, k=len(tasks))) for _ in range(resamples))
         interval = [100 * samples[int((resamples - 1) * quantile)] for quantile in (.025, .975)]
     warnings = []
+    if document["schema_version"] == 1:
+        warnings.append("No recorded trial plan: tasks omitted from every condition cannot be detected.")
     if document["kind"] == "synthetic":
         warnings.append("Synthetic data exercises tooling only; it is not behavioral evidence.")
     if len(tasks) < 10:
@@ -166,6 +191,7 @@ def compare(document: dict, baseline: str, candidate: str, resamples: int = 5000
     critical = [{"task_id": t, "repeat": r, "failures": trials[t, r, candidate]["critical_failures"]}
                 for t, r in pairs if trials[t, r, candidate]["critical_failures"]]
     return {"kind": document["kind"], "baseline": baseline, "candidate": candidate,
+            "planned_coverage_verified": document["schema_version"] == 2,
             "distinct_tasks": len(tasks), "paired_trials": len(pairs),
             "baseline_success_rate": statistics.mean(baseline_rates),
             "candidate_success_rate": statistics.mean(candidate_rates),

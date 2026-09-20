@@ -6,10 +6,18 @@ Use after choosing the actual client, SDK version, transport, and negotiated pro
 
 - Validate arguments against the declared schema and business constraints. Tool annotations describe expected behavior; they do not enforce permissions or make an implementation read-only.
 - When declaring `outputSchema`, return matching `structuredContent`. Check the client's compatibility needs for a serialized JSON text block as well. Do not return prose where the schema promises a typed object.
-- Separate malformed protocol requests or unknown tools from an operation that ran but failed. Tool execution errors use `isError: true` and should say what can be corrected without disclosing secrets or backend internals.
+- Separate malformed protocol envelopes or unknown tools from tool-level validation, API, or business failures. Under this specification, invalid tool values such as an out-of-range date are tool execution errors even when no side effect ran. Use `isError: true` with corrective feedback without disclosing secrets or backend internals.
 - A stdio server must keep protocol output on stdout and diagnostics elsewhere. Verify process startup/shutdown as well as a successful call.
 - For HTTP transport, validate authorization for the operation and resource. Do not accept arbitrary tokens for a downstream service or pass them through as a shortcut; validate intended audience and use the specified authorization flow.
 - Bound page size, result size, runtime, retries, and concurrency. Keep pagination cursors scoped to the query/principal and define what happens if the collection changes.
+
+## Exercise lifecycle and interrupted work
+
+Test initialization, version negotiation, the initialized notification, and a client missing optional capabilities. Use only negotiated capabilities; a successful direct handler call does not establish a working MCP connection. Keep a total request deadline even if progress notifications arrive.
+
+For ordinary request cancellation, propagate cancellation to cancellable downstream work and release resources. Exercise a completion/cancellation race: a cancellation notification is not proof that an external write was rolled back. Preserve operation IDs for reconciliation. Task-augmented requests use `tasks/cancel` under this protocol version; do not substitute ordinary request cancellation or invent support when tasks were not negotiated.
+
+For HTTP reconnects or stdio process restarts, verify which application operations can resume or be reconciled. Protocol request IDs identify messages, not durable business idempotency keys.
 
 ## Make failures actionable
 
@@ -45,3 +53,5 @@ Keep the prompt, fixture, model, tool revision, and run settings fixed when comp
 - [MCP 2025-11-25: transport rules](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports)
 - [MCP 2025-11-25: security practices](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
 - [MCP 2025-11-25: authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
+- [MCP 2025-11-25: initialization, capabilities, and timeouts](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)
+- [MCP 2025-11-25: cancellation and races](https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/cancellation)

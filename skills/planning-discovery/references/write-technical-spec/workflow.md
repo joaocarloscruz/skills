@@ -4,7 +4,7 @@
 
 1. State the problem, users, desired outcomes, success measures, constraints, assumptions, and non-goals.
 2. Describe current behavior and cite the relevant system boundaries or evidence.
-3. Specify user-visible behavior and acceptance criteria before implementation details.
+3. Specify user-visible behavior and acceptance criteria before implementation details. Include concrete accepted and rejected examples, observable failure behavior, and concurrency or retry semantics when state changes can race or repeat.
 4. Define the proposed architecture, interfaces, data model, state transitions, authorization, validation, errors, and observability.
 5. Cover compatibility, migration, rollout, rollback, failure recovery, testing, operations, privacy, and security where relevant.
 6. Compare meaningful alternatives and record why they were rejected.

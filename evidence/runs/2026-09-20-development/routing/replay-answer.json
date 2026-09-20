@@ -1,0 +1,516 @@
+{
+  "dataset_revision": "sha256:4e55b73a8ec5775c3ee5a523a3281ab58ee57c6d464353e3e185706f7d7a4a75",
+  "catalog_revision": "sha256:05b07b8d89bcc8c44b12d00aff0623b61255a9b0802ad0bfad4196ef0dbe7148",
+  "selections": [
+    {
+      "id": "case-001",
+      "router": "planning-discovery",
+      "workflows": [
+        "plan-implementation"
+      ]
+    },
+    {
+      "id": "case-002",
+      "router": "planning-discovery",
+      "workflows": [
+        "break-down-work"
+      ]
+    },
+    {
+      "id": "case-003",
+      "router": "planning-discovery",
+      "workflows": [
+        "write-technical-spec"
+      ]
+    },
+    {
+      "id": "case-004",
+      "router": "quality-security",
+      "workflows": [
+        "review-changes"
+      ]
+    },
+    {
+      "id": "case-005",
+      "router": "quality-security",
+      "workflows": [
+        "review-security"
+      ]
+    },
+    {
+      "id": "case-006",
+      "router": "frontend",
+      "workflows": [
+        "review-accessibility"
+      ]
+    },
+    {
+      "id": "case-007",
+      "router": "quality-security",
+      "workflows": [
+        "design-test-strategy"
+      ]
+    },
+    {
+      "id": "case-008",
+      "router": "quality-security",
+      "workflows": [
+        "test-api"
+      ]
+    },
+    {
+      "id": "case-009",
+      "router": "frontend",
+      "workflows": [
+        "test-local-webapp"
+      ]
+    },
+    {
+      "id": "case-010",
+      "router": "quality-security",
+      "workflows": [
+        "investigate-ci-failure"
+      ]
+    },
+    {
+      "id": "case-011",
+      "router": "platform-engineering",
+      "workflows": [
+        "write-ci-pipeline"
+      ]
+    },
+    {
+      "id": "case-012",
+      "router": "frontend",
+      "workflows": [
+        "design-frontend-interface"
+      ]
+    },
+    {
+      "id": "case-013",
+      "router": "frontend",
+      "workflows": [
+        "build-frontend-interface"
+      ]
+    },
+    {
+      "id": "case-014",
+      "router": "ai-engineering",
+      "workflows": [
+        "evaluate-rag"
+      ]
+    },
+    {
+      "id": "case-015",
+      "router": "quality-security",
+      "workflows": [
+        "evaluate-ai-output"
+      ]
+    },
+    {
+      "id": "case-016",
+      "router": "data",
+      "workflows": [
+        "analyze-dataset"
+      ]
+    },
+    {
+      "id": "case-017",
+      "router": "data",
+      "workflows": [
+        "write-sql"
+      ]
+    },
+    {
+      "id": "case-018",
+      "router": "software-engineering",
+      "workflows": [
+        "tdd"
+      ]
+    },
+    {
+      "id": "case-019",
+      "router": "software-engineering",
+      "workflows": [
+        "domain-modeling"
+      ]
+    },
+    {
+      "id": "case-020",
+      "router": "operations",
+      "workflows": [
+        "respond-to-incident"
+      ]
+    },
+    {
+      "id": "case-021",
+      "router": "collaboration",
+      "workflows": [
+        "prepare-handoff"
+      ]
+    },
+    {
+      "id": "case-022",
+      "router": "platform-engineering",
+      "workflows": [
+        "add-observability"
+      ]
+    },
+    {
+      "id": "case-023",
+      "router": "operations",
+      "workflows": [
+        "audit-dependencies"
+      ]
+    },
+    {
+      "id": "case-024",
+      "router": "quality-security",
+      "workflows": [
+        "audit-skill-catalog"
+      ]
+    },
+    {
+      "id": "case-025",
+      "router": "frontend",
+      "workflows": [
+        "build-design-system"
+      ]
+    },
+    {
+      "id": "case-026",
+      "router": "ai-engineering",
+      "workflows": [
+        "build-mcp-server"
+      ]
+    },
+    {
+      "id": "case-027",
+      "router": "platform-engineering",
+      "workflows": [
+        "containerize-application"
+      ]
+    },
+    {
+      "id": "case-028",
+      "router": "quality-security",
+      "workflows": [
+        "debug-systematically"
+      ]
+    },
+    {
+      "id": "case-029",
+      "router": "ai-engineering",
+      "workflows": [
+        "design-agent-tools"
+      ]
+    },
+    {
+      "id": "case-030",
+      "router": "software-engineering",
+      "workflows": [
+        "design-api"
+      ]
+    },
+    {
+      "id": "case-031",
+      "router": "software-engineering",
+      "workflows": [
+        "design-database-change"
+      ]
+    },
+    {
+      "id": "case-032",
+      "router": "data",
+      "workflows": [
+        "design-data-pipeline"
+      ]
+    },
+    {
+      "id": "case-033",
+      "router": "operations",
+      "workflows": [
+        "improve-performance"
+      ]
+    },
+    {
+      "id": "case-034",
+      "router": "software-engineering",
+      "workflows": [
+        "migrate-dependency"
+      ]
+    },
+    {
+      "id": "case-035",
+      "router": "software-engineering",
+      "workflows": [
+        "refactor-safely"
+      ]
+    },
+    {
+      "id": "case-036",
+      "router": "operations",
+      "workflows": [
+        "release-software"
+      ]
+    },
+    {
+      "id": "case-037",
+      "router": "planning-discovery",
+      "workflows": [
+        "research-with-sources"
+      ]
+    },
+    {
+      "id": "case-038",
+      "router": "software-engineering",
+      "workflows": [
+        "resolve-merge-conflicts"
+      ]
+    },
+    {
+      "id": "case-039",
+      "router": "quality-security",
+      "workflows": [
+        "test-cli"
+      ]
+    },
+    {
+      "id": "case-040",
+      "router": "collaboration",
+      "workflows": [
+        "triage-issues"
+      ]
+    },
+    {
+      "id": "case-041",
+      "router": "collaboration",
+      "workflows": [
+        "write-documentation"
+      ]
+    },
+    {
+      "id": "case-042",
+      "router": null,
+      "workflows": []
+    },
+    {
+      "id": "case-043",
+      "router": null,
+      "workflows": []
+    },
+    {
+      "id": "case-044",
+      "router": null,
+      "workflows": []
+    },
+    {
+      "id": "case-045",
+      "router": "operations",
+      "workflows": [
+        "respond-to-incident"
+      ]
+    },
+    {
+      "id": "case-046",
+      "router": "quality-security",
+      "workflows": [
+        "investigate-ci-failure"
+      ]
+    },
+    {
+      "id": "case-047",
+      "router": "software-engineering",
+      "workflows": [
+        "resolve-merge-conflicts"
+      ]
+    },
+    {
+      "id": "case-048",
+      "router": "software-engineering",
+      "workflows": [
+        "resolve-merge-conflicts"
+      ]
+    },
+    {
+      "id": "case-049",
+      "router": null,
+      "workflows": []
+    },
+    {
+      "id": "case-050",
+      "router": "ai-engineering",
+      "workflows": [
+        "evaluate-rag"
+      ]
+    },
+    {
+      "id": "case-051",
+      "router": "software-engineering",
+      "workflows": [
+        "design-api"
+      ]
+    },
+    {
+      "id": "case-052",
+      "router": "software-engineering",
+      "workflows": [
+        "migrate-dependency"
+      ]
+    },
+    {
+      "id": "case-053",
+      "router": "software-engineering",
+      "workflows": [
+        "domain-modeling"
+      ]
+    },
+    {
+      "id": "case-054",
+      "router": "frontend",
+      "workflows": [
+        "design-frontend-interface"
+      ]
+    },
+    {
+      "id": "case-055",
+      "router": "frontend",
+      "workflows": [
+        "review-accessibility"
+      ]
+    },
+    {
+      "id": "case-056",
+      "router": "frontend",
+      "workflows": [
+        "test-local-webapp"
+      ]
+    },
+    {
+      "id": "case-057",
+      "router": "platform-engineering",
+      "workflows": [
+        "write-ci-pipeline"
+      ]
+    },
+    {
+      "id": "case-058",
+      "router": "platform-engineering",
+      "workflows": [
+        "containerize-application"
+      ]
+    },
+    {
+      "id": "case-059",
+      "router": "platform-engineering",
+      "workflows": [
+        "add-observability"
+      ]
+    },
+    {
+      "id": "case-060",
+      "router": "data",
+      "workflows": [
+        "design-data-pipeline"
+      ]
+    },
+    {
+      "id": "case-061",
+      "router": "data",
+      "workflows": [
+        "analyze-dataset"
+      ]
+    },
+    {
+      "id": "case-062",
+      "router": "operations",
+      "workflows": [
+        "improve-performance"
+      ]
+    },
+    {
+      "id": "case-063",
+      "router": "operations",
+      "workflows": [
+        "release-software"
+      ]
+    },
+    {
+      "id": "case-064",
+      "router": "operations",
+      "workflows": [
+        "audit-dependencies"
+      ]
+    },
+    {
+      "id": "case-065",
+      "router": "quality-security",
+      "workflows": [
+        "debug-systematically"
+      ]
+    },
+    {
+      "id": "case-066",
+      "router": "quality-security",
+      "workflows": [
+        "design-test-strategy"
+      ]
+    },
+    {
+      "id": "case-067",
+      "router": "quality-security",
+      "workflows": [
+        "investigate-ci-failure"
+      ]
+    },
+    {
+      "id": "case-068",
+      "router": "quality-security",
+      "workflows": [
+        "review-changes"
+      ]
+    },
+    {
+      "id": "case-069",
+      "router": "quality-security",
+      "workflows": [
+        "review-security"
+      ]
+    },
+    {
+      "id": "case-070",
+      "router": "quality-security",
+      "workflows": [
+        "test-api"
+      ]
+    },
+    {
+      "id": "case-071",
+      "router": "quality-security",
+      "workflows": [
+        "test-cli"
+      ]
+    },
+    {
+      "id": "case-072",
+      "router": "ai-engineering",
+      "workflows": [
+        "build-mcp-server"
+      ]
+    },
+    {
+      "id": "case-073",
+      "router": "ai-engineering",
+      "workflows": [
+        "design-agent-tools"
+      ]
+    },
+    {
+      "id": "case-074",
+      "router": "ai-engineering",
+      "workflows": [
+        "evaluate-rag"
+      ]
+    }
+  ]
+}

@@ -10,4 +10,6 @@
 6. Publish within the user's explicit authorization and verify the resulting artifact or deployment independently. Reuse authorization already given for that destination and release; ask only if a material change exceeds it.
 7. Monitor critical signals and record final version, commit, artifact, and outcome.
 
+For multi-artifact publication, retries, or deployment promotion, read [artifact identity and partial recovery](references/publication-recovery.md).
+
 Never infer permission to publish from a request to prepare a release.

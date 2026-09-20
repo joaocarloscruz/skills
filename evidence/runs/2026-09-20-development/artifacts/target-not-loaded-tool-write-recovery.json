@@ -1,0 +1,60 @@
+{
+  "task_id": "tool-write-recovery",
+  "condition": "target-not-loaded",
+  "artifact_name": "solution.py",
+  "source_sha256": "c23a62c34f906bf33295ec05abe5155b5bcc598aa6d0ad25366e695fda9503db",
+  "source_utf8": "def submit(remote, payload, key):\n    \"\"\"Submit once, reconciling timeouts before any permitted retry.\"\"\"\n    for attempt in range(2):\n        try:\n            response = remote.submit(payload, key)\n        except TimeoutError:\n            try:\n                response = remote.status(key)\n            except TimeoutError:\n                return {\"state\": \"unknown\", \"key\": key}\n\n            if response[\"state\"] == \"absent\":\n                if attempt == 0:\n                    continue\n                return {\"state\": \"unknown\", \"key\": key}\n\n        if response[\"state\"] == \"succeeded\":\n            return response\n        if response[\"state\"] == \"pending\":\n            return {\"state\": \"pending\", \"key\": key}\n\n    return {\"state\": \"unknown\", \"key\": key}\n",
+  "task_contract": "# Reconcile an ambiguous write\n\nImplement `submit(remote, payload, key)` in `solution.py`. `payload` is a JSON\ndictionary and `key` is the caller's nonempty idempotency key. Neither may change.\nThe remote exposes only:\n\n- `remote.submit(payload, key)`: returns `{\"state\": \"succeeded\", \"result\": ...}`\n  or `{\"state\": \"pending\"}`. May instead raise `TimeoutError` before accepting\n  anything, after committing the effect, or after accepting pending work.\n- `remote.status(key)`: returns `{\"state\": \"absent\"}`, `{\"state\": \"pending\"}`,\n  or `{\"state\": \"succeeded\", \"result\": ...}`. May raise `TimeoutError`.\n\nReturn a succeeded response unchanged when its outcome is known. For pending\nwork return `{\"state\": \"pending\", \"key\": key}`. After an ambiguous submit,\nquery status before deciding whether to retry. If that first status confirms\nabsence, retry once with the original payload and key. Retry only after confirmed\nabsence. Make at most two submit calls\nand at most two status calls in one invocation. If status is unavailable, or a\nsecond submit times out and its status is absent, return\n`{\"state\": \"unknown\", \"key\": key}` so a caller can reconcile later. Never claim\nsuccess without a returned or reconciled result. Do not retry pending work.\n\nUse ordinary Python and the provided objects only: no imports, external I/O,\nprivate attributes, reflection, dynamic code, or decorators. Built-ins available\nare `dict`, `list`, `tuple`, `set`, `len`, `range`, `enumerate`, `zip`, `sorted`,\n`min`, `max`, `sum`, `str`, `int`, `float`, `bool`, `isinstance`, `all`, `any`,\n`Exception`, `TimeoutError`, `RuntimeError`, `ValueError`, and `KeyError`.\n\n`fixture.json` shows an example input and a possible successful receipt. Other\npayloads, keys, receipts, and timeout boundaries will be used when grading.\n",
+  "visible_fixture": {
+    "payload": {
+      "account": "example",
+      "amount_cents": 400
+    },
+    "key": "request-example",
+    "success": {
+      "state": "succeeded",
+      "result": {
+        "receipt": "example-receipt"
+      }
+    }
+  },
+  "target_package": null,
+  "grader_result": {
+    "task": "tool-write-recovery",
+    "success": true,
+    "checks": [
+      {
+        "case": "direct-success",
+        "passed": true
+      },
+      {
+        "case": "committed-then-timeout",
+        "passed": true
+      },
+      {
+        "case": "absent-then-retry",
+        "passed": true
+      },
+      {
+        "case": "pending-then-timeout",
+        "passed": true
+      },
+      {
+        "case": "direct-pending",
+        "passed": true
+      },
+      {
+        "case": "status-unavailable",
+        "passed": true
+      },
+      {
+        "case": "retry-committed-then-timeout",
+        "passed": true
+      },
+      {
+        "case": "retry-still-absent",
+        "passed": true
+      }
+    ]
+  }
+}

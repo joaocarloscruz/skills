@@ -29,9 +29,16 @@ Playwright's awaited locator assertions retry until their condition or timeout. 
 
 Record the failing step, URL, viewport, screenshot/trace when supported, relevant console output, and failed requests with sensitive fields removed. A screenshot cannot establish keyboard behavior; exercise Tab, activation, dialogs, and focus restoration explicitly when in scope. Keep browser failures distinct from an app startup or test-runner error.
 
+Preserve first-attempt failures even when a retry passes; Playwright reports that
+result as flaky. Check whether retries restart workers or rerun setup that changes
+the test's preconditions. Do not increase retries, force clicks, or lengthen every
+timeout simply to hide an unready control or a shared-state dependency. Narrow the
+failure to an observed readiness condition, isolation defect, or product race.
+
 ## Primary references
 
 - [Playwright: retrying assertions](https://playwright.dev/docs/test-assertions)
 - [Playwright: web server lifecycle](https://playwright.dev/docs/test-webserver)
 - [Playwright: load-state caveats](https://playwright.dev/docs/api/class-page#page-wait-for-load-state)
 - [Playwright: locators](https://playwright.dev/docs/locators)
+- [Playwright: retries, worker restarts, and flaky results](https://playwright.dev/docs/test-retries)

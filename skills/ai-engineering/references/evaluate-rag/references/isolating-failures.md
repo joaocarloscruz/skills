@@ -15,6 +15,8 @@ Use for a reproducible comparison, not as a demand to add every metric. Record t
 
 Keep no-answer cases separate when a recall denominator is empty. Deduplicate relevant IDs before counting and specify whether alternate valid sources receive credit. A string match for a document title is not evidence that its contents support the claim.
 
+Define relevance for the case's principal and point in time. An inaccessible or superseded document must not earn positive retrieval credit simply because its text answers the question. Keep unauthorized retrieval as a separate failure count that cannot be offset by better average relevance. When changing chunking, use stable source spans or document-level labels, or relabel chunks consistently; comparing recall against the old system's chunk IDs unfairly penalizes a new segmentation. Mark incomplete relevance labels explicitly rather than treating every unlabeled result as wrong.
+
 ## Run a small diagnostic comparison
 
 For the same failed question, compare these conditions while holding the generator and prompt policy fixed:
@@ -30,6 +32,7 @@ Include near-duplicate outdated documents, questions needing multiple sources, c
 ## Compare without fooling the evaluator
 
 - Pair old/new runs on the same cases. Repeat stochastic cases and report changes by meaningful slice plus uncertainty; do not promote a change from one favorable answer.
+- Group held-out questions by source document, entity, or answer template when close paraphrases would leak the same evidence across tuning and evaluation. Report skipped cases and retrieval/generation timeouts in the denominator instead of averaging only successful answers.
 - Calibrate automated judges against a small human-reviewed set, including clearly unsupported and partially supported answers. Preserve judge failures separately from product failures.
 - Separate quoted source text from judge instructions. Adversarial retrieved content must remain data for both the answering model and the evaluator.
 - Report p50/p95 latency and token/index costs for comparable workloads where those measurements are available. An improved average can hide unacceptable permission failures or degraded no-answer behavior.

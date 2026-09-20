@@ -21,6 +21,8 @@ HTTP idempotence concerns the intended effect of repeating a request, not identi
 
 For asynchronous operations, assert the initial acceptance separately from eventual completion or failure. Poll a documented status resource with a bound and preserve the final state; a successful submission response is not proof of completed work.
 
+For retry-sensitive writes, exercise a response lost *after* commit, not only a connection rejected before submission. Use a controlled fault or test double at that boundary, then reconcile or retry using the documented key. Assert both the final record and downstream effects such as charges or messages. Repeated HTTP responses can look correct while a downstream effect is duplicated. For an eventually consistent read, poll the promised observation with a deadline and preserve intermediate results; an arbitrary sleep makes consistency defects indistinguishable from a slow runner.
+
 ## Minimal evidence for a failure
 
 State the precondition, exact request shape, expected contract, actual response/state, and whether retry reproduces it. Record identifiers for disposable fixtures and clean up only data created by the test. Keep external downstream actions stubbed unless those actions are within the authorized integration test.

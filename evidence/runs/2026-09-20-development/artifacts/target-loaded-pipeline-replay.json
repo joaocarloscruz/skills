@@ -1,0 +1,136 @@
+{
+  "task_id": "pipeline-replay",
+  "condition": "target-loaded",
+  "artifact_name": "solution.py",
+  "source_sha256": "e85a4ebf147801725cb77f48c716790f456b7d0917332dcf04db7fe4eca823e3",
+  "source_utf8": "def sync(events, sink, checkpoints):\n    \"\"\"Deliver in order, acknowledging only after each idempotent sink write.\n\n    A timeout propagates so the caller can replay the complete feed. If a sink\n    write committed without an acknowledgement, replay uses its original ID\n    and value. A committed checkpoint therefore always covers durable output.\n    \"\"\"\n    acknowledged = checkpoints.load()\n    for event in events:\n        sequence = event[\"sequence\"]\n        if sequence <= acknowledged:\n            continue\n        sink.put(event[\"id\"], event[\"value\"])\n        checkpoints.save(sequence)\n        acknowledged = sequence\n    return None\n",
+  "task_contract": "# Restartable event delivery\n\nImplement `sync(events, sink, checkpoints)` in `solution.py`. Return `None` after\nall events are durably delivered. `events` is an ordered list of dictionaries\nwith strictly increasing positive integer `sequence`, unique string `id`, and a\nJSON `value`. Sequence numbers may have gaps. The complete feed is replayed on\nevery call; an empty feed is valid.\n\nThe collaborators provide these methods:\n\n- `checkpoints.load()` returns the last acknowledged sequence, initially zero.\n- `sink.put(event_id, value)` durably stores that value by ID. Repeating the same\n  ID and value is idempotent. It returns `None`.\n- `checkpoints.save(sequence)` durably advances the acknowledged sequence.\n  Every event at or below it must already be durable in the sink.\n\nEither write may raise `TimeoutError` immediately before or immediately after\nits durable effect. Let the error escape; the caller will restart `sync` with\nthe same feed and durable sink/checkpoint state. Recovery must neither lose\nevents nor create additional logical records. Do not modify input events. Skip\nevents covered by the loaded checkpoint; calling sync on a fully acknowledged\nfeed must perform no writes. Do not reset, delete, or bypass durable state.\n\nUse ordinary Python and the provided objects only: no imports, external I/O,\nprivate attributes, reflection, dynamic code, or decorators. Built-ins available\nare `dict`, `list`, `tuple`, `set`, `len`, `range`, `enumerate`, `zip`, `sorted`,\n`min`, `max`, `sum`, `str`, `int`, `float`, `bool`, `isinstance`, `all`, `any`,\n`Exception`, `TimeoutError`, `RuntimeError`, `ValueError`, and `KeyError`.\n\nFor `fixture.json`, a successful run from checkpoint zero stores both event IDs\nwith their given values and acknowledges sequence 4.\n",
+  "visible_fixture": {
+    "events": [
+      {
+        "sequence": 1,
+        "id": "invoice-a",
+        "value": {
+          "cents": 125
+        }
+      },
+      {
+        "sequence": 4,
+        "id": "invoice-b",
+        "value": {
+          "cents": 250
+        }
+      }
+    ]
+  },
+  "target_package": {
+    "skill": "design-data-pipeline",
+    "skill_revision": "sha256:2e9bfd5ec10d1e8d3c5ab63150354f3a0d9b62d82d156855aa8ac799372dd78f",
+    "files": {
+      "references/recovery-contracts.md": "1cbdab122826323cb406d602a2b7b4103e309462f81aa7f8ef0f8bc7b71f2d8f",
+      "SKILL.md": "85e87a119edf90fba9063d0929b65f1dc40823c929a6d7cf6e4ad38fc200a217"
+    }
+  },
+  "grader_result": {
+    "task": "pipeline-replay",
+    "success": true,
+    "checks": [
+      {
+        "case": "put-2-before",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "put-2-after",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "save-2-before",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "save-2-after",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "put-5-before",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "put-5-after",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "save-5-before",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "save-5-after",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "put-9-before",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "put-9-after",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "save-9-before",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "save-9-after",
+        "passed": true,
+        "injected_faults": 1,
+        "unreached_faults": 0
+      },
+      {
+        "case": "success",
+        "passed": true,
+        "injected_faults": 0,
+        "unreached_faults": 0
+      },
+      {
+        "case": "multiple-restarts",
+        "passed": true,
+        "injected_faults": 4,
+        "unreached_faults": 0
+      },
+      {
+        "case": "already-partially-delivered",
+        "passed": true,
+        "injected_faults": 0,
+        "unreached_faults": 0
+      },
+      {
+        "case": "empty-feed",
+        "passed": true,
+        "injected_faults": 0,
+        "unreached_faults": 0
+      }
+    ]
+  }
+}

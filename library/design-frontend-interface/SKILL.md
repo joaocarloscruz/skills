@@ -22,17 +22,17 @@ Produce a compact design brief containing:
 - content hierarchy and the primary action;
 - domain concepts, materials, vocabulary, and imagery that belong specifically to the subject;
 - a restrained color, typography, spacing, and depth system;
-- one signature visual or interaction idea that supports the task;
+- a distinctive visual or interaction idea when useful to the brief, or the existing patterns being preserved;
 - navigation and responsive behavior;
 - loading, empty, error, disabled, success, and permission states;
 - motion purpose, reduced-motion behavior, and performance constraints;
-- three likely generic defaults and the specific alternatives replacing them.
+- defaults rejected because they conflict with this audience, brand, or task, when relevant.
 
 Every choice must connect to the audience, content, brand, or task. Do not use novelty as a substitute for usability.
 
 ## Critique before delivery
 
-1. Check whether the design remains identifiable when the product name is removed.
+1. Check whether the design fits the product's identity and established interaction patterns. For a new brand or campaign, test whether the direction remains distinctive without the product name; routine product screens need not invent a signature.
 2. Inspect hierarchy at a glance and at narrow widths.
 3. Verify real content lengths, keyboard focus, contrast, touch targets, zoom, and reduced motion.
 4. Remove decoration that does not encode meaning, reinforce identity, or improve comprehension.

@@ -1,0 +1,1106 @@
+{
+  "kind": "metadata-selection-smoke",
+  "dataset_revision": "sha256:8ff89cef04dff1aa034c765f47e8737c85b6e6bf5ed913a0c827a7269bb8a8ac",
+  "catalog_revision": "sha256:05b07b8d89bcc8c44b12d00aff0623b61255a9b0802ad0bfad4196ef0dbe7148",
+  "cases": 74,
+  "passed": 72,
+  "outcomes": [
+    {
+      "case": "plan-change-in-existing-codebase",
+      "success": false,
+      "selected": {
+        "id": "case-001",
+        "router": "planning-discovery",
+        "workflows": [
+          "plan-implementation"
+        ]
+      },
+      "expected_router": "planning-discovery",
+      "expected_workflows": [
+        "analyze-codebase",
+        "plan-implementation"
+      ]
+    },
+    {
+      "case": "break-approved-feature-into-tickets",
+      "success": true,
+      "selected": {
+        "id": "case-002",
+        "router": "planning-discovery",
+        "workflows": [
+          "break-down-work"
+        ]
+      },
+      "expected_router": "planning-discovery",
+      "expected_workflows": [
+        "break-down-work"
+      ]
+    },
+    {
+      "case": "write-technical-specification",
+      "success": true,
+      "selected": {
+        "id": "case-003",
+        "router": "planning-discovery",
+        "workflows": [
+          "write-technical-spec"
+        ]
+      },
+      "expected_router": "planning-discovery",
+      "expected_workflows": [
+        "write-technical-spec"
+      ]
+    },
+    {
+      "case": "review-pull-request-without-edits",
+      "success": true,
+      "selected": {
+        "id": "case-004",
+        "router": "quality-security",
+        "workflows": [
+          "review-changes"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "review-changes"
+      ]
+    },
+    {
+      "case": "review-authentication-design-for-vulnerabilities",
+      "success": true,
+      "selected": {
+        "id": "case-005",
+        "router": "quality-security",
+        "workflows": [
+          "review-security"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "review-security"
+      ]
+    },
+    {
+      "case": "audit-web-flow-for-accessibility",
+      "success": true,
+      "selected": {
+        "id": "case-006",
+        "router": "frontend",
+        "workflows": [
+          "review-accessibility"
+        ]
+      },
+      "expected_router": "frontend",
+      "expected_workflows": [
+        "review-accessibility"
+      ]
+    },
+    {
+      "case": "design-risk-based-test-strategy",
+      "success": true,
+      "selected": {
+        "id": "case-007",
+        "router": "quality-security",
+        "workflows": [
+          "design-test-strategy"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "design-test-strategy"
+      ]
+    },
+    {
+      "case": "test-api-contract",
+      "success": true,
+      "selected": {
+        "id": "case-008",
+        "router": "quality-security",
+        "workflows": [
+          "test-api"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "test-api"
+      ]
+    },
+    {
+      "case": "test-local-web-application",
+      "success": true,
+      "selected": {
+        "id": "case-009",
+        "router": "frontend",
+        "workflows": [
+          "test-local-webapp"
+        ]
+      },
+      "expected_router": "frontend",
+      "expected_workflows": [
+        "test-local-webapp"
+      ]
+    },
+    {
+      "case": "investigate-failed-ci-job",
+      "success": true,
+      "selected": {
+        "id": "case-010",
+        "router": "quality-security",
+        "workflows": [
+          "investigate-ci-failure"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "investigate-ci-failure"
+      ]
+    },
+    {
+      "case": "write-continuous-integration-workflow",
+      "success": true,
+      "selected": {
+        "id": "case-011",
+        "router": "platform-engineering",
+        "workflows": [
+          "write-ci-pipeline"
+        ]
+      },
+      "expected_router": "platform-engineering",
+      "expected_workflows": [
+        "write-ci-pipeline"
+      ]
+    },
+    {
+      "case": "design-product-interface-before-code",
+      "success": true,
+      "selected": {
+        "id": "case-012",
+        "router": "frontend",
+        "workflows": [
+          "design-frontend-interface"
+        ]
+      },
+      "expected_router": "frontend",
+      "expected_workflows": [
+        "design-frontend-interface"
+      ]
+    },
+    {
+      "case": "implement-approved-frontend-design",
+      "success": true,
+      "selected": {
+        "id": "case-013",
+        "router": "frontend",
+        "workflows": [
+          "build-frontend-interface"
+        ]
+      },
+      "expected_router": "frontend",
+      "expected_workflows": [
+        "build-frontend-interface"
+      ]
+    },
+    {
+      "case": "evaluate-retrieval-augmented-generation",
+      "success": true,
+      "selected": {
+        "id": "case-014",
+        "router": "ai-engineering",
+        "workflows": [
+          "evaluate-rag"
+        ]
+      },
+      "expected_router": "ai-engineering",
+      "expected_workflows": [
+        "evaluate-rag"
+      ]
+    },
+    {
+      "case": "evaluate-agent-output-quality",
+      "success": true,
+      "selected": {
+        "id": "case-015",
+        "router": "quality-security",
+        "workflows": [
+          "evaluate-ai-output"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "evaluate-ai-output"
+      ]
+    },
+    {
+      "case": "analyze-structured-dataset",
+      "success": true,
+      "selected": {
+        "id": "case-016",
+        "router": "data",
+        "workflows": [
+          "analyze-dataset"
+        ]
+      },
+      "expected_router": "data",
+      "expected_workflows": [
+        "analyze-dataset"
+      ]
+    },
+    {
+      "case": "write-safe-analytical-sql",
+      "success": true,
+      "selected": {
+        "id": "case-017",
+        "router": "data",
+        "workflows": [
+          "write-sql"
+        ]
+      },
+      "expected_router": "data",
+      "expected_workflows": [
+        "write-sql"
+      ]
+    },
+    {
+      "case": "implement-feature-test-first",
+      "success": false,
+      "selected": {
+        "id": "case-018",
+        "router": "software-engineering",
+        "workflows": [
+          "tdd"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "tdd",
+        "implement-feature"
+      ]
+    },
+    {
+      "case": "model-domain-before-system-design",
+      "success": true,
+      "selected": {
+        "id": "case-019",
+        "router": "software-engineering",
+        "workflows": [
+          "domain-modeling"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "domain-modeling"
+      ]
+    },
+    {
+      "case": "respond-to-production-incident",
+      "success": true,
+      "selected": {
+        "id": "case-020",
+        "router": "operations",
+        "workflows": [
+          "respond-to-incident"
+        ]
+      },
+      "expected_router": "operations",
+      "expected_workflows": [
+        "respond-to-incident"
+      ]
+    },
+    {
+      "case": "prepare-cross-agent-handoff",
+      "success": true,
+      "selected": {
+        "id": "case-021",
+        "router": "collaboration",
+        "workflows": [
+          "prepare-handoff"
+        ]
+      },
+      "expected_router": "collaboration",
+      "expected_workflows": [
+        "prepare-handoff"
+      ]
+    },
+    {
+      "case": "add-service-observability",
+      "success": true,
+      "selected": {
+        "id": "case-022",
+        "router": "platform-engineering",
+        "workflows": [
+          "add-observability"
+        ]
+      },
+      "expected_router": "platform-engineering",
+      "expected_workflows": [
+        "add-observability"
+      ]
+    },
+    {
+      "case": "audit-project-dependencies",
+      "success": true,
+      "selected": {
+        "id": "case-023",
+        "router": "operations",
+        "workflows": [
+          "audit-dependencies"
+        ]
+      },
+      "expected_router": "operations",
+      "expected_workflows": [
+        "audit-dependencies"
+      ]
+    },
+    {
+      "case": "audit-agent-skill-catalog",
+      "success": true,
+      "selected": {
+        "id": "case-024",
+        "router": "quality-security",
+        "workflows": [
+          "audit-skill-catalog"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "audit-skill-catalog"
+      ]
+    },
+    {
+      "case": "build-shared-design-system",
+      "success": true,
+      "selected": {
+        "id": "case-025",
+        "router": "frontend",
+        "workflows": [
+          "build-design-system"
+        ]
+      },
+      "expected_router": "frontend",
+      "expected_workflows": [
+        "build-design-system"
+      ]
+    },
+    {
+      "case": "build-model-context-protocol-server",
+      "success": true,
+      "selected": {
+        "id": "case-026",
+        "router": "ai-engineering",
+        "workflows": [
+          "build-mcp-server"
+        ]
+      },
+      "expected_router": "ai-engineering",
+      "expected_workflows": [
+        "build-mcp-server"
+      ]
+    },
+    {
+      "case": "containerize-existing-service",
+      "success": true,
+      "selected": {
+        "id": "case-027",
+        "router": "platform-engineering",
+        "workflows": [
+          "containerize-application"
+        ]
+      },
+      "expected_router": "platform-engineering",
+      "expected_workflows": [
+        "containerize-application"
+      ]
+    },
+    {
+      "case": "debug-intermittent-data-loss",
+      "success": true,
+      "selected": {
+        "id": "case-028",
+        "router": "quality-security",
+        "workflows": [
+          "debug-systematically"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "debug-systematically"
+      ]
+    },
+    {
+      "case": "design-agent-tool-contracts",
+      "success": true,
+      "selected": {
+        "id": "case-029",
+        "router": "ai-engineering",
+        "workflows": [
+          "design-agent-tools"
+        ]
+      },
+      "expected_router": "ai-engineering",
+      "expected_workflows": [
+        "design-agent-tools"
+      ]
+    },
+    {
+      "case": "design-public-service-api",
+      "success": true,
+      "selected": {
+        "id": "case-030",
+        "router": "software-engineering",
+        "workflows": [
+          "design-api"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "design-api"
+      ]
+    },
+    {
+      "case": "design-zero-downtime-database-change",
+      "success": true,
+      "selected": {
+        "id": "case-031",
+        "router": "software-engineering",
+        "workflows": [
+          "design-database-change"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "design-database-change"
+      ]
+    },
+    {
+      "case": "design-event-data-pipeline",
+      "success": true,
+      "selected": {
+        "id": "case-032",
+        "router": "data",
+        "workflows": [
+          "design-data-pipeline"
+        ]
+      },
+      "expected_router": "data",
+      "expected_workflows": [
+        "design-data-pipeline"
+      ]
+    },
+    {
+      "case": "improve-api-latency",
+      "success": true,
+      "selected": {
+        "id": "case-033",
+        "router": "operations",
+        "workflows": [
+          "improve-performance"
+        ]
+      },
+      "expected_router": "operations",
+      "expected_workflows": [
+        "improve-performance"
+      ]
+    },
+    {
+      "case": "migrate-framework-dependency",
+      "success": true,
+      "selected": {
+        "id": "case-034",
+        "router": "software-engineering",
+        "workflows": [
+          "migrate-dependency"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "migrate-dependency"
+      ]
+    },
+    {
+      "case": "refactor-parser-without-behavior-change",
+      "success": true,
+      "selected": {
+        "id": "case-035",
+        "router": "software-engineering",
+        "workflows": [
+          "refactor-safely"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "refactor-safely"
+      ]
+    },
+    {
+      "case": "release-new-software-version",
+      "success": true,
+      "selected": {
+        "id": "case-036",
+        "router": "operations",
+        "workflows": [
+          "release-software"
+        ]
+      },
+      "expected_router": "operations",
+      "expected_workflows": [
+        "release-software"
+      ]
+    },
+    {
+      "case": "research-current-technical-options",
+      "success": true,
+      "selected": {
+        "id": "case-037",
+        "router": "planning-discovery",
+        "workflows": [
+          "research-with-sources"
+        ]
+      },
+      "expected_router": "planning-discovery",
+      "expected_workflows": [
+        "research-with-sources"
+      ]
+    },
+    {
+      "case": "resolve-git-merge-conflicts",
+      "success": true,
+      "selected": {
+        "id": "case-038",
+        "router": "software-engineering",
+        "workflows": [
+          "resolve-merge-conflicts"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "resolve-merge-conflicts"
+      ]
+    },
+    {
+      "case": "test-command-line-interface",
+      "success": true,
+      "selected": {
+        "id": "case-039",
+        "router": "quality-security",
+        "workflows": [
+          "test-cli"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "test-cli"
+      ]
+    },
+    {
+      "case": "triage-incoming-bug-reports",
+      "success": true,
+      "selected": {
+        "id": "case-040",
+        "router": "collaboration",
+        "workflows": [
+          "triage-issues"
+        ]
+      },
+      "expected_router": "collaboration",
+      "expected_workflows": [
+        "triage-issues"
+      ]
+    },
+    {
+      "case": "write-operator-runbook",
+      "success": true,
+      "selected": {
+        "id": "case-041",
+        "router": "collaboration",
+        "workflows": [
+          "write-documentation"
+        ]
+      },
+      "expected_router": "collaboration",
+      "expected_workflows": [
+        "write-documentation"
+      ]
+    },
+    {
+      "case": "no-match-friendly-greeting",
+      "success": true,
+      "selected": {
+        "id": "case-042",
+        "router": null,
+        "workflows": []
+      },
+      "expected_router": null,
+      "expected_workflows": []
+    },
+    {
+      "case": "no-match-nontechnical-security",
+      "success": true,
+      "selected": {
+        "id": "case-043",
+        "router": null,
+        "workflows": []
+      },
+      "expected_router": null,
+      "expected_workflows": []
+    },
+    {
+      "case": "no-match-travel-pipeline-metaphor",
+      "success": true,
+      "selected": {
+        "id": "case-044",
+        "router": null,
+        "workflows": []
+      },
+      "expected_router": null,
+      "expected_workflows": []
+    },
+    {
+      "case": "incident-mitigation-before-root-cause",
+      "success": true,
+      "selected": {
+        "id": "case-045",
+        "router": "operations",
+        "workflows": [
+          "respond-to-incident"
+        ]
+      },
+      "expected_router": "operations",
+      "expected_workflows": [
+        "respond-to-incident"
+      ]
+    },
+    {
+      "case": "ci-signal-repair-not-new-pipeline",
+      "success": true,
+      "selected": {
+        "id": "case-046",
+        "router": "quality-security",
+        "workflows": [
+          "investigate-ci-failure"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "investigate-ci-failure"
+      ]
+    },
+    {
+      "case": "resolve-rebase-with-local-notes",
+      "success": true,
+      "selected": {
+        "id": "case-047",
+        "router": "software-engineering",
+        "workflows": [
+          "resolve-merge-conflicts"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "resolve-merge-conflicts"
+      ]
+    },
+    {
+      "case": "resolve-cherry-pick-with-deletion",
+      "success": true,
+      "selected": {
+        "id": "case-048",
+        "router": "software-engineering",
+        "workflows": [
+          "resolve-merge-conflicts"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "resolve-merge-conflicts"
+      ]
+    },
+    {
+      "case": "no-match-git-concept-question",
+      "success": true,
+      "selected": {
+        "id": "case-049",
+        "router": null,
+        "workflows": []
+      },
+      "expected_router": null,
+      "expected_workflows": []
+    },
+    {
+      "case": "measure-retrieval-not-generic-model",
+      "success": true,
+      "selected": {
+        "id": "case-050",
+        "router": "ai-engineering",
+        "workflows": [
+          "evaluate-rag"
+        ]
+      },
+      "expected_router": "ai-engineering",
+      "expected_workflows": [
+        "evaluate-rag"
+      ]
+    },
+    {
+      "case": "design-retryable-create-contract",
+      "success": true,
+      "selected": {
+        "id": "case-051",
+        "router": "software-engineering",
+        "workflows": [
+          "design-api"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "design-api"
+      ]
+    },
+    {
+      "case": "upgrade-plugin-compatible-set",
+      "success": true,
+      "selected": {
+        "id": "case-052",
+        "router": "software-engineering",
+        "workflows": [
+          "migrate-dependency"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "migrate-dependency"
+      ]
+    },
+    {
+      "case": "map-conflicting-domain-terms",
+      "success": true,
+      "selected": {
+        "id": "case-053",
+        "router": "software-engineering",
+        "workflows": [
+          "domain-modeling"
+        ]
+      },
+      "expected_router": "software-engineering",
+      "expected_workflows": [
+        "domain-modeling"
+      ]
+    },
+    {
+      "case": "design-existing-product-settings",
+      "success": true,
+      "selected": {
+        "id": "case-054",
+        "router": "frontend",
+        "workflows": [
+          "design-frontend-interface"
+        ]
+      },
+      "expected_router": "frontend",
+      "expected_workflows": [
+        "design-frontend-interface"
+      ]
+    },
+    {
+      "case": "review-otp-paste-accessibility",
+      "success": true,
+      "selected": {
+        "id": "case-055",
+        "router": "frontend",
+        "workflows": [
+          "review-accessibility"
+        ]
+      },
+      "expected_router": "frontend",
+      "expected_workflows": [
+        "review-accessibility"
+      ]
+    },
+    {
+      "case": "classify-local-browser-flake",
+      "success": true,
+      "selected": {
+        "id": "case-056",
+        "router": "frontend",
+        "workflows": [
+          "test-local-webapp"
+        ]
+      },
+      "expected_router": "frontend",
+      "expected_workflows": [
+        "test-local-webapp"
+      ]
+    },
+    {
+      "case": "design-required-ci-gate",
+      "success": true,
+      "selected": {
+        "id": "case-057",
+        "router": "platform-engineering",
+        "workflows": [
+          "write-ci-pipeline"
+        ]
+      },
+      "expected_router": "platform-engineering",
+      "expected_workflows": [
+        "write-ci-pipeline"
+      ]
+    },
+    {
+      "case": "container-stop-and-probes",
+      "success": true,
+      "selected": {
+        "id": "case-058",
+        "router": "platform-engineering",
+        "workflows": [
+          "containerize-application"
+        ]
+      },
+      "expected_router": "platform-engineering",
+      "expected_workflows": [
+        "containerize-application"
+      ]
+    },
+    {
+      "case": "telemetry-fleet-percentile",
+      "success": true,
+      "selected": {
+        "id": "case-059",
+        "router": "platform-engineering",
+        "workflows": [
+          "add-observability"
+        ]
+      },
+      "expected_router": "platform-engineering",
+      "expected_workflows": [
+        "add-observability"
+      ]
+    },
+    {
+      "case": "external-sink-replay",
+      "success": true,
+      "selected": {
+        "id": "case-060",
+        "router": "data",
+        "workflows": [
+          "design-data-pipeline"
+        ]
+      },
+      "expected_router": "data",
+      "expected_workflows": [
+        "design-data-pipeline"
+      ]
+    },
+    {
+      "case": "cohort-join-analysis",
+      "success": true,
+      "selected": {
+        "id": "case-061",
+        "router": "data",
+        "workflows": [
+          "analyze-dataset"
+        ]
+      },
+      "expected_router": "data",
+      "expected_workflows": [
+        "analyze-dataset"
+      ]
+    },
+    {
+      "case": "benchmark-arrival-bias",
+      "success": true,
+      "selected": {
+        "id": "case-062",
+        "router": "operations",
+        "workflows": [
+          "improve-performance"
+        ]
+      },
+      "expected_router": "operations",
+      "expected_workflows": [
+        "improve-performance"
+      ]
+    },
+    {
+      "case": "partial-release-resume",
+      "success": true,
+      "selected": {
+        "id": "case-063",
+        "router": "operations",
+        "workflows": [
+          "release-software"
+        ]
+      },
+      "expected_router": "operations",
+      "expected_workflows": [
+        "release-software"
+      ]
+    },
+    {
+      "case": "dependency-reachability-unknown",
+      "success": true,
+      "selected": {
+        "id": "case-064",
+        "router": "operations",
+        "workflows": [
+          "audit-dependencies"
+        ]
+      },
+      "expected_router": "operations",
+      "expected_workflows": [
+        "audit-dependencies"
+      ]
+    },
+    {
+      "case": "boundary-debug-systematically",
+      "success": true,
+      "selected": {
+        "id": "case-065",
+        "router": "quality-security",
+        "workflows": [
+          "debug-systematically"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "debug-systematically"
+      ]
+    },
+    {
+      "case": "boundary-design-test-strategy",
+      "success": true,
+      "selected": {
+        "id": "case-066",
+        "router": "quality-security",
+        "workflows": [
+          "design-test-strategy"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "design-test-strategy"
+      ]
+    },
+    {
+      "case": "boundary-investigate-ci-failure",
+      "success": true,
+      "selected": {
+        "id": "case-067",
+        "router": "quality-security",
+        "workflows": [
+          "investigate-ci-failure"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "investigate-ci-failure"
+      ]
+    },
+    {
+      "case": "boundary-review-changes",
+      "success": true,
+      "selected": {
+        "id": "case-068",
+        "router": "quality-security",
+        "workflows": [
+          "review-changes"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "review-changes"
+      ]
+    },
+    {
+      "case": "boundary-review-security",
+      "success": true,
+      "selected": {
+        "id": "case-069",
+        "router": "quality-security",
+        "workflows": [
+          "review-security"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "review-security"
+      ]
+    },
+    {
+      "case": "boundary-test-api",
+      "success": true,
+      "selected": {
+        "id": "case-070",
+        "router": "quality-security",
+        "workflows": [
+          "test-api"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "test-api"
+      ]
+    },
+    {
+      "case": "boundary-test-cli",
+      "success": true,
+      "selected": {
+        "id": "case-071",
+        "router": "quality-security",
+        "workflows": [
+          "test-cli"
+        ]
+      },
+      "expected_router": "quality-security",
+      "expected_workflows": [
+        "test-cli"
+      ]
+    },
+    {
+      "case": "boundary-build-mcp-server",
+      "success": true,
+      "selected": {
+        "id": "case-072",
+        "router": "ai-engineering",
+        "workflows": [
+          "build-mcp-server"
+        ]
+      },
+      "expected_router": "ai-engineering",
+      "expected_workflows": [
+        "build-mcp-server"
+      ]
+    },
+    {
+      "case": "boundary-design-agent-tools",
+      "success": true,
+      "selected": {
+        "id": "case-073",
+        "router": "ai-engineering",
+        "workflows": [
+          "design-agent-tools"
+        ]
+      },
+      "expected_router": "ai-engineering",
+      "expected_workflows": [
+        "design-agent-tools"
+      ]
+    },
+    {
+      "case": "boundary-evaluate-rag",
+      "success": true,
+      "selected": {
+        "id": "case-074",
+        "router": "ai-engineering",
+        "workflows": [
+          "evaluate-rag"
+        ]
+      },
+      "expected_router": "ai-engineering",
+      "expected_workflows": [
+        "evaluate-rag"
+      ]
+    }
+  ],
+  "limitation": "Exact metadata-selection agreement on declared development cases; not native activation, held-out generalization, or task-outcome evidence."
+}

@@ -1,0 +1,60 @@
+{
+  "kind": "behavioral-development-smoke",
+  "planned_tasks": [
+    {
+      "task_id": "sql-grain",
+      "repeats": [
+        1
+      ]
+    },
+    {
+      "task_id": "pipeline-replay",
+      "repeats": [
+        1
+      ]
+    },
+    {
+      "task_id": "tool-write-recovery",
+      "repeats": [
+        1
+      ]
+    }
+  ],
+  "target_packages": {
+    "sql-grain": {
+      "skill": "write-sql",
+      "skill_revision": "sha256:adb67af8d53a72df4de98f005a34fd0a6c0b581b5e52c2bf6f68046f29207bfa",
+      "files": {
+        "references/query-correctness.md": "63f8c134724272f2082b37a6f6c489e010d7d6f81af28823fae990b1223af89e",
+        "SKILL.md": "ecdb61d26d4c07ff9cfece64a6ccaacfeba9ff3dff2b85141e4fcd793915562e"
+      }
+    },
+    "pipeline-replay": {
+      "skill": "design-data-pipeline",
+      "skill_revision": "sha256:2e9bfd5ec10d1e8d3c5ab63150354f3a0d9b62d82d156855aa8ac799372dd78f",
+      "files": {
+        "references/recovery-contracts.md": "1cbdab122826323cb406d602a2b7b4103e309462f81aa7f8ef0f8bc7b71f2d8f",
+        "SKILL.md": "85e87a119edf90fba9063d0929b65f1dc40823c929a6d7cf6e4ad38fc200a217"
+      }
+    },
+    "tool-write-recovery": {
+      "skill": "design-agent-tools",
+      "skill_revision": "sha256:9cef1f1f1b39dd6c317400e878e021e547c89017ab9418af863d73efe951e28f",
+      "files": {
+        "SKILL.md": "c0da8f990f298eafa2900dac11e246295fd5b25b0c69e33ff463220a15fdaad1"
+      }
+    }
+  },
+  "harness": "sha256:e297f24c4a617a86289543e64c7319ed0e487ec26f177a58a22fcc7dbca44c30",
+  "condition_order": [
+    "target-not-loaded",
+    "target-loaded"
+  ],
+  "limitations": [
+    "Exact backend model version and sampling parameters are not exposed.",
+    "Fresh contexts and separate directories; shared filesystem, no enforced grader isolation.",
+    "Other installed skills/tool metadata remain available in both conditions.",
+    "Three development tasks, one repeat per condition, no held-out population.",
+    "Full tool transcripts are not captured; submitted artifacts and executable grades are retained."
+  ]
+}

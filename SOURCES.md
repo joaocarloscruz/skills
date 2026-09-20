@@ -36,6 +36,17 @@ Original technical references also cite the relevant primary documentation:
 - [Playwright](https://playwright.dev/docs/best-practices) for locator behavior, web assertions, and observable readiness.
 - [Git manuals](https://git-scm.com/docs) for conflict stages, rebase side names, sequencer continuation, and targeted staging.
 - [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/) for accessibility success criteria and test limitations.
+- [Google AIP-180](https://google.aip.dev/180) for API evolution and consumer compatibility, with conventions scoped to the service.
+- [npm](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/) and [OSV Scanner](https://google.github.io/osv-scanner/output/) for dependency metadata, clean installation, advisory analysis, and reachability limits.
+- [Martin Fowler: Bounded Context](https://martinfowler.com/bliki/BoundedContext.html) for language and translation across domain boundaries.
+- [Python subprocess](https://docs.python.org/3/library/subprocess.html) and [Node.js child processes](https://nodejs.org/api/child_process.html) for process tests, streams, timeouts, and platform limits.
+- [Prometheus histograms](https://prometheus.io/docs/practices/histograms/) and [OpenTelemetry messaging](https://opentelemetry.io/docs/specs/semconv/messaging/messaging-spans/) for aggregated distributions and causal span links.
+- [Google SRE Workbook](https://sre.google/workbook/table-of-contents/) for SLO alerts and incident response.
+- [Docker](https://docs.docker.com/) and [Kubernetes probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for build secrets, process lifecycle, and health signals.
+- [Kafka delivery semantics](https://kafka.apache.org/41/design/design/#message-delivery-semantics) and [Apache Beam](https://beam.apache.org/documentation/programming-guide/#windowing) for replay boundaries, windows, and late data.
+- [pandas merge](https://pandas.pydata.org/docs/reference/api/pandas.merge.html) and [scikit-learn leakage](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage) for analysis validity and preprocessing boundaries.
+- [k6 load models](https://grafana.com/docs/k6/latest/using-k6/scenarios/concepts/open-vs-closed/) and [Google Benchmark](https://google.github.io/benchmark/user_guide.html) for comparable workloads and measurement noise.
+- [GitHub immutable releases](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases) for staging complete artifacts and release recovery.
 
 Specific supporting pages are linked inside each package. Documentation supports
 technical guidance; it does not establish that the skill improves agent outcomes.

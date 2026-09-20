@@ -584,7 +584,10 @@
       "prompt": "Good morning!",
       "expected_router": null,
       "expected_skills": [],
-      "unexpected_skills": ["prepare-handoff", "plan-implementation"],
+      "unexpected_skills": [
+        "prepare-handoff",
+        "plan-implementation"
+      ],
       "rationale": "A greeting needs a direct conversational response and no catalog workflow."
     },
     {
@@ -593,7 +596,11 @@
       "prompt": "Rewrite this sentence in plain English: The building security guard reviews visitor badges at reception.",
       "expected_router": null,
       "expected_skills": [],
-      "unexpected_skills": ["review-security", "review-changes", "write-documentation"],
+      "unexpected_skills": [
+        "review-security",
+        "review-changes",
+        "write-documentation"
+      ],
       "rationale": "Security and review are lexical overlaps; the actual task is a single nontechnical sentence rewrite."
     },
     {
@@ -602,7 +609,11 @@
       "prompt": "Suggest a short title for my personal photo album about a train journey through the Alps.",
       "expected_router": null,
       "expected_skills": [],
-      "unexpected_skills": ["plan-implementation", "design-data-pipeline", "design-frontend-interface"],
+      "unexpected_skills": [
+        "plan-implementation",
+        "design-data-pipeline",
+        "design-frontend-interface"
+      ],
       "rationale": "A creative album title is outside the engineering catalog even though it asks for a small planning decision."
     },
     {
@@ -610,8 +621,13 @@
       "title": "Active outage requires incident handling",
       "prompt": "Checkout errors are rising in production after the last deploy. Coordinate immediate mitigation and rollback while preserving evidence for later root-cause analysis.",
       "expected_router": "operations",
-      "expected_skills": ["respond-to-incident"],
-      "unexpected_skills": ["debug-systematically", "release-software"],
+      "expected_skills": [
+        "respond-to-incident"
+      ],
+      "unexpected_skills": [
+        "debug-systematically",
+        "release-software"
+      ],
       "rationale": "Restoring an active service and coordinating mitigation is the primary outcome; root-cause work follows stabilization."
     },
     {
@@ -619,8 +635,13 @@
       "title": "Diagnose a failing existing workflow",
       "prompt": "Yesterday's change made the existing Linux CI job fail only on pull requests from forks. Identify the failing step from logs and fix the regression without redesigning the workflow.",
       "expected_router": "quality-security",
-      "expected_skills": ["investigate-ci-failure"],
-      "unexpected_skills": ["write-ci-pipeline", "audit-dependencies"],
+      "expected_skills": [
+        "investigate-ci-failure"
+      ],
+      "unexpected_skills": [
+        "write-ci-pipeline",
+        "audit-dependencies"
+      ],
       "rationale": "Existing CI failure diagnosis is distinct from creating a pipeline, despite shared workflow vocabulary."
     },
     {
@@ -628,8 +649,13 @@
       "title": "Complete a rebase while preserving unrelated work",
       "prompt": "My feature branch stopped halfway through a rebase onto main. Resolve the remaining conflicts and finish the rebase; keep my untracked notes out of the commits.",
       "expected_router": "software-engineering",
-      "expected_skills": ["resolve-merge-conflicts"],
-      "unexpected_skills": ["refactor-safely", "review-changes"],
+      "expected_skills": [
+        "resolve-merge-conflicts"
+      ],
+      "unexpected_skills": [
+        "refactor-safely",
+        "review-changes"
+      ],
       "rationale": "An active Git rebase needs operation-specific conflict resolution and continuation, not ordinary refactoring or a review-only result."
     },
     {
@@ -637,8 +663,13 @@
       "title": "Reconcile a modify/delete cherry-pick conflict",
       "prompt": "Finish the cherry-pick of the fix. Git reports a modify/delete conflict, but I cannot find conflict markers. Preserve the fix's behavior and the intended file removal.",
       "expected_router": "software-engineering",
-      "expected_skills": ["resolve-merge-conflicts"],
-      "unexpected_skills": ["debug-systematically", "migrate-dependency"],
+      "expected_skills": [
+        "resolve-merge-conflicts"
+      ],
+      "unexpected_skills": [
+        "debug-systematically",
+        "migrate-dependency"
+      ],
       "rationale": "The unmerged index and cherry-pick state are the primary evidence; a marker search alone cannot establish completion."
     },
     {
@@ -647,7 +678,10 @@
       "prompt": "In one sentence, what is the difference between a Git merge and a rebase? Do not inspect or change a repository.",
       "expected_router": null,
       "expected_skills": [],
-      "unexpected_skills": ["resolve-merge-conflicts", "analyze-codebase"],
+      "unexpected_skills": [
+        "resolve-merge-conflicts",
+        "analyze-codebase"
+      ],
       "rationale": "Git vocabulary in a simple conceptual question does not request the in-progress conflict-resolution workflow."
     },
     {
@@ -655,9 +689,340 @@
       "title": "Diagnose evidence retrieval quality",
       "prompt": "Our assistant answers correctly when given the right document, but search retrieves outdated or irrelevant passages. Measure retrieval recall and freshness against labeled queries before changing prompts.",
       "expected_router": "ai-engineering",
-      "expected_skills": ["evaluate-rag"],
-      "unexpected_skills": ["evaluate-ai-output", "design-agent-tools"],
+      "expected_skills": [
+        "evaluate-rag"
+      ],
+      "unexpected_skills": [
+        "evaluate-ai-output",
+        "design-agent-tools"
+      ],
       "rationale": "The diagnosed boundary is retrieval quality, not a generic model-output evaluation or tool-contract redesign."
+    },
+    {
+      "id": "design-retryable-create-contract",
+      "title": "Design retryable create contract",
+      "prompt": "Design the HTTP contract for creating an order when a timeout may occur after it is saved. Specify duplicate submissions and stale concurrent edits; do not implement or test a running service.",
+      "expected_router": "software-engineering",
+      "expected_skills": [
+        "design-api"
+      ],
+      "unexpected_skills": [
+        "test-api",
+        "implement-feature"
+      ],
+      "rationale": "API contract design, not execution or implementation."
+    },
+    {
+      "id": "upgrade-plugin-compatible-set",
+      "title": "Upgrade plugin compatible set",
+      "prompt": "Upgrade this framework and its plugin to the requested supported versions. Verify peer/runtime constraints and clean installation while preserving unrelated dependencies.",
+      "expected_router": "software-engineering",
+      "expected_skills": [
+        "migrate-dependency"
+      ],
+      "unexpected_skills": [
+        "audit-dependencies",
+        "refactor-safely"
+      ],
+      "rationale": "Requested migration, not vulnerability audit or generic refactoring."
+    },
+    {
+      "id": "map-conflicting-domain-terms",
+      "title": "Map conflicting domain terms",
+      "prompt": "Sales and support both say customer but mean different things. Model their language, ownership, and translation without designing database tables.",
+      "expected_router": "software-engineering",
+      "expected_skills": [
+        "domain-modeling"
+      ],
+      "unexpected_skills": [
+        "design-database-change",
+        "design-api"
+      ],
+      "rationale": "Domain concepts before a storage/interface contract."
+    },
+    {
+      "id": "design-existing-product-settings",
+      "title": "Design existing product settings",
+      "prompt": "Design a settings screen consistent with the supplied product patterns and brand. Specify hierarchy, responsive states, and copy; do not implement or create a new component library.",
+      "expected_router": "frontend",
+      "expected_skills": [
+        "design-frontend-interface"
+      ],
+      "unexpected_skills": [
+        "build-frontend-interface",
+        "build-design-system"
+      ],
+      "rationale": "Visual/interaction design may preserve established patterns."
+    },
+    {
+      "id": "review-otp-paste-accessibility",
+      "title": "Review otp paste accessibility",
+      "prompt": "Review this login and six-digit verification flow for WCAG 2.2 AA accessibility barriers, including password-manager support and pasting the full code. Report findings only.",
+      "expected_router": "frontend",
+      "expected_skills": [
+        "review-accessibility"
+      ],
+      "unexpected_skills": [
+        "review-security",
+        "build-frontend-interface"
+      ],
+      "rationale": "Accessibility review of authentication is distinct from security review."
+    },
+    {
+      "id": "classify-local-browser-flake",
+      "title": "Classify local browser flake",
+      "prompt": "Exercise the local app's save flow. It failed once and passed on retry; preserve both attempts and diagnose whether this is readiness, shared setup, or product behavior. Do not fix code.",
+      "expected_router": "frontend",
+      "expected_skills": [
+        "test-local-webapp"
+      ],
+      "unexpected_skills": [
+        "implement-feature",
+        "design-test-strategy"
+      ],
+      "rationale": "Execute/diagnose a local journey, with honest flaky evidence."
+    },
+    {
+      "id": "design-required-ci-gate",
+      "title": "Design required ci gate",
+      "prompt": "Design a GitHub Actions pipeline where optional path-specific jobs can be skipped, real failures still block merging, and merge queue checks run.",
+      "expected_router": "platform-engineering",
+      "expected_skills": [
+        "write-ci-pipeline"
+      ],
+      "unexpected_skills": [
+        "investigate-ci-failure",
+        "release-software"
+      ],
+      "rationale": "The requested outcome matches this workflow rather than the adjacent implementation or investigation workflows."
+    },
+    {
+      "id": "container-stop-and-probes",
+      "title": "Container stop and probes",
+      "prompt": "Containerize our Linux API with a working graceful shutdown, private build dependency access, and appropriate Kubernetes startup/readiness/liveness behavior.",
+      "expected_router": "platform-engineering",
+      "expected_skills": [
+        "containerize-application"
+      ],
+      "unexpected_skills": [
+        "write-ci-pipeline",
+        "respond-to-incident"
+      ],
+      "rationale": "The requested outcome matches this workflow rather than the adjacent implementation or investigation workflows."
+    },
+    {
+      "id": "telemetry-fleet-percentile",
+      "title": "Telemetry fleet percentile",
+      "prompt": "Add fleet latency metrics and low-volume availability alerts; account for retries, sampled traces, and missing telemetry.",
+      "expected_router": "platform-engineering",
+      "expected_skills": [
+        "add-observability"
+      ],
+      "unexpected_skills": [
+        "improve-performance",
+        "respond-to-incident"
+      ],
+      "rationale": "The requested outcome matches this workflow rather than the adjacent implementation or investigation workflows."
+    },
+    {
+      "id": "external-sink-replay",
+      "title": "External sink replay",
+      "prompt": "Design a Kafka-to-database pipeline that can replay after a crash between its database commit and offset commit, including a concurrent historical backfill.",
+      "expected_router": "data",
+      "expected_skills": [
+        "design-data-pipeline"
+      ],
+      "unexpected_skills": [
+        "write-sql",
+        "design-database-change"
+      ],
+      "rationale": "The requested outcome matches this workflow rather than the adjacent implementation or investigation workflows."
+    },
+    {
+      "id": "cohort-join-analysis",
+      "title": "Cohort join analysis",
+      "prompt": "Analyze this orders dataset enriched with customer history; verify why totals doubled and compare overall versus average-customer conversion rates.",
+      "expected_router": "data",
+      "expected_skills": [
+        "analyze-dataset"
+      ],
+      "unexpected_skills": [
+        "write-sql",
+        "design-data-pipeline"
+      ],
+      "rationale": "The requested outcome matches this workflow rather than the adjacent implementation or investigation workflows."
+    },
+    {
+      "id": "benchmark-arrival-bias",
+      "title": "Benchmark arrival bias",
+      "prompt": "Improve our API's p99 under the same request arrival rate; our fixed-client benchmark sends fewer requests when the service slows down.",
+      "expected_router": "operations",
+      "expected_skills": [
+        "improve-performance"
+      ],
+      "unexpected_skills": [
+        "add-observability",
+        "respond-to-incident"
+      ],
+      "rationale": "The requested outcome matches this workflow rather than the adjacent implementation or investigation workflows."
+    },
+    {
+      "id": "partial-release-resume",
+      "title": "Partial release resume",
+      "prompt": "Resume the authorized multi-platform release after the upload timed out; inspect existing version artifacts and avoid rebuilding or republishing completed uploads.",
+      "expected_router": "operations",
+      "expected_skills": [
+        "release-software"
+      ],
+      "unexpected_skills": [
+        "write-ci-pipeline",
+        "respond-to-incident"
+      ],
+      "rationale": "The requested outcome matches this workflow rather than the adjacent implementation or investigation workflows."
+    },
+    {
+      "id": "dependency-reachability-unknown",
+      "title": "Dependency reachability unknown",
+      "prompt": "Audit these lockfiles and scanner results. A development dependency has unknown reachability; assess build exposure without installing fixes.",
+      "expected_router": "operations",
+      "expected_skills": [
+        "audit-dependencies"
+      ],
+      "unexpected_skills": [
+        "review-security",
+        "implement-feature"
+      ],
+      "rationale": "The requested outcome matches this workflow rather than the adjacent implementation or investigation workflows."
+    },
+    {
+      "id": "boundary-debug-systematically",
+      "title": "Boundary debug systematically",
+      "prompt": "Our queue test fails only after the account suite. Isolate the state leak and fix it.",
+      "expected_router": "quality-security",
+      "expected_skills": [
+        "debug-systematically"
+      ],
+      "unexpected_skills": [
+        "investigate-ci-failure"
+      ],
+      "rationale": "No CI-provider issue is involved."
+    },
+    {
+      "id": "boundary-design-test-strategy",
+      "title": "Boundary design test strategy",
+      "prompt": "We have 95% coverage but our mocked billing tests missed duplicate charges. Propose a better test strategy.",
+      "expected_router": "quality-security",
+      "expected_skills": [
+        "design-test-strategy"
+      ],
+      "unexpected_skills": [
+        "test-api"
+      ],
+      "rationale": "Requests test design, not endpoint execution."
+    },
+    {
+      "id": "boundary-investigate-ci-failure",
+      "title": "Boundary investigate ci failure",
+      "prompt": "This GitHub Actions run fails although its branch SHA passes locally. Diagnose the checkout and the first error.",
+      "expected_router": "quality-security",
+      "expected_skills": [
+        "investigate-ci-failure"
+      ],
+      "unexpected_skills": [
+        "write-ci-pipeline"
+      ],
+      "rationale": "Diagnose an existing run rather than authoring a pipeline."
+    },
+    {
+      "id": "boundary-review-changes",
+      "title": "Boundary review changes",
+      "prompt": "Review all local changes, including new files, and report introduced regressions without editing them.",
+      "expected_router": "quality-security",
+      "expected_skills": [
+        "review-changes"
+      ],
+      "unexpected_skills": [
+        "refactor-safely"
+      ],
+      "rationale": "A bounded review includes untracked artifacts."
+    },
+    {
+      "id": "boundary-review-security",
+      "title": "Boundary review security",
+      "prompt": "Review whether queued exports and cached downloads can leak another tenant's data.",
+      "expected_router": "quality-security",
+      "expected_skills": [
+        "review-security"
+      ],
+      "unexpected_skills": [
+        "audit-dependencies"
+      ],
+      "rationale": "Trust-boundary exploitability, not dependency scanning."
+    },
+    {
+      "id": "boundary-test-api",
+      "title": "Boundary test api",
+      "prompt": "Test our create-order endpoint when the response disappears after commit; verify one charge after retry.",
+      "expected_router": "quality-security",
+      "expected_skills": [
+        "test-api"
+      ],
+      "unexpected_skills": [
+        "design-api"
+      ],
+      "rationale": "Existing promised retry behavior must be exercised."
+    },
+    {
+      "id": "boundary-test-cli",
+      "title": "Boundary test cli",
+      "prompt": "Test the installed CLI outside its checkout, with piped output and stdin closed.",
+      "expected_router": "quality-security",
+      "expected_skills": [
+        "test-cli"
+      ],
+      "unexpected_skills": [
+        "test-api"
+      ],
+      "rationale": "Process and stream contract, not an HTTP interface."
+    },
+    {
+      "id": "boundary-build-mcp-server",
+      "title": "Boundary build mcp server",
+      "prompt": "Implement and test cancellation and client capability negotiation in this MCP server.",
+      "expected_router": "ai-engineering",
+      "expected_skills": [
+        "build-mcp-server"
+      ],
+      "unexpected_skills": [
+        "design-agent-tools"
+      ],
+      "rationale": "The request needs protocol-specific implementation."
+    },
+    {
+      "id": "boundary-design-agent-tools",
+      "title": "Boundary design agent tools",
+      "prompt": "Design a tool contract that prevents an agent's old price preview from authorizing a changed purchase.",
+      "expected_router": "ai-engineering",
+      "expected_skills": [
+        "design-agent-tools"
+      ],
+      "unexpected_skills": [
+        "build-mcp-server"
+      ],
+      "rationale": "Generic agent contract without an MCP requirement."
+    },
+    {
+      "id": "boundary-evaluate-rag",
+      "title": "Boundary evaluate rag",
+      "prompt": "Compare two chunkers fairly when chunk IDs changed, while keeping tenant violations separate from recall.",
+      "expected_router": "ai-engineering",
+      "expected_skills": [
+        "evaluate-rag"
+      ],
+      "unexpected_skills": [
+        "evaluate-ai-output"
+      ],
+      "rationale": "Retrieval-label and authorization evaluation is the requested specialization."
     }
   ]
 }

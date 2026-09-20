@@ -21,6 +21,8 @@ Do not treat a nearby error as the target bug. If the original environment is un
 
 Separate facts from inferences. Update the ranking when evidence changes.
 
+For intermittent failures, order-dependent tests, or regressions with a known-good revision, read `references/nondeterminism-and-bisection.md`. A passing probe only rejects a hypothesis when the probe could reliably expose the predicted failure.
+
 ## Fix and verify
 
 1. Preserve a regression check at the highest-fidelity stable seam available and confirm that it detects the defect. Use an automated test when repeatable behavior warrants it, or a recorded command or browser observation for a small change without a useful test seam.

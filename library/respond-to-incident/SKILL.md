@@ -13,4 +13,6 @@ description: Coordinate mitigation, diagnosis, recovery, communication, and foll
 6. Verify recovery through user-facing signals, not only internal green dashboards.
 7. Continue monitoring, communicate status, and define follow-up owners.
 
+For an active outage, uncertain mitigation, or shift handoff, read [bounded mitigation and recovery](references/mitigation.md).
+
 After stabilization, produce a blameless account of contributing conditions, detection gaps, response quality, and prioritized prevention work. Never invent certainty during an active incident.

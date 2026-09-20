@@ -7,7 +7,7 @@
 3. Match the repository's terminology, location, structure, and style.
 4. Lead task-oriented docs with the outcome. Give copyable steps, expected results, failure recovery, and cleanup.
 5. Keep reference material precise and scannable; separate required steps from explanation and optional variants.
-6. Test commands and links when possible. Mark placeholders and unverified assumptions explicitly.
+6. Test commands and links when possible using a disposable fixture for commands that change state. Make placeholders visibly nonliteral, name the shell and working directory when syntax depends on them, and include how to recognize success. Mark unverified assumptions explicitly.
 7. Remove obsolete guidance rather than layering contradictions.
 
 Avoid documenting incidental implementation details as stable contracts. Summarize what changed and how accuracy was verified.

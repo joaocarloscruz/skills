@@ -15,4 +15,6 @@ description: Package applications with secure Dockerfiles, Compose, health check
 8. For multiple services, define networks, dependencies, volumes, readiness, and development-only conveniences explicitly.
 9. Build from a clean checkout, inspect image contents and size, scan dependencies, run the container, exercise health and shutdown, and verify supported architectures.
 
+For build credentials, Linux process shutdown, or orchestrated health checks, read [build and runtime failure cases](references/build-and-runtime.md).
+
 Report build and run commands, image assumptions, exposed interfaces, persistent state, security decisions, and remaining operational requirements.

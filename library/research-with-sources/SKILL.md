@@ -15,11 +15,11 @@ description: Research questions with current authoritative sources, citations, a
 
 1. Prefer the source that owns the fact: official documentation, specifications, source code, first-party datasets, filings, or original papers.
 2. Use secondary sources for discovery or interpretation, then trace important claims back to primary evidence.
-3. Check publication dates and the date an event actually occurred.
-4. Seek independent corroboration for consequential or disputed claims.
+3. Check publication dates, the date an event actually occurred, and the version or effective period of the evidence. A recently updated page may still describe an older event or superseded rule.
+4. Seek independent corroboration for consequential or disputed claims. Syndicated articles or pages repeating one press release count as one underlying source.
 5. Record the direct URL and the exact claim each source supports.
 
-Do not pad the source list. A few strong, directly relevant sources are better than many weak ones.
+Open the supporting page before citing a claim; a search snippet is a discovery aid. If the primary source is inaccessible, attribute the available secondary account and state that limitation. Do not pad the source list. A few strong, directly relevant sources are better than many weak ones.
 
 ## Synthesize
 

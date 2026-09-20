@@ -1,0 +1,532 @@
+{
+  "kind": "metadata-selection-smoke",
+  "dataset_revision": "sha256:8ff89cef04dff1aa034c765f47e8737c85b6e6bf5ed913a0c827a7269bb8a8ac",
+  "catalog_revision": "sha256:05b07b8d89bcc8c44b12d00aff0623b61255a9b0802ad0bfad4196ef0dbe7148",
+  "instructions": "For each independent request, select the single best router and minimal workflow set from this catalog. Use null and [] if none applies. Do not perform the request. Return an object with dataset_revision, catalog_revision, and selections; each selection has exactly id, router, workflows. Copy both revisions. Include each opaque case ID once. Use only this input; do not inspect expected answers or other repository files.",
+  "catalog": [
+    {
+      "router": "planning-discovery",
+      "description": "Route research, codebase analysis, specifications, implementation planning, or work breakdown.",
+      "workflows": [
+        {
+          "name": "analyze-codebase",
+          "description": "Map architecture, boundaries, and execution paths."
+        },
+        {
+          "name": "break-down-work",
+          "description": "Turn goals into small, verifiable work items."
+        },
+        {
+          "name": "plan-implementation",
+          "description": "Create implementation-ready plans grounded in code."
+        },
+        {
+          "name": "research-with-sources",
+          "description": "Produce concise, source-backed research."
+        },
+        {
+          "name": "write-technical-spec",
+          "description": "Define testable behavior and engineering contracts."
+        }
+      ]
+    },
+    {
+      "router": "software-engineering",
+      "description": "Route domain modeling, APIs, database changes, implementation, TDD, migrations, refactoring, or Git conflicts.",
+      "workflows": [
+        {
+          "name": "design-api",
+          "description": "Design coherent, evolvable interfaces."
+        },
+        {
+          "name": "design-database-change",
+          "description": "Plan safe schemas, migrations, and rollbacks."
+        },
+        {
+          "name": "domain-modeling",
+          "description": "Clarify domain language, rules, lifecycles, and boundaries."
+        },
+        {
+          "name": "implement-feature",
+          "description": "Implement scoped behavior with verification."
+        },
+        {
+          "name": "migrate-dependency",
+          "description": "Upgrade dependencies with controlled compatibility."
+        },
+        {
+          "name": "refactor-safely",
+          "description": "Improve structure while preserving behavior."
+        },
+        {
+          "name": "resolve-merge-conflicts",
+          "description": "Resolve merge, rebase, and cherry-pick conflicts by intent."
+        },
+        {
+          "name": "tdd",
+          "description": "Build behavior in small red-green-refactor cycles."
+        }
+      ]
+    },
+    {
+      "router": "frontend",
+      "description": "Route web interface design, implementation, design systems, accessibility review, or browser testing.",
+      "workflows": [
+        {
+          "name": "design-frontend-interface",
+          "description": "Define intentional product and marketing interface direction."
+        },
+        {
+          "name": "build-frontend-interface",
+          "description": "Implement production web interfaces and interaction behavior."
+        },
+        {
+          "name": "build-design-system",
+          "description": "Create reusable tokens, primitives, components, and governance."
+        },
+        {
+          "name": "review-accessibility",
+          "description": "Find barriers in essential user journeys."
+        },
+        {
+          "name": "test-local-webapp",
+          "description": "Inspect and verify local web applications."
+        }
+      ]
+    },
+    {
+      "router": "quality-security",
+      "description": "Route debugging, test strategy, AI evaluation, CI diagnosis, code review, security review, interface testing, or skill-catalog audits.",
+      "workflows": [
+        {
+          "name": "audit-skill-catalog",
+          "description": "Audit skill structure, routing, safety, provenance, and maintenance quality."
+        },
+        {
+          "name": "debug-systematically",
+          "description": "Reproduce, isolate, fix, and verify defects."
+        },
+        {
+          "name": "design-test-strategy",
+          "description": "Select risk-based tests at effective seams."
+        },
+        {
+          "name": "evaluate-ai-output",
+          "description": "Build rigorous evaluations for AI behavior."
+        },
+        {
+          "name": "investigate-ci-failure",
+          "description": "Trace pipeline failures to root causes."
+        },
+        {
+          "name": "review-changes",
+          "description": "Review diffs for correctness, risk, and scope."
+        },
+        {
+          "name": "review-security",
+          "description": "Threat-model changes and find exploitable risks."
+        },
+        {
+          "name": "test-api",
+          "description": "Verify contracts, errors, and side effects."
+        },
+        {
+          "name": "test-cli",
+          "description": "Verify command-line behavior and compatibility."
+        }
+      ]
+    },
+    {
+      "router": "operations",
+      "description": "Route dependency audits, performance work, software releases, or incident response.",
+      "workflows": [
+        {
+          "name": "audit-dependencies",
+          "description": "Assess dependency health and supply-chain risk."
+        },
+        {
+          "name": "improve-performance",
+          "description": "Measure and fix performance bottlenecks."
+        },
+        {
+          "name": "release-software",
+          "description": "Prepare and verify controlled releases."
+        },
+        {
+          "name": "respond-to-incident",
+          "description": "Stabilize, investigate, recover, and learn."
+        }
+      ]
+    },
+    {
+      "router": "collaboration",
+      "description": "Route technical handoffs, issue triage, or documentation work.",
+      "workflows": [
+        {
+          "name": "prepare-handoff",
+          "description": "Capture state for seamless continuation."
+        },
+        {
+          "name": "triage-issues",
+          "description": "Turn reports into prioritized, actionable issues."
+        },
+        {
+          "name": "write-documentation",
+          "description": "Create accurate, task-oriented documentation."
+        }
+      ]
+    },
+    {
+      "router": "ai-engineering",
+      "description": "Route MCP server work, agent-tool design, or retrieval-augmented generation evaluation.",
+      "workflows": [
+        {
+          "name": "build-mcp-server",
+          "description": "Build secure, effective Model Context Protocol integrations."
+        },
+        {
+          "name": "design-agent-tools",
+          "description": "Design reliable and governable agent tool surfaces."
+        },
+        {
+          "name": "evaluate-rag",
+          "description": "Evaluate retrieval, grounding, citations, latency, and cost."
+        }
+      ]
+    },
+    {
+      "router": "data",
+      "description": "Route structured dataset analysis, analytical SQL, or batch and streaming pipeline design.",
+      "workflows": [
+        {
+          "name": "analyze-dataset",
+          "description": "Explore data reproducibly while preserving provenance and uncertainty."
+        },
+        {
+          "name": "write-sql",
+          "description": "Write correct, safe, and validated analytical SQL."
+        },
+        {
+          "name": "design-data-pipeline",
+          "description": "Design reliable batch and streaming data flows."
+        }
+      ]
+    },
+    {
+      "router": "platform-engineering",
+      "description": "Route containerization, observability, or continuous-integration pipeline work.",
+      "workflows": [
+        {
+          "name": "containerize-application",
+          "description": "Build secure and reproducible application containers."
+        },
+        {
+          "name": "add-observability",
+          "description": "Add useful logs, metrics, traces, dashboards, and alerts."
+        },
+        {
+          "name": "write-ci-pipeline",
+          "description": "Create secure, reproducible continuous-integration workflows."
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "case-001",
+      "prompt": "Before writing code, trace the existing checkout and give me an implementation plan for adding account-level usage limits."
+    },
+    {
+      "id": "case-002",
+      "prompt": "The feature requirements are approved. Split the work into small ordered tickets with dependencies, acceptance criteria, and verification."
+    },
+    {
+      "id": "case-003",
+      "prompt": "Turn this product brief into a technical specification with behavior, interfaces, failure cases, rollout, and acceptance criteria. Do not implement it."
+    },
+    {
+      "id": "case-004",
+      "prompt": "Review this pull request for correctness, regressions, missing tests, and scope. Report findings only; do not modify code."
+    },
+    {
+      "id": "case-005",
+      "prompt": "Assess this authentication and authorization design for exploitable vulnerabilities, trust-boundary mistakes, and tenant-isolation failures."
+    },
+    {
+      "id": "case-006",
+      "prompt": "Audit the checkout flow for keyboard, screen-reader, zoom, contrast, and reduced-motion barriers. Give actionable findings with the affected journey."
+    },
+    {
+      "id": "case-007",
+      "prompt": "Design a risk-based test strategy for migrating billing providers, including the most effective test seams and release checks."
+    },
+    {
+      "id": "case-008",
+      "prompt": "Test this staging payments API against its contract, including invalid inputs, authorization, retries, pagination, and side effects."
+    },
+    {
+      "id": "case-009",
+      "prompt": "Open the local application at localhost, reproduce the save failure, inspect browser and network evidence, and report the defect without changing code."
+    },
+    {
+      "id": "case-010",
+      "prompt": "The integration-test job began failing on this branch. Find the first actionable error, determine whether it is flaky or a code defect, and propose a verified fix."
+    },
+    {
+      "id": "case-011",
+      "prompt": "Create a GitHub Actions workflow that runs the repository's build, tests, and security checks on pull requests with least-privilege permissions."
+    },
+    {
+      "id": "case-012",
+      "prompt": "Define the information hierarchy, interaction behavior, responsive layout, and visual direction for a new analytics dashboard before implementation."
+    },
+    {
+      "id": "case-013",
+      "prompt": "Implement this approved checkout-page design in the existing React application, including responsive states, validation, accessibility, and browser verification."
+    },
+    {
+      "id": "case-014",
+      "prompt": "Evaluate our RAG system by separating retrieval quality, context quality, answer grounding, citation support, latency, and cost."
+    },
+    {
+      "id": "case-015",
+      "prompt": "Design a representative dataset and scoring rubric to measure whether our support agent follows policy, uses tools correctly, and regresses after prompt changes."
+    },
+    {
+      "id": "case-016",
+      "prompt": "Analyze this customer-retention CSV, document cleaning decisions, check the data grain, identify trends and uncertainty, and deliver a reproducible summary."
+    },
+    {
+      "id": "case-017",
+      "prompt": "Write a read-only PostgreSQL query for monthly active accounts, handling event grain, duplicate events, time zones, and validation totals."
+    },
+    {
+      "id": "case-018",
+      "prompt": "Implement the account lockout rule test-first. Show each failing test, make the smallest change to pass it, then refactor while green."
+    },
+    {
+      "id": "case-019",
+      "prompt": "Before designing APIs or tables, model the insurance-claim domain. Clarify policy, claim, case, lifecycle transitions, invariants, ownership boundaries, and ambiguous terminology."
+    },
+    {
+      "id": "case-020",
+      "prompt": "Production checkout is failing for most customers. Coordinate mitigation, diagnosis, recovery, communication, and follow-up while preserving an incident timeline."
+    },
+    {
+      "id": "case-021",
+      "prompt": "Capture the exact state of this unfinished migration so another AI agent can continue tomorrow without reconstructing the investigation."
+    },
+    {
+      "id": "case-022",
+      "prompt": "Add structured logs, request metrics, distributed traces, an availability SLO, and actionable alerts to this service. Verify that operators can diagnose a failed request end to end."
+    },
+    {
+      "id": "case-023",
+      "prompt": "Audit this repository's direct and transitive dependencies for known advisories, abandoned packages, incompatible licenses, stale versions, and supply-chain risk. Do not upgrade anything yet."
+    },
+    {
+      "id": "case-024",
+      "prompt": "Audit this Agent Skills catalog for invalid metadata, broken references, unsafe instructions, overlapping activation, unclear provenance, and maintenance risks. Report findings without editing the catalog."
+    },
+    {
+      "id": "case-025",
+      "prompt": "Create a shared design system for our three web products with tokens, themes, accessible primitives, component APIs, documentation, and a controlled migration path."
+    },
+    {
+      "id": "case-026",
+      "prompt": "Build an MCP server that exposes our ticketing service through narrow tools and resources with validated schemas, least privilege, useful errors, and integration tests."
+    },
+    {
+      "id": "case-027",
+      "prompt": "Containerize this existing API with a secure multi-stage Dockerfile, non-root runtime, health check, runtime configuration, and a local Compose setup."
+    },
+    {
+      "id": "case-028",
+      "prompt": "Users intermittently lose draft changes. Reproduce the failure, gather evidence, rank hypotheses, isolate the cause, implement the smallest justified fix, and verify the original failure no longer occurs."
+    },
+    {
+      "id": "case-029",
+      "prompt": "Design the tools an account-support agent needs. Define narrow responsibilities, input and output schemas, permissions, idempotency, errors, and how destructive actions require confirmation. Do not implement a server."
+    },
+    {
+      "id": "case-030",
+      "prompt": "Design a versioned public API for subscriptions, including resources, operations, pagination, idempotency, errors, compatibility rules, and example contracts. Do not implement it."
+    },
+    {
+      "id": "case-031",
+      "prompt": "Design a zero-downtime migration that splits the customer name column, including expand-and-contract steps, backfill, indexes, compatibility windows, verification, and rollback."
+    },
+    {
+      "id": "case-032",
+      "prompt": "Design a daily pipeline that ingests product events, deduplicates them, enforces contracts, supports idempotent reruns and backfills, records lineage, and publishes quality metrics."
+    },
+    {
+      "id": "case-033",
+      "prompt": "The search endpoint's p95 latency doubled. Establish a reproducible baseline, profile CPU, memory, queries, and I/O, identify the dominant bottleneck, optimize it, and compare before and after results."
+    },
+    {
+      "id": "case-034",
+      "prompt": "Upgrade this application from framework version 4 to version 5. Inventory breaking changes, update code and configuration incrementally, verify compatibility, and define rollback steps."
+    },
+    {
+      "id": "case-035",
+      "prompt": "Refactor this parser to remove duplication and clarify its module boundaries while preserving every observable behavior and public interface. Strengthen characterization tests first."
+    },
+    {
+      "id": "case-036",
+      "prompt": "Prepare and publish version 3.2 with verified artifacts, migration sequencing, staged rollout, monitoring, rollback criteria, and post-release checks."
+    },
+    {
+      "id": "case-037",
+      "prompt": "Research the current supported approaches for Python package signing. Use authoritative sources, distinguish facts from inference, cite claims, and explain uncertainty. Do not change the repository."
+    },
+    {
+      "id": "case-038",
+      "prompt": "Resolve the merge conflicts between these branches by reconstructing both sides' intent, preserving compatible behavior, and running focused integration tests before completing the merge."
+    },
+    {
+      "id": "case-039",
+      "prompt": "Test this CLI across valid and invalid arguments, stdin and stdout behavior, exit codes, environment variables, filesystem effects, signals, and interactive prompts."
+    },
+    {
+      "id": "case-040",
+      "prompt": "Triage these incoming bug reports: find duplicates, reproduce credible failures, separate support questions, assign severity and priority, and produce actionable issues with acceptance criteria."
+    },
+    {
+      "id": "case-041",
+      "prompt": "Write an operator runbook for rotating signing keys, including prerequisites, exact steps, verification, rollback, troubleshooting, and ownership. Validate every command against the repository."
+    },
+    {
+      "id": "case-042",
+      "prompt": "Good morning!"
+    },
+    {
+      "id": "case-043",
+      "prompt": "Rewrite this sentence in plain English: The building security guard reviews visitor badges at reception."
+    },
+    {
+      "id": "case-044",
+      "prompt": "Suggest a short title for my personal photo album about a train journey through the Alps."
+    },
+    {
+      "id": "case-045",
+      "prompt": "Checkout errors are rising in production after the last deploy. Coordinate immediate mitigation and rollback while preserving evidence for later root-cause analysis."
+    },
+    {
+      "id": "case-046",
+      "prompt": "Yesterday's change made the existing Linux CI job fail only on pull requests from forks. Identify the failing step from logs and fix the regression without redesigning the workflow."
+    },
+    {
+      "id": "case-047",
+      "prompt": "My feature branch stopped halfway through a rebase onto main. Resolve the remaining conflicts and finish the rebase; keep my untracked notes out of the commits."
+    },
+    {
+      "id": "case-048",
+      "prompt": "Finish the cherry-pick of the fix. Git reports a modify/delete conflict, but I cannot find conflict markers. Preserve the fix's behavior and the intended file removal."
+    },
+    {
+      "id": "case-049",
+      "prompt": "In one sentence, what is the difference between a Git merge and a rebase? Do not inspect or change a repository."
+    },
+    {
+      "id": "case-050",
+      "prompt": "Our assistant answers correctly when given the right document, but search retrieves outdated or irrelevant passages. Measure retrieval recall and freshness against labeled queries before changing prompts."
+    },
+    {
+      "id": "case-051",
+      "prompt": "Design the HTTP contract for creating an order when a timeout may occur after it is saved. Specify duplicate submissions and stale concurrent edits; do not implement or test a running service."
+    },
+    {
+      "id": "case-052",
+      "prompt": "Upgrade this framework and its plugin to the requested supported versions. Verify peer/runtime constraints and clean installation while preserving unrelated dependencies."
+    },
+    {
+      "id": "case-053",
+      "prompt": "Sales and support both say customer but mean different things. Model their language, ownership, and translation without designing database tables."
+    },
+    {
+      "id": "case-054",
+      "prompt": "Design a settings screen consistent with the supplied product patterns and brand. Specify hierarchy, responsive states, and copy; do not implement or create a new component library."
+    },
+    {
+      "id": "case-055",
+      "prompt": "Review this login and six-digit verification flow for WCAG 2.2 AA accessibility barriers, including password-manager support and pasting the full code. Report findings only."
+    },
+    {
+      "id": "case-056",
+      "prompt": "Exercise the local app's save flow. It failed once and passed on retry; preserve both attempts and diagnose whether this is readiness, shared setup, or product behavior. Do not fix code."
+    },
+    {
+      "id": "case-057",
+      "prompt": "Design a GitHub Actions pipeline where optional path-specific jobs can be skipped, real failures still block merging, and merge queue checks run."
+    },
+    {
+      "id": "case-058",
+      "prompt": "Containerize our Linux API with a working graceful shutdown, private build dependency access, and appropriate Kubernetes startup/readiness/liveness behavior."
+    },
+    {
+      "id": "case-059",
+      "prompt": "Add fleet latency metrics and low-volume availability alerts; account for retries, sampled traces, and missing telemetry."
+    },
+    {
+      "id": "case-060",
+      "prompt": "Design a Kafka-to-database pipeline that can replay after a crash between its database commit and offset commit, including a concurrent historical backfill."
+    },
+    {
+      "id": "case-061",
+      "prompt": "Analyze this orders dataset enriched with customer history; verify why totals doubled and compare overall versus average-customer conversion rates."
+    },
+    {
+      "id": "case-062",
+      "prompt": "Improve our API's p99 under the same request arrival rate; our fixed-client benchmark sends fewer requests when the service slows down."
+    },
+    {
+      "id": "case-063",
+      "prompt": "Resume the authorized multi-platform release after the upload timed out; inspect existing version artifacts and avoid rebuilding or republishing completed uploads."
+    },
+    {
+      "id": "case-064",
+      "prompt": "Audit these lockfiles and scanner results. A development dependency has unknown reachability; assess build exposure without installing fixes."
+    },
+    {
+      "id": "case-065",
+      "prompt": "Our queue test fails only after the account suite. Isolate the state leak and fix it."
+    },
+    {
+      "id": "case-066",
+      "prompt": "We have 95% coverage but our mocked billing tests missed duplicate charges. Propose a better test strategy."
+    },
+    {
+      "id": "case-067",
+      "prompt": "This GitHub Actions run fails although its branch SHA passes locally. Diagnose the checkout and the first error."
+    },
+    {
+      "id": "case-068",
+      "prompt": "Review all local changes, including new files, and report introduced regressions without editing them."
+    },
+    {
+      "id": "case-069",
+      "prompt": "Review whether queued exports and cached downloads can leak another tenant's data."
+    },
+    {
+      "id": "case-070",
+      "prompt": "Test our create-order endpoint when the response disappears after commit; verify one charge after retry."
+    },
+    {
+      "id": "case-071",
+      "prompt": "Test the installed CLI outside its checkout, with piped output and stdin closed."
+    },
+    {
+      "id": "case-072",
+      "prompt": "Implement and test cancellation and client capability negotiation in this MCP server."
+    },
+    {
+      "id": "case-073",
+      "prompt": "Design a tool contract that prevents an agent's old price preview from authorizing a changed purchase."
+    },
+    {
+      "id": "case-074",
+      "prompt": "Compare two chunkers fairly when chunk IDs changed, while keeping tenant violations separate from recall."
+    }
+  ]
+}

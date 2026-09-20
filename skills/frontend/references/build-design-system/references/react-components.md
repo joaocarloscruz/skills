@@ -28,6 +28,7 @@ This models a decision; implementation must still select native link or button s
 
 - Decide controlled versus uncontrolled ownership; never silently switch during an instance's lifetime. Document the default value, current value, and change notification contract.
 - Preserve refs, focus restoration, native attributes, form submission, event cancellation, and accessible names. Test one realistic consumer instead of testing only the wrapper in isolation.
+- Give repeated field/help/error associations unique, stable IDs; preserve an explicit consumer ID and keep server/client IDs consistent. Use the installed React version's supported ID mechanism, such as `useId` in components where it is supported, rather than a render-time random value or shared hardcoded ID. List keys still come from data identity.
 - React 19 supports passing `ref` as a prop to function components. Libraries supporting React 18 still need the appropriate compatibility approach; do not mechanically remove `forwardRef` without checking the supported range.
 - Keep internal DOM and context details private unless consumers truly need a stable extension point. A context provider is not itself proof of a better architecture.
 - Exercise two instances, nested usage where supported, keyboard-only use, and a long/localized label. These catch shared-state and composition failures that a default screenshot misses.
@@ -37,4 +38,5 @@ This models a decision; implementation must still select native link or button s
 - [React: sharing state between components](https://react.dev/learn/sharing-state-between-components)
 - [React: controlled and uncontrolled inputs](https://react.dev/reference/react-dom/components/input)
 - [React: forwardRef and React 19](https://react.dev/reference/react/forwardRef)
+- [React: useId for accessible associations and hydration](https://react.dev/reference/react/useId)
 - [WAI-ARIA Authoring Practices: patterns](https://www.w3.org/WAI/ARIA/apg/patterns/)

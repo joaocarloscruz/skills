@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "kind": "behavioral",
+  "experiment": {
+    "model": "Inherited Codex session model; exact backend version unavailable",
+    "harness": "sha256:e297f24c4a617a86289543e64c7319ed0e487ec26f177a58a22fcc7dbca44c30",
+    "environment": "Windows; fresh fork_turns=none agent context and separate directory per task/condition; shared host filesystem; procedural grader exclusion; global skill isolation not enforced",
+    "tools": [
+      "Python@3.13.15",
+      "SQLite@3.50.4",
+      "Codex exec_command/apply_patch (host tool versions unavailable)"
+    ],
+    "parameters": {
+      "model_and_reasoning": "Inherited default; exact settings unavailable",
+      "repeats": 1,
+      "execution_order": "target-not-loaded phase, then target-loaded phase; tasks overlap in wall time",
+      "skill_loading": "Explicit copied target package only in target-loaded condition",
+      "limitations": [
+        "Exact backend model version and sampling parameters are not exposed.",
+        "Fresh contexts and separate directories; shared filesystem, no enforced grader isolation.",
+        "Other installed skills/tool metadata remain available in both conditions.",
+        "Three development tasks, one repeat per condition, no held-out population.",
+        "Full tool transcripts are not captured; submitted artifacts and executable grades are retained."
+      ]
+    },
+    "dataset_revision": "sha256:b37b5a17fc53681f59942e4a0176fd83773cdbb49e7bc73f6d200198c21ba693",
+    "grader_revision": "sha256:c8798dc9f1c2ca06c00cf193a5f48a367c6b7136aeb64b4f682112989991e344"
+  },
+  "conditions": {
+    "target-not-loaded": {
+      "skill_revision": "none",
+      "description": "No repository target skill supplied; other host instructions and skill metadata remain available"
+    },
+    "target-loaded": {
+      "skill_revision": "sha256:0ca8a2e398c8db3e77c99b464fae89b11ebf483298622529c1ce2b609b776d17",
+      "description": "Per-task explicit skill package; combined package revision hashes the task-to-package revision map in plan.json"
+    }
+  },
+  "planned_tasks": [
+    {
+      "task_id": "sql-grain",
+      "repeats": [
+        1
+      ]
+    },
+    {
+      "task_id": "pipeline-replay",
+      "repeats": [
+        1
+      ]
+    },
+    {
+      "task_id": "tool-write-recovery",
+      "repeats": [
+        1
+      ]
+    }
+  ],
+  "results": [
+    {
+      "task_id": "sql-grain",
+      "repeat": 1,
+      "condition": "target-not-loaded",
+      "success": true,
+      "seconds": null,
+      "tokens": null,
+      "artifact": "artifacts/target-not-loaded-sql-grain.json",
+      "critical_failures": []
+    },
+    {
+      "task_id": "sql-grain",
+      "repeat": 1,
+      "condition": "target-loaded",
+      "success": true,
+      "seconds": null,
+      "tokens": null,
+      "artifact": "artifacts/target-loaded-sql-grain.json",
+      "critical_failures": []
+    },
+    {
+      "task_id": "pipeline-replay",
+      "repeat": 1,
+      "condition": "target-not-loaded",
+      "success": true,
+      "seconds": null,
+      "tokens": null,
+      "artifact": "artifacts/target-not-loaded-pipeline-replay.json",
+      "critical_failures": []
+    },
+    {
+      "task_id": "pipeline-replay",
+      "repeat": 1,
+      "condition": "target-loaded",
+      "success": true,
+      "seconds": null,
+      "tokens": null,
+      "artifact": "artifacts/target-loaded-pipeline-replay.json",
+      "critical_failures": []
+    },
+    {
+      "task_id": "tool-write-recovery",
+      "repeat": 1,
+      "condition": "target-not-loaded",
+      "success": true,
+      "seconds": null,
+      "tokens": null,
+      "artifact": "artifacts/target-not-loaded-tool-write-recovery.json",
+      "critical_failures": []
+    },
+    {
+      "task_id": "tool-write-recovery",
+      "repeat": 1,
+      "condition": "target-loaded",
+      "success": true,
+      "seconds": null,
+      "tokens": null,
+      "artifact": "artifacts/target-loaded-tool-write-recovery.json",
+      "critical_failures": []
+    }
+  ]
+}

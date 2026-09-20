@@ -18,6 +18,8 @@ For object authorization, build a small matrix with two disposable principals an
 
 Random identifiers and hidden UI controls do not establish authorization. Check downloads, search results, counts, exports, caches, and asynchronous jobs as well as direct object endpoints. Denied requests must not have already changed state. These checks develop the application's actual policy rather than assuming every cross-user read is forbidden.
 
+For a queued operation, trace the initiating principal and tenant into the worker, status endpoint, and final artifact. A worker's service credentials must not turn a user-supplied object ID into unrestricted access. Apply the product's revocation policy at execution and retrieval, including old download links. For cached protected data, compare the cache key and hit path with the authorization decision; a correctly guarded database query does not protect a cache hit that bypasses it.
+
 ## Match the defense to the sink
 
 - SQL parameters bind values; dynamic identifiers need an allowlist or dialect-aware identifier handling. Escaping for one context is not protection in another.
