@@ -44,7 +44,7 @@
     "platform-engineering/references/write-ci-pipeline/references/github-actions.md": "d311c55c3bc6d789a5dcadd4796a0224297a08ac2ed0d31fefb5845eff8646cd",
     "platform-engineering/references/write-ci-pipeline/workflow.md": "87da3419d33500cc8bafed276afed9297d21ea71aa7930a70617ae299a5e83cc",
     "quality-security/SKILL.md": "d3e0ac65c5935f3d47276e133abea83ba323bc5457ae93a363de58457bb2f738",
-    "quality-security/references/audit-skill-catalog/scripts/audit_catalog.py": "18a11353b69f903d73e4e716d53c130072724a321adff90aa24beda9397ec77a",
+    "quality-security/references/audit-skill-catalog/scripts/audit_catalog.py": "7b71ecd73e586a5fd3d96d913d1299019b843442b466e67db0c072a9ba5cfaed",
     "quality-security/references/audit-skill-catalog/workflow.md": "232888d6d6b285737d74b6c0c64b6afdad267482c2df2f36e731334d4bdd1470",
     "quality-security/references/debug-systematically/workflow.md": "418c74600e4dd28249775bf690c1e68cc4a08d77c580a3f9111c05c50518341c",
     "quality-security/references/design-test-strategy/references/property-tests.md": "d29f2501fa2eb5384cd1b4b229b61e3d6ec60580f434a6f5fec4751c88cc15b4",

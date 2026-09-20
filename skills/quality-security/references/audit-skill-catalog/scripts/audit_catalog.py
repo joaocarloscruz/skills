@@ -216,10 +216,11 @@ def reachable_documents(skill_file: Path) -> dict[Path, str]:
     documents: dict[Path, str] = {}
     while pending:
         document = pending.pop()
-        if document in documents or is_link(document) or not document.resolve().is_relative_to(package) or not document.is_file():
+        resolved = document.resolve()
+        if resolved in documents or is_link(document) or not resolved.is_relative_to(package) or not document.is_file():
             continue
         text = document.read_text(encoding="utf-8")
-        documents[document] = text
+        documents[resolved] = text
         for raw_link in document_links(text):
             target = local_target(document, raw_link)
             if target is not None and target.is_relative_to(package) and not is_link(target) and target.suffix.lower() == ".md" and target.is_file():

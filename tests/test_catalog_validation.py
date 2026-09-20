@@ -97,7 +97,7 @@ class FrontmatterAndPackageTests(unittest.TestCase):
             findings = auditor.audit(path.parent, 1.0)
             self.assertTrue(any(item.code == "escaping-link" for item in findings))
             self.assertFalse(any(item.code == "unreadable-skill" for item in findings))
-            self.assertEqual(set(auditor.reachable_documents(path)), {path})
+            self.assertEqual(set(auditor.reachable_documents(path)), {path.resolve()})
 
     def test_encoded_escape_and_missing_reference_links_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -123,8 +123,19 @@ class FrontmatterAndPackageTests(unittest.TestCase):
             helper.parent.mkdir(parents=True)
             guide.write_text("Run `scripts/check.py`. Return to [start](../SKILL.md).\n", encoding="utf-8")
             helper.write_text("print('ok')\n", encoding="utf-8")
-            self.assertEqual(set(auditor.reachable_documents(path)), {path, guide})
+            self.assertEqual(set(auditor.reachable_documents(path)), {path.resolve(), guide.resolve()})
             self.assertEqual(auditor.audit(path.parent, 1.0), [])
+
+    def test_reference_cycles_visit_each_resolved_document_once(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = write_skill(root / "sample", "Read `references/guide.md`.\n")
+            guide = path.parent / "references" / "guide.md"
+            guide.parent.mkdir()
+            guide.write_text("Return to [start](../SKILL.md).\n", encoding="utf-8")
+            with contextlib.chdir(root):
+                documents = auditor.reachable_documents(Path("sample/SKILL.md"))
+            self.assertEqual(set(documents), {path.resolve(), guide.resolve()})
 
     def test_resource_mentions_are_exact_and_decode_link_targets(self):
         with tempfile.TemporaryDirectory() as directory:
